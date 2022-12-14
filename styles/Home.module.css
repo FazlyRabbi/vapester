@@ -1,0 +1,19 @@
+.icon {
+  font-size: 2.5rem !important;
+}
+.cart {
+  font-size: 2rem !important;
+}
+
+.borderGradient {
+  border-bottom: 3px solid;
+  border-image: linear-gradient(
+      to right,
+      #0997ff 20% 70%,
+      #ffc907 40% 80%,
+      #94c840 60% 90%,
+      #ea0000 88%
+    )
+    1;
+}
+
