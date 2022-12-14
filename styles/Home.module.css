@@ -17,3 +17,26 @@
     1;
 }
 
+.formControl::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.formControl:hover::before {
+  border-color: black;
+}
+
+.formControl::before {
+  content: "select file";
+
+  display: inline-block;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 10px 100px;
+  text-transform: capitalize;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 14px;
+}

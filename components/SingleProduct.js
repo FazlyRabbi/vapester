@@ -19,7 +19,7 @@ export default function SingleProduct() {
         </p>
 
         <Link
-          href={"#"}
+          href={"/shop/blueprint"}
           className="  capitalize py-2  pl-2 pr-1 rounded-md text-white bg-primary"
         >
           view details

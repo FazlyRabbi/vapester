@@ -1,5 +1,5 @@
 import styles from "@/styles/Home.module.css";
-
+import Link from "next/link";
 export default function Calculator() {
   return (
     <form className="w-full max-w-lg bg-[#EFEFEF]   shadow-md  ">
@@ -177,12 +177,12 @@ export default function Calculator() {
           />
         </div>
 
-        <input
+        <Link
+          href={"blueprint/upload"}
           className="appearance-none text-center block w-full  bg-gray  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
-          id="grid-first-name"
-          type="submit"
-          value={"add to cart"}
-        />
+        >
+          add to cart
+        </Link>
       </div>
     </form>
   );

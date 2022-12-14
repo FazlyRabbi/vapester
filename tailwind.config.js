@@ -9,10 +9,10 @@ module.exports = {
     fontSize: {
       sm: "13px",
       base: "14px",
-      titleSm:"15px",
+      titleSm: "15px",
       xl: "1.25rem",
     },
-    
+
     colors: {
       transparent: "transparent",
       primary: "#F45DA0",
@@ -24,6 +24,7 @@ module.exports = {
       silver: "#ecebff",
       "bubble-gum": "#ff77e9",
       bermuda: "#78dcca",
+      red: "#FF0000",
     },
 
     screens: {
