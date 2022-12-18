@@ -7,33 +7,40 @@ import { BiPhoneCall } from "react-icons/Bi";
 import { RiShoppingCartLine } from "react-icons/Ri";
 import styles from "@/styles/Home.module.css";
 
-
 export default function Header() {
   return (
     <div className="header   text-white ">
       <nav className="header-top bg-black  ">
         <div className=" container  mx-auto">
-          <ul className="   capitalize text-sm flex space-x-3 p-3 ">
-            <li className="border-r border-white pr-2">
-              <Link href={"/"}>home</Link>
-            </li>
-            <li className="border-r border-white pr-2">
-              <Link href={"/signin"}>sing in</Link>
-            </li>
+          <div className="flex justify-between">
+            <ul className="   capitalize text-sm flex space-x-3 p-3 ">
+              <li className="border-r border-white pr-2">
+                <Link href={"/"}>home</Link>
+              </li>
 
-            <li className="border-r border-white pr-2">
-              <Link href={"/singup"}>create account</Link>
-            </li>
-            <li className="border-r border-white pr-2">
-              <Link href={"/blog"}>blog</Link>
-            </li>
-            <li className="border-r border-white pr-2">
-              <Link href={"/aboutus"}>about</Link>
-            </li>
-            <li>
-              <Link href={"/faq"}>help & faq</Link>
-            </li>
-          </ul>
+              <li className="border-r border-white pr-2">
+                <Link href={"/shop"}>Products</Link>
+              </li>
+              <li className="border-r border-white pr-2">
+                <Link href={"/aboutus"}>about</Link>
+              </li>
+              <li className="border-white border-r pr-2">
+                <Link href={"/faq"}>help & faq</Link>
+              </li>
+              <li>
+                <Link href={"/contacts"}>Contact Us</Link>
+              </li>
+            </ul>
+            <ul className="   capitalize text-sm flex space-x-3 p-3 ">
+              <li className="border-r border-white pr-3">
+                <Link href={"/"}>Sing In</Link>
+              </li>
+
+              <li>
+                <Link href={"/contacts"}>Create Account</Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
       <div className="header-main p-4 shadow-sm ">
@@ -47,8 +54,8 @@ export default function Header() {
             <div className="max-w-md mx-auto">
               <div className="relative flex items-center w-full h-12 rounded-lg shadow-sm border bg-white overflow-hidden">
                 <input
-                  className={ `input outline-none pl-3 border-none  focus:outline-none w-64 ${styles.input}`}
-                  type="text"
+                  className={`input outline-none pl-3 border-none  focus:outline-none w-64 ${styles.input}`}
+                  type="search"
                   id="search"
                   placeholder="Search"
                 />
@@ -79,7 +86,7 @@ export default function Header() {
                   </div>
                   <div className="phone uppercase">
                     <h5>call us now</h5>
-                    <h5 className="font-bold">718 255 1400</h5>
+                    <h5 className="font-bold">929 217-6589</h5>
                   </div>
                 </div>
               </div>

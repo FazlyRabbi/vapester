@@ -52,7 +52,6 @@
   font-size: 14px;
 }
 
-.input > [type="text"]:focus {
-  border: none;
+.input {
   box-shadow: none !important;
 }

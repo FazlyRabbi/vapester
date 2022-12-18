@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Styles from "@/styles/Home.module.css";
-import { Button } from "flowbite-react";
 import Map from "@/components/Main";
 import GoogleMapReact from "google-map-react";
 
@@ -24,7 +23,7 @@ function contacts() {
             <form action="submit">
               <input
                 className="appearance-none block w-full  bg-[#F4F6FA]
-                 text-gray-700 border-gray-100 py-8  rounded-full px-6 mb-1 leading-tight   capitalize  focus:bg-white
+                 text-gray-700 border-gray-100 py-6  rounded-full px-6 mb-1 leading-tight   capitalize  focus:bg-white
                  focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                  
                  
@@ -35,7 +34,7 @@ function contacts() {
               />
               <input
                 className="appearance-none block w-full  bg-[#F4F6FA]
-                 text-gray-700 mt-4 border-gray-100 py-8  rounded-full px-6 mb-1 leading-tight    focus:bg-white
+                 text-gray-700 mt-4 border-gray-100 py-6  rounded-full px-6 mb-1 leading-tight    focus:bg-white
                  focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
                  
                  
@@ -54,12 +53,9 @@ function contacts() {
                 spellcheck="false"
               ></textarea>
 
-              <Button
-                type="submit"
-                className="text-black  rounded-full bg-primary font-bold  px-10 py-2 mt-4"
-              >
+              <button className="text-white rounded-full bg-primary   px-10 py-3 mt-4">
                 Submit
-              </Button>
+              </button>
             </form>
           </div>
         </div>
@@ -91,9 +87,9 @@ function contacts() {
               </div>
               <div className="details">
                 <ul>
-                  <li> 1.212.544.0777</li>
-                  <li> linopress@gmail.com</li>
-                  <li> 4482 Broaway, New York, NY 10040</li>
+                  <li> (929) 217-6589</li>
+                  <li> nprintandgraph@gmail.com</li>
+                  <li> 13220 Jamaica Ave, Queens, NY 11418</li>
                 </ul>
               </div>
             </div>

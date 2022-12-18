@@ -19,7 +19,7 @@ export default function AboutUs() {
             </p>
             <h4 className="font-bold  leading-[4rem] text-[50px] mb-8 ">
               Best Printing <br />
-              Services in NYC
+              Services in Print & Craft
             </h4>
             <p className="  text-justify text-gray-500  md:pr-60 sm:pr-0">
               Lino Press NY provides a range of timely, high-quality and
