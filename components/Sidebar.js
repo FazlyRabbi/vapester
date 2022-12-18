@@ -13,7 +13,7 @@ function Sidebar() {
       <div className="aec-bluprints"> 
         <ul className="w-[80%] ">
           <li
-            className={`text-titleSm  capitalize font-bold bg-gray text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
+            className={`text-titleSm  capitalize font-bold bg-[#111827] text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
           >
             <Link href={"/shop/blueprint/products"}>BluePrint</Link>
           </li>
@@ -40,7 +40,7 @@ function Sidebar() {
       <div className="aec-bluprints mt-2">
         <ul className="w-[80%] ">
           <li
-            className={`text-titleSm  capitalize font-bold bg-gray text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
+            className={`text-titleSm  capitalize font-bold bg-[#111827]  text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
           >
             menu title
           </li>
@@ -61,7 +61,7 @@ function Sidebar() {
       <div className="aec-bluprints mt-2">
         <ul className="w-[80%] ">
           <li
-            className={`text-titleSm  capitalize font-bold bg-gray text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
+            className={`text-titleSm  capitalize font-bold bg-[#111827]  text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
           >
             menu title
           </li>
@@ -82,7 +82,7 @@ function Sidebar() {
       <div className="aec-bluprints mt-2">
         <ul className="w-[80%] ">
           <li
-            className={`text-titleSm  capitalize font-bold bg-gray text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
+            className={`text-titleSm  capitalize font-bold bg-[#111827]  text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
           >
             menu title
           </li>
@@ -103,7 +103,7 @@ function Sidebar() {
       <div className="aec-bluprints mt-2">
         <ul className="w-[80%] ">
           <li
-            className={`text-titleSm  capitalize font-bold bg-gray text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
+            className={`text-titleSm  capitalize font-bold bg-[#111827]  text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
           >
             menu title
           </li>

@@ -1,10 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./public/**/*.html",
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
+  plugins: [require("flowbite/plugin"), require("flowbite-typography")],
+
   theme: {
     fontSize: {
       sm: "13px",
@@ -43,7 +48,5 @@ module.exports = {
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
     },
-    extend: {},
   },
-  plugins: [],
 };

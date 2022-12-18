@@ -5,6 +5,8 @@ import Image from "next/image";
 import logo from "../img/logo.png";
 import { BiPhoneCall } from "react-icons/Bi";
 import { RiShoppingCartLine } from "react-icons/Ri";
+import styles from "@/styles/Home.module.css";
+
 
 export default function Header() {
   return (
@@ -12,21 +14,24 @@ export default function Header() {
       <nav className="header-top bg-black  ">
         <div className=" container  mx-auto">
           <ul className="   capitalize text-sm flex space-x-3 p-3 ">
-            <li className="border-r border-indigo-500 pr-2">
+            <li className="border-r border-white pr-2">
               <Link href={"/"}>home</Link>
             </li>
-            <li className="border-r border-indigo-500 pr-2">
+            <li className="border-r border-white pr-2">
               <Link href={"/signin"}>sing in</Link>
             </li>
 
-            <li className="border-r border-indigo-500 pr-2">
+            <li className="border-r border-white pr-2">
               <Link href={"/singup"}>create account</Link>
             </li>
-            <li className="border-r border-indigo-500 pr-2">
+            <li className="border-r border-white pr-2">
               <Link href={"/blog"}>blog</Link>
             </li>
+            <li className="border-r border-white pr-2">
+              <Link href={"/aboutus"}>about</Link>
+            </li>
             <li>
-              <Link href={"/about"}>about</Link>
+              <Link href={"/faq"}>help & faq</Link>
             </li>
           </ul>
         </div>
@@ -42,7 +47,7 @@ export default function Header() {
             <div className="max-w-md mx-auto">
               <div className="relative flex items-center w-full h-12 rounded-lg shadow-sm border bg-white overflow-hidden">
                 <input
-                  className=" outline-none pl-3  w-64 "
+                  className={ `input outline-none pl-3 border-none  focus:outline-none w-64 ${styles.input}`}
                   type="text"
                   id="search"
                   placeholder="Search"

@@ -2,12 +2,12 @@ import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 export default function Calculator() {
   return (
-    <form className="w-full max-w-lg bg-[#EFEFEF]   shadow-md  ">
+    <form className="w-full max-w-lg    shadow-md  ">
       <h4
         className={` font-bold  p-2  pl-5 rounded-tl-md 
             
             rounded-tr-md shadow-sm
-            bg-gray w-full text-white  ${styles.borderGradient} `}
+            bg-[#111827]  w-full text-white  ${styles.borderGradient} `}
       >
         Price Calculator
       </h4>
@@ -179,7 +179,7 @@ export default function Calculator() {
 
         <Link
           href={"blueprint/upload"}
-          className="appearance-none text-center block w-full  bg-gray  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
+          className="appearance-none text-center block w-full bg-[#111827]  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
         >
           add to cart
         </Link>

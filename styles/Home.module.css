@@ -16,6 +16,17 @@
     )
     1;
 }
+.borderGradientLeft {
+  border-left: 8px solid;
+  border-image: linear-gradient(
+      to top,
+      #0997ff 20% 70%,
+      #ffc907 40% 80%,
+      #94c840 60% 90%,
+      #ea0000 88%
+    )
+    1;
+}
 
 .formControl::-webkit-file-upload-button {
   visibility: hidden;
@@ -39,4 +50,9 @@
   text-shadow: 1px 1px #fff;
   font-weight: 700;
   font-size: 14px;
+}
+
+.input > [type="text"]:focus {
+  border: none;
+  box-shadow: none !important;
 }
