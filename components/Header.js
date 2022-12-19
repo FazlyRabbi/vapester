@@ -5,6 +5,7 @@ import Image from "next/image";
 import logo from "../img/logo.png";
 import { BiPhoneCall } from "react-icons/Bi";
 import { RiShoppingCartLine } from "react-icons/Ri";
+
 import styles from "@/styles/Home.module.css";
 
 export default function Header() {

@@ -5,6 +5,14 @@
   font-size: 2rem !important;
 }
 
+.hero {
+  background-image: url("../img/banner1.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
 .borderGradient {
   border-bottom: 3px solid;
   border-image: linear-gradient(
@@ -54,4 +62,17 @@
 
 .input {
   box-shadow: none !important;
+}
+
+
+.catagoryCard {
+  padding: 1rem 1rem 0.2rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+}
+
+.catagoryCard:hover {
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 30%);
 }
