@@ -3,8 +3,8 @@ import Link from "next/link";
 import "tailwindcss/tailwind.css";
 import Image from "next/image";
 import logo from "../img/logo.png";
-// import { BiPhoneCall } from "react-icons/Bi";
-// import { RiShoppingCartLine } from "react-icons/Ri";
+import { BiPhoneCall } from "react-icons/bi";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 import styles from "@/styles/Home.module.css";
 
@@ -83,7 +83,7 @@ export default function Header() {
               <div className="contact-box  cursor-pointer  border-r pr-5 border-softGray">
                 <div className="flex justify-center items-center">
                   <div className={`${sytles.icon} pr-1`}>
-                    {/* <BiPhoneCall /> */}
+                    <BiPhoneCall />
                   </div>
                   <div className="phone uppercase">
                     <h5>call us now</h5>
@@ -95,7 +95,7 @@ export default function Header() {
               <div
                 className={`cart pl-5 ${sytles.cart} relative cursor-pointer `}
               >
-                {/* <RiShoppingCartLine /> */}
+                <RiShoppingCartLine />
                 <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
                   5
                 </span>

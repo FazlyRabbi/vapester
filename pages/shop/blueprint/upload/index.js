@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-// import { BsArrowRight } from "react-icons/Bs";
+import { BsArrowRight } from "react-icons/bs";
 function Upload() {
   return (
     <div className="upload">
@@ -99,7 +99,7 @@ function Upload() {
           <Link href={"/shopping"}>
             <button className="font-bold bg-[#111827]   shadow-sm hover:shadow-md py-2 px-4 flex items-center  rounded-md text-white   capitalize">
               <span className="mr-2"> checkout</span>
-              {/* <BsArrowRight className="text-[20px] " /> */}
+              <BsArrowRight className="text-[20px] " />
             </button>
           </Link>
         </div>

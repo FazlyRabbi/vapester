@@ -3,9 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../img/logo.png";
 import styles from "@/styles/Home.module.css";
-// import { MdEmail } from "react-icons/Md";
-// import { MdAccountCircle , MdPhoneCallback} from "react-icons/Md";
-// import { RiShoppingCartLine } from "react-icons/Ri";
+import { MdAccountCircle , MdPhoneCallback, MdEmail} from "react-icons/md";
+import { RiShoppingCartLine } from "react-icons/ri";
 import falyer from "../img/travel-sale-flyer-template_52683-46904.webp";
 import like from "../img/like.webp";
 import headphone from "../img/headpone.webp";
@@ -17,7 +16,7 @@ import charlotte from "../img/man/charlotte.webp";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -39,13 +38,13 @@ export default function Home() {
               <ul className="flex  text-white">
                 <Link href={`tel:929 217-6589`}>
                   <li className="  border-r px-3 flex   items-center">
-                    {/* <MdPhoneCallback className="text-[1.2rem] text-second"/> */}
+                    <MdPhoneCallback className="text-[1.2rem] text-second"/>
 
                     <span className=" tracking-wider ml-1 font-bold">929 217-6589</span>
                   </li>
                 </Link>
                 <li className="   px-3 flex   space-x-1 items-center">
-                  {/* <MdEmail className=" text-[1.2rem]" /> */}
+                  <MdEmail className=" text-[1.2rem]" />
                   <span>nprintandgraph@gmail.com</span>
                 </li>
               </ul>
@@ -64,13 +63,13 @@ export default function Home() {
                 <div>
                   <ul className="flex">
                     <li className=" cursor-pointer">
-                      {/* <MdAccountCircle className=" text-[1.8rem]" /> */}
+                      <MdAccountCircle className=" text-[1.8rem]" />
                     </li>
                     <li>
                       <div
                         className={`cart pl-5 ${styles.cart} relative cursor-pointer `}
                       >
-                        {/* <RiShoppingCartLine /> */}
+                        <RiShoppingCartLine />
                         <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
                           5
                         </span>
@@ -114,14 +113,14 @@ export default function Home() {
                 <div className="dropdown  font-bold cursor-pointer">
                   <ul className="flex">
                     <li className=" px-3 flex   items-center">
-                      {/* <MdAccountCircle className=" text-[1.3rem] mr-1" /> */}
+                      <MdAccountCircle className=" text-[1.3rem] mr-1" />
                       <span>Account</span>
                     </li>
                     <li>
                       <div
                         className={`cart pl-5 ${styles.cart} relative cursor-pointer  flex justify-center   items-center space-x-1`}
                       >
-                        {/* <RiShoppingCartLine /> */}
+                        <RiShoppingCartLine />
 
                         <span className="text-[15px] font-bold">Cart</span>
                         <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[40px] px-1 rounded-full bg-primary">

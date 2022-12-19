@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import product from "../img/product.jpg";
-// import { AiOutlineRight } from "react-icons/Ai";
+import { AiOutlineRight } from "react-icons/ai";
 
 export default function SingleProduct() {
   return (
@@ -23,7 +23,7 @@ export default function SingleProduct() {
           className="  capitalize py-2  pl-2 pr-1 rounded-md text-white bg-primary"
         >
           view details
-          {/* <AiOutlineRight className="inline-block pl-1 " /> */}
+          <AiOutlineRight className="inline-block pl-1 " />
         </Link>
       </div>
     </section>
