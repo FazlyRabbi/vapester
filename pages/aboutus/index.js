@@ -11,7 +11,7 @@ export default function AboutUs() {
       <div className="container  py-6 mx-auto">
         <div className="aboutus-content  py-10  grid sm:grid-cols-1 lg:grid-cols-2  gap-0  sm:justify-items-start  lg:justify-items-center   ">
           <div className="about-img">
-            <Image src={aboutImage} height={550} width={550} />
+            <Image src={aboutImage} height={550} width={550} alt="img" />
           </div>
           <div className="about-des mt-[3rem]">
             <p className="company-title  text-primary font-semibold    tracking-wider mb-3">

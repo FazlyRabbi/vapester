@@ -7,7 +7,7 @@ export default function SingleProduct() {
   return (
     <section className="product  cursor-pointer ">
       <div className="product-img">
-        <Image src={product} height="350" width="350" className="rounded-md" />
+        <Image src={product} height="350" width="350" className="rounded-md" alt="img" />
       </div>
       <div className="product-details">
         <h3 className="product-title text-[20px] font-bold pt-2">

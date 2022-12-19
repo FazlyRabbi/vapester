@@ -24,6 +24,9 @@ export default function Slider() {
           width={500}
           height={1000}
           className=" rounded-md shadow-sm"
+
+
+          alt="img"
         />
       </div>
       <div>
@@ -32,6 +35,8 @@ export default function Slider() {
           width={500}
           height={1000}
           className=" rounded-md shadow-sm"
+
+          alt="img"
         />
       </div>
       <div>
@@ -40,6 +45,8 @@ export default function Slider() {
           width={500}
           height={1000}
           className=" rounded-md shadow-sm"
+
+          alt="img"
         />
       </div>
       <div>
@@ -48,6 +55,8 @@ export default function Slider() {
           width={500}
           height={1000}
           className=" rounded-md shadow-sm"
+
+          alt="img"
         />
       </div>
       <div>
@@ -56,6 +65,8 @@ export default function Slider() {
           width={500}
           height={1000}
           className=" rounded-md shadow-sm"
+
+          alt="img"
         />
       </div>
     </Carousel>

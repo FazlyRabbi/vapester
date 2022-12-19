@@ -40,16 +40,16 @@ function ProductDetails() {
           sm:w-[38rem] sm:h-[20rem] mb-2`}
         >
           <SwiperSlide>
-            <Image src={p1} />
+            <Image src={p1} alt="img" />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={p2} />
+            <Image src={p2} alt="img" />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={p3} />
+            <Image src={p3} alt="img" />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={p4} />
+            <Image src={p4} alt="img" />
           </SwiperSlide>
         </Swiper>
         <Swiper
@@ -62,16 +62,16 @@ function ProductDetails() {
           className="mySwiper mb-5 h-[4rem] cursor-pointer "
         >
           <SwiperSlide>
-            <Image src={p1} />
+            <Image src={p1} alt="img" />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={p2} />
+            <Image src={p2} alt="img" />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={p3} />
+            <Image src={p3} alt="img" />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={p4} />
+            <Image src={p4} alt="img" />
           </SwiperSlide>
         </Swiper>
       </div>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../img/logo.png";
 import styles from "@/styles/Home.module.css";
-import { MdAccountCircle , MdPhoneCallback, MdEmail} from "react-icons/md";
+import { MdAccountCircle, MdPhoneCallback, MdEmail } from "react-icons/md";
 import { RiShoppingCartLine } from "react-icons/ri";
 import falyer from "../img/travel-sale-flyer-template_52683-46904.webp";
 import like from "../img/like.webp";
@@ -12,7 +12,7 @@ import banner from "../img/card/banners.svg";
 import mog from "../img/bg/mog.webp";
 import Footer from "@/components/Footer";
 import charlotte from "../img/man/charlotte.webp";
-
+import { Navbar } from "flowbite-react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
@@ -23,29 +23,32 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-
 export default function Home() {
   return (
     <section>
       <header>
         <div className="header-top bg-[#1E1E1E] py-3">
-          <div className="container mx-auto lg:px-44">
+          <div className="container mx-auto lg:px-10">
             <div className="header-top-content flex justify-between">
               <ul className="flex  text-white">
                 <li className=" cursor-pointer border-r px-3">Reviews</li>
                 <li className=" cursor-pointer px-3 ">Support</li>
               </ul>
-              <ul className="flex  text-white">
+              <ul className="flex flex-wrap    text-white">
                 <Link href={`tel:929 217-6589`}>
                   <li className="  border-r px-3 flex   items-center">
-                    <MdPhoneCallback className="text-[1.2rem] text-second"/>
+                    <MdPhoneCallback className="text-[1.2rem] text-second" />
 
-                    <span className=" tracking-wider ml-1 font-bold">929 217-6589</span>
+                    <span className=" hidden lg:block tracking-wider ml-1 font-bold">
+                      929 217-6589
+                    </span>
                   </li>
                 </Link>
                 <li className="   px-3 flex   space-x-1 items-center">
                   <MdEmail className=" text-[1.2rem]" />
-                  <span>nprintandgraph@gmail.com</span>
+                  <span className="hidden lg:block ">
+                    nprintandgraph@gmail.com
+                  </span>
                 </li>
               </ul>
             </div>
@@ -54,63 +57,39 @@ export default function Home() {
 
         <div className="header-main shadow-sm">
           <div className="container mx-auto">
-            <div className="header-main-md    lg:hidden">
-              <div className="logo box p-4   flex  justify-center">
-                <Image src={logo} alt="logo" height={150} width={150} />
-              </div>
-              <nav className="navbar flex  pb-4  justify-between">
-                <div className="dropdown  font-bold cursor-pointer">Menu</div>
-                <div>
-                  <ul className="flex">
-                    <li className=" cursor-pointer">
-                      <MdAccountCircle className=" text-[1.8rem]" />
-                    </li>
-                    <li>
-                      <div
-                        className={`cart pl-5 ${styles.cart} relative cursor-pointer `}
-                      >
-                        <RiShoppingCartLine />
-                        <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
-                          5
-                        </span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-            </div>
-
-            <div className="header-main-lg  hidden lg:block p-4  ">
-              <nav className="flex   justify-between    items-center">
-                <div>
-                  <ul className="flex space-x-5 font-bold">
-                    <li className="border-r border-white pr-2">
-                      <Link href={"/"}>Home</Link>
-                    </li>
-                    <li className="border-r border-white pr-2">
-                      <Link href={"/shop"}>All Products</Link>
-                    </li>
-                    <li className="border-r border-white pr-2">
-                      <Link href={"/aboutus"}>About Us</Link>
-                    </li>
-                    <li className="border-white border-r pr-2">
-                      <Link href={"/faq"}>Help & Faq</Link>
-                    </li>
-                    <li>
-                      <Link href={"/contacts"}>Contact</Link>
-                    </li>
-                  </ul>
-                </div>
-
+            <div className="header-main-lg  p-4  ">
+              <Navbar fluid={true} rounded={true}>
                 <Image
                   src={logo}
                   alt="logo"
                   height={150}
                   width={150}
-                  className=""
+                 
                 />
+                <Navbar.Toggle />
 
-                <div className="dropdown  font-bold cursor-pointer">
+                <Navbar.Collapse>
+                  <Navbar.Link active="true">
+                    <Link href={"/"} className="font-bold text-[14px]" >Home</Link>
+                  </Navbar.Link>
+                  <Navbar.Link> 
+                    <Link href={"/shop"}  className="font-bold text-[14px]">All Products</Link>
+                  </Navbar.Link>
+                  <Navbar.Link>
+                    {" "}
+                    <Link href={"/aboutus"}  className="font-bold text-[14px]">About Us</Link>
+                  </Navbar.Link>
+                  <Navbar.Link>
+                    {" "}
+                    <Link href={"/faq"}  className="font-bold text-[14px]">Help & Faq</Link>
+                  </Navbar.Link>
+                  <Navbar.Link>
+                    {" "}
+                    <Link href={"/contacts"}  className="font-bold text-[14px]">Contact</Link>
+                  </Navbar.Link>
+                </Navbar.Collapse>
+
+                <div className="dropdown  hidden lg:block  font-bold cursor-pointer">
                   <ul className="flex">
                     <li className=" px-3 flex   items-center">
                       <MdAccountCircle className=" text-[1.3rem] mr-1" />
@@ -120,7 +99,9 @@ export default function Home() {
                       <div
                         className={`cart pl-5 ${styles.cart} relative cursor-pointer  flex justify-center   items-center space-x-1`}
                       >
+                        <Link href={"/shopping"}>
                         <RiShoppingCartLine />
+                        </Link>
 
                         <span className="text-[15px] font-bold">Cart</span>
                         <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[40px] px-1 rounded-full bg-primary">
@@ -130,7 +111,7 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-              </nav>
+              </Navbar>
             </div>
           </div>
         </div>
@@ -138,7 +119,6 @@ export default function Home() {
       <div className="hero ">
         <Swiper
           pagination={true}
-          
           centeredSlides={true}
           autoplay={{
             delay: 5000,
@@ -147,33 +127,31 @@ export default function Home() {
           modules={[Autoplay, Pagination]}
           className="mySwiper text-white h-full w-full"
         >
-
-
           <SwiperSlide className={`${styles.hero}   `}>
             <div className=" h-full">
               <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
-                <div>
-                  <h4 className=" text-gray-800 font-bold">
+                <div className="text-center md:text-left">
+                  <h4 className=" text-gray-800 font-bold text-[14px]">
                     #1 YOUR PRINTING PARTNER
                   </h4>
 
-                  <h1 className="font-bold text-[85px] ">
+                  <h1 className="font-bold lg:text-[85px] text-[40px] text-gray-800 ">
                     {" "}
                     <span className=" text-primary ">Same Day</span> Print
                   </h1>
 
-                  <p className="  text-black  leading-[1.8rem] mt-[3rem] lg:pr-[50rem] ">
+                  <p className="  text-black  leading-[1.8rem] mt-[1rem] lg:pr-[50rem] lg:mt-[3rem] text-[14px] lg:text-[16px]">
                     In the city that never sleeps... <br />
                     You can rely on Printing New York, your trusted printing
                     services NYC partner. From business cards to brochures, this
                     local print shop has you covered.
                   </p>
 
-                  <div className="cta-btn flex  space-x-4 mt-[3rem]">
-                    <button className=" bg-primary px-[3rem]  text-white  font-bold  rounded-md">
+                  <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
+                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                       Make A Rush Order
                     </button>
-                    <button className=" text-black  border-[#000]   border px-[3rem]   font-bold  rounded-md">
+                    <button className="   text-black w-[18rem] border px-[3rem]  font-bold   border-black rounded-md text-[14px]">
                       View Products+
                     </button>
                   </div>
@@ -182,30 +160,30 @@ export default function Home() {
             </div>
           </SwiperSlide>
           <SwiperSlide className={`${styles.hero2}   `}>
-            <div className=" h-full bg-[#000000b1]">
+            <div className=" bg-[#000000ac] h-full ">
               <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
-                <div>
-                  <h4 className=" text-white font-bold">
+                <div className="text-center md:text-left">
+                  <h4 className=" text-white font-bold text-[14px]">
                     #1 YOUR PRINTING PARTNER
                   </h4>
 
-                  <h1 className="font-bold text-[85px] text-white ">
+                  <h1 className="font-bold lg:text-[85px] text-[40px]  text-white ">
                     {" "}
                     <span className=" text-primary ">Same Day</span> Print
                   </h1>
 
-                  <p className=" text-white  leading-[1.8rem] mt-[3rem] lg:pr-[50rem] ">
+                  <p className="  text-white  leading-[1.8rem] mt-[1rem] lg:pr-[50rem] lg:mt-[3rem] text-[14px] lg:text-[16px]">
                     In the city that never sleeps... <br />
                     You can rely on Printing New York, your trusted printing
                     services NYC partner. From business cards to brochures, this
                     local print shop has you covered.
                   </p>
 
-                  <div className="cta-btn flex  space-x-4 mt-[3rem]">
-                    <button className=" bg-primary px-[3rem]  text-white  font-bold  rounded-md">
+                  <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
+                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                       Make A Rush Order
                     </button>
-                    <button className=" text-white   border px-[3rem]   font-bold  rounded-md">
+                    <button className="   w-[18rem] border px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                       View Products+
                     </button>
                   </div>
@@ -213,41 +191,6 @@ export default function Home() {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className={`${styles.hero3}   `}>
-            <div className=" h-full bg-[#000000b1]">
-              <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
-                <div>
-                  <h4 className=" text-white font-bold">
-                    #1 YOUR PRINTING PARTNER
-                  </h4>
-
-                  <h1 className="font-bold text-[85px] text-white ">
-                    {" "}
-                    <span className=" text-primary ">Same Day</span> Print
-                  </h1>
-
-                  <p className=" text-white  leading-[1.8rem] mt-[3rem] lg:pr-[50rem] ">
-                    In the city that never sleeps... <br />
-                    You can rely on Printing New York, your trusted printing
-                    services NYC partner. From business cards to brochures, this
-                    local print shop has you covered.
-                  </p>
-
-                  <div className="cta-btn flex  space-x-4 mt-[3rem]">
-                    <button className=" bg-primary px-[3rem]  text-white  font-bold  rounded-md">
-                      Make A Rush Order
-                    </button>
-                    <button className=" text-white   border px-[3rem]   font-bold  rounded-md">
-                      View Products+
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-
-
-
         </Swiper>
       </div>
 
@@ -414,7 +357,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="why-choose py-[6rem]">
+      <div className="why-choose py-[6rem] px-5">
         <div className="container mx-auto  grid  gap-10  lg:gap-[5rem] sm:grid-cols-1 md:grid-cols-2 md:items-center    justify-items-end ">
           <div className="img-box">
             <Image src={falyer} width={550} height={550} alt="img" />
@@ -465,7 +408,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="testimonials py-[3rem] pb-[6rem]">
+      <div className="testimonials py-[3rem] pb-[6rem] px-5">
         <div className="container mx-auto">
           <div className="tes-data text-center mb-[4rem]">
             <h4 className="font-bold uppercase text-primary mb-2">
