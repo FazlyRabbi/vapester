@@ -1,9 +1,9 @@
-import { HiHome } from "react-icons/Hi";
-import { BsTelephoneForwardFill } from "react-icons/Bs";
-import { MdOutgoingMail } from "react-icons/Md";
-import { AiOutlineTwitter , AiFillInstagram } from "react-icons/Ai";
-import { BsFacebook } from "react-icons/Bs";
-import { FaLinkedin } from "react-icons/Fa";
+// import { HiHome } from "react-icons/Hi";
+// import { BsTelephoneForwardFill } from "react-icons/Bs";
+// import { MdOutgoingMail } from "react-icons/Md";
+// import { AiOutlineTwitter , AiFillInstagram } from "react-icons/Ai";
+// import { BsFacebook } from "react-icons/Bs";
+// import { FaLinkedin } from "react-icons/Fa";
 
 export default function Footer() {
   return (
@@ -31,16 +31,16 @@ export default function Footer() {
           </h3>
           <ul className=" text-capilalize mt-3">
             <li className="flex space-x-2 mb-2  items-center">
-              <HiHome className="text-primary" />
+              {/* <HiHome className="text-primary" /> */}
               <p>13220 Jamaica Ave, Queens, NY 11418</p>
             </li>
             <li className="flex space-x-2 mb-2  items-center">
-              <BsTelephoneForwardFill className="text-primary" />
+              {/* <BsTelephoneForwardFill className="text-primary" /> */}
 
               <p>929 217-6589</p>
             </li>
             <li className="flex space-x-2 mb-2  items-center">
-              <MdOutgoingMail className="text-primary" />
+              {/* <MdOutgoingMail className="text-primary" /> */}
               <p>nprintandgraph@gmail.com</p>
             </li>
           </ul>
@@ -48,17 +48,17 @@ export default function Footer() {
           <div className="mt-5 md:mt-8 ">
             <ul className=" text-capilalize flex space-x-4">
               <li className="p-3 rounded-full border cursor-pointer">
-                <AiOutlineTwitter className="text-[1.2rem] cursor-pointer" />
+                {/* <AiOutlineTwitter className="text-[1.2rem] cursor-pointer" /> */}
               </li>
               <li className="p-3 rounded-full border cursor-pointer">
-                <BsFacebook className="text-[1.2rem]" />
+                {/* <BsFacebook className="text-[1.2rem]" /> */}
               </li>
               <li className="p-3 rounded-full border">
-                <AiFillInstagram className="text-[1.2rem] cursor-pointer" />
+                {/* <AiFillInstagram className="text-[1.2rem] cursor-pointer" /> */}
               </li>
 
               <li className="p-3 rounded-full border cursor-pointer">
-                <FaLinkedin className="text-[1.2rem]" />
+                {/* <FaLinkedin className="text-[1.2rem]" /> */}
               </li>
             </ul>
           </div>
