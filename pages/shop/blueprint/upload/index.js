@@ -96,7 +96,7 @@ function Upload() {
           </div>
         </div>
         <div className="checkout-btn flex justify-center items-center mt-[5rem]    ">
-          <Link href={"#"}>
+          <Link href={"/shopping"}>
             <button className="font-bold bg-[#111827]   shadow-sm hover:shadow-md py-2 px-4 flex items-center  rounded-md text-white   capitalize">
               <span className="mr-2"> checkout</span>
               <BsArrowRight className="text-[20px] " />

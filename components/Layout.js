@@ -13,7 +13,9 @@ export default function layout({ title, des, content, children, mainContent }) {
       <Header />
       <Main> {children} </Main>
 
-      <Footer></Footer>
+      <div className="mt-[4rem]">
+        <Footer></Footer>
+      </div>
     </>
   );
 }

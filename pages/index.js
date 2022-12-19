@@ -24,7 +24,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Navigation } from "swiper";
+import { Navigation, Pagination, Controller} from "swiper";
 
 export default function Home() {
   return (
@@ -131,27 +131,28 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <div className="hero  bg-gray-200">
+      <div className="hero ">
         <Swiper
-          navigation={true}
+          Pagination={true}
+          Navigation={true}
           Controller={true}
-          modules={[Navigation]}
+          modules={[Navigation,Pagination,Controller]}
           className="mySwiper h-full w-full"
         >
-          <SwiperSlide className={`${styles.hero}   `}>
-            <div className="bg-[#000000a9] h-full">
-              <div className="hero-content py-[8rem] flex container mx-auto   leading-[3.5rem] ">
+          <SwiperSlide  className={`${styles.hero}   `}>
+            <div className=" h-full">
+              <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
                 <div>
                   <h4 className=" text-gray-800 font-bold">
                     #1 YOUR PRINTING PARTNER
                   </h4>
 
-                  <h1 className="font-bold text-[85px] text-white">
+                  <h1 className="font-bold text-[85px] ">
                     {" "}
                     <span className=" text-primary ">Same Day</span> Print
                   </h1>
 
-                  <p className="  text-white leading-[1.8rem] mt-[3rem] lg:pr-[50rem] ">
+                  <p className="   leading-[1.8rem] mt-[3rem] lg:pr-[50rem] ">
                     In the city that never sleeps... <br />
                     You can rely on Printing New York, your trusted printing
                     services NYC partner. From business cards to brochures, this
@@ -162,7 +163,71 @@ export default function Home() {
                     <button className=" bg-primary px-[3rem]  text-white  font-bold  rounded-md">
                       Make A Rush Order
                     </button>
-                    <button className="   border px-[3rem]  text-white  font-bold  rounded-md">
+                    <button className=" text-black  border-[#000]   border px-[3rem]   font-bold  rounded-md">
+                      View Products+
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className={`${styles.hero}   `}>
+            <div className=" h-full">
+              <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
+                <div>
+                  <h4 className=" text-gray-800 font-bold">
+                    #1 YOUR PRINTING PARTNER
+                  </h4>
+
+                  <h1 className="font-bold text-[85px] ">
+                    {" "}
+                    <span className=" text-primary ">Same Day</span> Print
+                  </h1>
+
+                  <p className="   leading-[1.8rem] mt-[3rem] lg:pr-[50rem] ">
+                    In the city that never sleeps... <br />
+                    You can rely on Printing New York, your trusted printing
+                    services NYC partner. From business cards to brochures, this
+                    local print shop has you covered.
+                  </p>
+
+                  <div className="cta-btn flex  space-x-4 mt-[3rem]">
+                    <button className=" bg-primary px-[3rem]  text-white  font-bold  rounded-md">
+                      Make A Rush Order
+                    </button>
+                    <button className=" text-black  border-[#000]   border px-[3rem]   font-bold  rounded-md">
+                      View Products+
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className={`${styles.hero}   `}>
+            <div className=" h-full">
+              <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
+                <div>
+                  <h4 className=" text-gray-800 font-bold">
+                    #1 YOUR PRINTING PARTNER
+                  </h4>
+
+                  <h1 className="font-bold text-[85px] ">
+                    {" "}
+                    <span className=" text-primary ">Same Day</span> Print
+                  </h1>
+
+                  <p className="   leading-[1.8rem] mt-[3rem] lg:pr-[50rem] ">
+                    In the city that never sleeps... <br />
+                    You can rely on Printing New York, your trusted printing
+                    services NYC partner. From business cards to brochures, this
+                    local print shop has you covered.
+                  </p>
+
+                  <div className="cta-btn flex  space-x-4 mt-[3rem]">
+                    <button className=" bg-primary px-[3rem]  text-white  font-bold  rounded-md">
+                      Make A Rush Order
+                    </button>
+                    <button className=" text-black  border-[#000]   border px-[3rem]   font-bold  rounded-md">
                       View Products+
                     </button>
                   </div>
