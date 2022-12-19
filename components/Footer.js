@@ -1,9 +1,8 @@
 import { HiHome } from "react-icons/Hi";
 import { BsTelephoneForwardFill } from "react-icons/Bs";
 import { MdOutgoingMail } from "react-icons/Md";
-import { AiOutlineTwitter } from "react-icons/Ai";
+import { AiOutlineTwitter , AiFillInstagram } from "react-icons/Ai";
 import { BsFacebook } from "react-icons/Bs";
-import { AiFillInstagram } from "react-icons/Ai";
 import { FaLinkedin } from "react-icons/Fa";
 
 export default function Footer() {
@@ -13,11 +12,11 @@ export default function Footer() {
 
 
         <div className="grid  justify-items-center md:justify-items-start text-center md:text-left  gap-y-10 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-        <div class="info">
-          <h3 class="info-title text-[25px] font-bold capitalize">
+        <div className="info">
+          <h3 className="info-title text-[25px] font-bold capitalize">
             information
           </h3>
-          <ul class=" capitalize mt-2">
+          <ul className=" capitalize mt-2">
             <li className="mb-1">help</li>
             <li className="mb-1">order Satus</li>
             <li className="mb-1">Delivery Choices</li>
@@ -26,11 +25,11 @@ export default function Footer() {
             <li className="mb-1">Price Promise</li>
           </ul>
         </div>
-        <div class="info">
-          <h3 class="info-title text-[25px] font-bold capitalize">
+        <div className="info">
+          <h3 className="info-title text-[25px] font-bold capitalize">
             Contact us
           </h3>
-          <ul class=" text-capilalize mt-3">
+          <ul className=" text-capilalize mt-3">
             <li className="flex space-x-2 mb-2  items-center">
               <HiHome className="text-primary" />
               <p>13220 Jamaica Ave, Queens, NY 11418</p>
@@ -46,8 +45,8 @@ export default function Footer() {
             </li>
           </ul>
 
-          <div class="mt-5 md:mt-8 ">
-            <ul class=" text-capilalize flex space-x-4">
+          <div className="mt-5 md:mt-8 ">
+            <ul className=" text-capilalize flex space-x-4">
               <li className="p-3 rounded-full border cursor-pointer">
                 <AiOutlineTwitter className="text-[1.2rem] cursor-pointer" />
               </li>
@@ -64,9 +63,9 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div class="info">
-          <h3 class="info-title text-[25px] font-bold  capitalize">Service</h3>
-          <ul class=" capitalize mt-2">
+        <div className="info">
+          <h3 className="info-title text-[25px] font-bold  capitalize">Service</h3>
+          <ul className=" capitalize mt-2">
             <li className="mb-1">Queries</li>
             <li className="mb-1">Map</li>
             <li className="mb-1">Store</li>
@@ -75,11 +74,11 @@ export default function Footer() {
             <li className="mb-1">Privacy</li>
           </ul>
         </div>
-        <div class="info">
-          <h3 class="info-title text-[25px] font-bold capitalize">
+        <div className="info">
+          <h3 className="info-title text-[25px] font-bold capitalize">
             Newsletter
           </h3>
-          <ul class=" capitalize mt-2">
+          <ul className=" capitalize mt-2">
             <li className="mb-1">
               <input
                 type="search"
@@ -94,7 +93,7 @@ export default function Footer() {
         </div>
         </div>
         <div className="copy  mt-10 ">
-          <p className="text-white text-center lg:text-left">©2022 SydurIT-theme Design</p>
+          <p className="text-white text-center lg:text-left">©2022 Print & Graph</p>
         </div>
       </div>
     </footer>

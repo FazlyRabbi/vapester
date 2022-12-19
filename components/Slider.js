@@ -16,6 +16,7 @@ export default function Slider() {
       infiniteLoop="ture"
       swipeable="true"
       transitionTime="1000"
+      showThumbs={false}
     >
       <div>
         <Image

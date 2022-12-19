@@ -13,6 +13,21 @@
   background-position: center;
 }
 
+.hero2 {
+  background-image: url("../img/hero_2.webp");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.hero3 {
+  background-image: url("../img/hero_3.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .borderGradient {
   border-bottom: 3px solid;
   border-image: linear-gradient(
@@ -63,7 +78,6 @@
 .input {
   box-shadow: none !important;
 }
-
 
 .catagoryCard {
   padding: 1rem 1rem 0.2rem 1rem;
