@@ -27,6 +27,29 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+.hero4 {
+  background-image: url("../img/hero4.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero5 {
+  background-image: url("../img/hero5.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero6 {
+  background-image: url("../img/hero6.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .borderGradient {
   border-bottom: 3px solid;

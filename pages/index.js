@@ -5,6 +5,9 @@ import logo from "../img/logo.png";
 import styles from "@/styles/Home.module.css";
 import { MdAccountCircle, MdPhoneCallback, MdEmail } from "react-icons/md";
 import { RiShoppingCartLine } from "react-icons/ri";
+import { HiHome } from "react-icons/hi";
+import { AiFillClockCircle } from "react-icons/ai";
+
 import falyer from "../img/travel-sale-flyer-template_52683-46904.webp";
 import like from "../img/like.webp";
 import headphone from "../img/headpone.webp";
@@ -26,67 +29,92 @@ import "swiper/css/navigation";
 export default function Home() {
   return (
     <section>
-      <header>
+      <header className="  sticky top-0  z-[9999]">
         <div className="header-top bg-[#1E1E1E] py-3">
           <div className="container mx-auto lg:px-10">
             <div className="header-top-content flex justify-between">
-              <ul className="flex  text-white">
-                <li className=" cursor-pointer border-r px-3">Reviews</li>
-                <li className=" cursor-pointer px-3 ">Support</li>
-              </ul>
-              <ul className="flex flex-wrap    text-white">
+              <ul className="flex flex-wrap   items-center  text-white">
                 <Link href={`tel:929 217-6589`}>
                   <li className="  border-r px-3 flex   items-center">
                     <MdPhoneCallback className="text-[1.2rem] text-second" />
 
-                    <span className=" hidden lg:block tracking-wider ml-1 font-bold">
+                    <span className=" hidden lg:block tracking-wider ml-1 font-bold  text-[13px]">
                       929 217-6589
                     </span>
                   </li>
                 </Link>
-                <li className="   px-3 flex   space-x-1 items-center">
-                  <MdEmail className=" text-[1.2rem]" />
-                  <span className="hidden lg:block ">
-                    nprintandgraph@gmail.com
-                  </span>
+                <Link href={`mailto:nprintandgraph@gmail.com`}>
+                  <li className="   px-3 flex   space-x-1 items-center">
+                    <MdEmail className=" text-[1.2rem]" />
+                    <span className="hidden lg:block  text-[13px]">
+                      nprintandgraph@gmail.com
+                    </span>
+                  </li>
+                </Link>
+              </ul>
+
+              <ul className="flex  text-white">
+                <li className=" cursor-pointer  px-3  space-x-1  flex  items-center ">
+                  <HiHome className="text-[1.5rem]" />
+                  <div>
+                    <p className="text-[12px]  hidden lg:block  leading-tight font-bold">
+                      13220 Jamaica Ave
+                      <span className="block text-[10px] font-normal">
+                        Queens, NY 11418
+                      </span>
+                    </p>
+                  </div>
+                </li>
+                <li className=" cursor-pointer  px-3  space-x-1  flex  items-center ">
+                  <AiFillClockCircle className="text-[1.5rem]" />
+                  <div>
+                    <p className="text-[12px]  hidden lg:block  leading-tight font-bold">
+                      Mon-Fri9.00am-5.00pm
+                      <span className="block text-[10px] font-normal">
+                        Sat-Sun Closed
+                      </span>
+                    </p>
+                  </div>
                 </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="header-main shadow-sm">
+        <div className="header-main  bg-white py-2  w-[100%] shadow-md">
           <div className="container mx-auto">
-            <div className="header-main-lg  p-4  ">
+            <div className="header-main-lg   ">
               <Navbar fluid={true} rounded={true}>
                 <Image
                   src={logo}
                   alt="logo"
                   height={150}
                   width={150}
-                 
+                  className="text-center md:mb-6  md:ml-[15rem] lg:ml-0 lg:mb-0"
                 />
+
                 <Navbar.Toggle />
 
                 <Navbar.Collapse>
-                  <Navbar.Link active="true">
-                    <Link href={"/"} className="font-bold text-[14px]" >Home</Link>
-                  </Navbar.Link>
-                  <Navbar.Link> 
-                    <Link href={"/shop"}  className="font-bold text-[14px]">All Products</Link>
-                  </Navbar.Link>
-                  <Navbar.Link>
-                    {" "}
-                    <Link href={"/aboutus"}  className="font-bold text-[14px]">About Us</Link>
-                  </Navbar.Link>
-                  <Navbar.Link>
-                    {" "}
-                    <Link href={"/faq"}  className="font-bold text-[14px]">Help & Faq</Link>
-                  </Navbar.Link>
-                  <Navbar.Link>
-                    {" "}
-                    <Link href={"/contacts"}  className="font-bold text-[14px]">Contact</Link>
-                  </Navbar.Link>
+                  <Link href={"/"} className="font-bold text-[14px]">
+                    Home
+                  </Link>
+
+                  <Link href={"/shop"} className="font-bold text-[14px]">
+                    Our Services
+                  </Link>
+                  <Link href={"/aboutus"} className="font-bold text-[14px]">
+                    About Us
+                  </Link>
+                  <Link href={"/faq"} className="font-bold text-[14px]">
+                    Help & Faq
+                  </Link>
+                  <Link href={"/contacts"} className="font-bold text-[14px]">
+                    Contact
+                  </Link>
+                  <Link href={"/contacts"} className="font-bold text-[14px]">
+                    Request A Quote
+                  </Link>
                 </Navbar.Collapse>
 
                 <div className="dropdown  hidden lg:block  font-bold cursor-pointer">
@@ -96,18 +124,11 @@ export default function Home() {
                       <span>Account</span>
                     </li>
                     <li>
-                      <div
-                        className={`cart pl-5 ${styles.cart} relative cursor-pointer  flex justify-center   items-center space-x-1`}
-                      >
-                        <Link href={"/shopping"}>
-                        <RiShoppingCartLine />
-                        </Link>
-
-                        <span className="text-[15px] font-bold">Cart</span>
-                        <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[40px] px-1 rounded-full bg-primary">
-                          5
-                        </span>
-                      </div>
+                      <Link href={"/shop"}>
+                        <button className="bg-primary text-white p-2 rounded-lg cursor-pointer">
+                          Place Order
+                        </button>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -116,6 +137,7 @@ export default function Home() {
           </div>
         </div>
       </header>
+
       <div className="hero ">
         <Swiper
           pagination={true}
@@ -160,6 +182,103 @@ export default function Home() {
             </div>
           </SwiperSlide>
           <SwiperSlide className={`${styles.hero2}   `}>
+            <div className=" bg-[#000000ac] h-full ">
+              <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
+                <div className="text-center md:text-left">
+                  <h4 className=" text-white font-bold text-[14px]">
+                    #1 YOUR PRINTING PARTNER
+                  </h4>
+
+                  <h1 className="font-bold lg:text-[85px] text-[40px]  text-white ">
+                    {" "}
+                    <span className=" text-primary ">Same Day</span> Print
+                  </h1>
+
+                  <p className="  text-white  leading-[1.8rem] mt-[1rem] lg:pr-[50rem] lg:mt-[3rem] text-[14px] lg:text-[16px]">
+                    In the city that never sleeps... <br />
+                    You can rely on Printing New York, your trusted printing
+                    services NYC partner. From business cards to brochures, this
+                    local print shop has you covered.
+                  </p>
+
+                  <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
+                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                      Make A Rush Order
+                    </button>
+                    <button className="   w-[18rem] border px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                      View Products+
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+         
+          <SwiperSlide className={`${styles.hero4}   `}>
+            <div className=" bg-[#000000ac] h-full ">
+              <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
+                <div className="text-center md:text-left">
+                  <h4 className=" text-white font-bold text-[14px]">
+                    #1 YOUR PRINTING PARTNER
+                  </h4>
+
+                  <h1 className="font-bold lg:text-[85px] text-[40px]  text-white ">
+                    {" "}
+                    <span className=" text-primary ">Same Day</span> Print
+                  </h1>
+
+                  <p className="  text-white  leading-[1.8rem] mt-[1rem] lg:pr-[50rem] lg:mt-[3rem] text-[14px] lg:text-[16px]">
+                    In the city that never sleeps... <br />
+                    You can rely on Printing New York, your trusted printing
+                    services NYC partner. From business cards to brochures, this
+                    local print shop has you covered.
+                  </p>
+
+                  <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
+                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                      Make A Rush Order
+                    </button>
+                    <button className="   w-[18rem] border px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                      View Products+
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className={`${styles.hero5}   `}>
+            <div className=" bg-[#000000ac] h-full ">
+              <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
+                <div className="text-center md:text-left">
+                  <h4 className=" text-white font-bold text-[14px]">
+                    #1 YOUR PRINTING PARTNER
+                  </h4>
+
+                  <h1 className="font-bold lg:text-[85px] text-[40px]  text-white ">
+                    {" "}
+                    <span className=" text-primary ">Same Day</span> Print
+                  </h1>
+
+                  <p className="  text-white  leading-[1.8rem] mt-[1rem] lg:pr-[50rem] lg:mt-[3rem] text-[14px] lg:text-[16px]">
+                    In the city that never sleeps... <br />
+                    You can rely on Printing New York, your trusted printing
+                    services NYC partner. From business cards to brochures, this
+                    local print shop has you covered.
+                  </p>
+
+                  <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
+                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                      Make A Rush Order
+                    </button>
+                    <button className="   w-[18rem] border px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                      View Products+
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className={`${styles.hero6}   `}>
             <div className=" bg-[#000000ac] h-full ">
               <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
                 <div className="text-center md:text-left">
