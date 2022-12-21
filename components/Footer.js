@@ -1,7 +1,8 @@
 import { HiHome } from "react-icons/hi";
+import Link from "next/link";
 import { BsTelephoneForwardFill, BsFacebook } from "react-icons/bs";
 import { MdOutgoingMail } from "react-icons/md";
-import { AiOutlineTwitter , AiFillInstagram } from "react-icons/ai";
+import { AiOutlineTwitter, AiFillInstagram } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
@@ -69,7 +70,9 @@ export default function Footer() {
               <li className="mb-1">Map</li>
               <li className="mb-1">Store</li>
               <li className="mb-1">Afiliate</li>
-              <li className="mb-1">Check Order</li>
+              <Link href={"/faq"} className="font-bold text-[14px]">
+                Help & Faq
+              </Link>
               <li className="mb-1">Privacy</li>
             </ul>
           </div>

@@ -106,9 +106,7 @@ export default function Home() {
                   <Link href={"/aboutus"} className="font-bold text-[14px]">
                     About Us
                   </Link>
-                  <Link href={"/faq"} className="font-bold text-[14px]">
-                    Help & Faq
-                  </Link>
+
                   <Link href={"/contacts"} className="font-bold text-[14px]">
                     Contact
                   </Link>
@@ -118,7 +116,7 @@ export default function Home() {
                 </Navbar.Collapse>
 
                 <div className="dropdown  hidden lg:block  font-bold cursor-pointer">
-                  <ul className="flex">
+                  <ul className="flex  space-x-3">
                     <li className=" px-3 flex   items-center">
                       <MdAccountCircle className=" text-[1.3rem] mr-1" />
                       <span>Account</span>
@@ -170,9 +168,12 @@ export default function Home() {
                   </p>
 
                   <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
-                      Make A Rush Order
-                    </button>
+                    <Link href={`/shop`}>
+                      <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                        View Products
+                      </button>
+                    </Link>
+
                     <button className="   text-black w-[18rem] border px-[3rem]  font-bold   border-black rounded-md text-[14px]">
                       View Products+
                     </button>
@@ -202,9 +203,11 @@ export default function Home() {
                   </p>
 
                   <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
-                      Make A Rush Order
-                    </button>
+                  <Link href={`/shop`}>
+                      <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                        View Products
+                      </button>
+                    </Link>
                     <button className="   w-[18rem] border px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                       View Products+
                     </button>
@@ -213,7 +216,7 @@ export default function Home() {
               </div>
             </div>
           </SwiperSlide>
-         
+
           <SwiperSlide className={`${styles.hero4}   `}>
             <div className=" bg-[#000000ac] h-full ">
               <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
@@ -235,9 +238,11 @@ export default function Home() {
                   </p>
 
                   <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
-                      Make A Rush Order
-                    </button>
+                     <Link href={`/shop`}>
+                      <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                        View Products
+                      </button>
+                    </Link>
                     <button className="   w-[18rem] border px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                       View Products+
                     </button>
@@ -267,9 +272,11 @@ export default function Home() {
                   </p>
 
                   <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
-                      Make A Rush Order
-                    </button>
+                     <Link href={`/shop`}>
+                      <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                        View Products
+                      </button>
+                    </Link>
                     <button className="   w-[18rem] border px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                       View Products+
                     </button>
@@ -299,9 +306,11 @@ export default function Home() {
                   </p>
 
                   <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                    <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
-                      Make A Rush Order
-                    </button>
+                     <Link href={`/shop`}>
+                      <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
+                        View Products
+                      </button>
+                    </Link>
                     <button className="   w-[18rem] border px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                       View Products+
                     </button>

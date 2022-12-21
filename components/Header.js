@@ -53,9 +53,10 @@ export default function Header() {
           </div>
           <div className="search-box  text-black  flex space-x-9">
             <div className="max-w-md mx-auto">
-              <div className="relative flex items-center w-full h-12 rounded-lg shadow-sm border bg-white overflow-hidden">
+              <div className="relative flex items-center w-full h-12 rounded-lg shadow-md border bg-white overflow-hidden">
                 <input
-                  className={`input outline-none pl-3 border-none  focus:outline-none w-64 ${styles.input}`}
+                  className={`input outline-none pl-3 border-none
+                    focus:outline-none w-64 ${styles.input}`}
                   type="search"
                   id="search"
                   placeholder="Search"
