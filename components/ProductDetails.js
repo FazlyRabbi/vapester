@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, {  useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -20,8 +20,8 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 function ProductDetails() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <section className=" overflow-hidden">
-      <div className="product-slider ">
+    <section className=" overflow-hidden w-full">
+      <div className="product-slider  ">
         <Swiper
           style={{
             "--swiper-navigation-color": "#fff",
@@ -32,12 +32,14 @@ function ProductDetails() {
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs]}
           className={`
-          2xl:w-[50rem] 2xl:h-[25rem]
+         h-auto
 
-          xl:w-[40rem] xl:h-[20rem]
+
+         
+         w-auto
+
         
-          
-          sm:w-[38rem] sm:h-[20rem] mb-2`}
+          mb-2`}
         >
           <SwiperSlide>
             <Image src={p1} alt="img" />
@@ -59,7 +61,7 @@ function ProductDetails() {
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
-          className="mySwiper mb-5 h-[4rem] cursor-pointer "
+          className="mySwiper lg:mb-5 h-[4rem] cursor-pointer "
         >
           <SwiperSlide>
             <Image src={p1} alt="img" />
@@ -75,7 +77,7 @@ function ProductDetails() {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="product-content ml-10">
+       <div className="product-content ml-10  mt-4">
         <ul className="list-disc">
           <li>
             <h4 className="font-bold  ">How is the price calculated?</h4>
@@ -128,7 +130,7 @@ function ProductDetails() {
             </ul>
           </li>
         </ul>
-      </div>
+      </div> 
     </section>
   );
 }

@@ -6,11 +6,11 @@ import Calculator from "@/components/Calculator";
 function BluePrint() {
   return (
     <Layout title={"blue print"}>
-      <div className="wrapper   grid xl:grid-cols-3 sm:grid-cols-1  gap-16 sm:justify-items-end xl:justify-items-start ">
-        <div className="product  col-span-2 ">
+      <div className="wrapper p-4 grid xl:grid-cols-3 grid-cols-1  gap-16   ">
+        <div className="product   xl:col-span-2 ">
           <ProductDetails />
         </div>
-        <div className="price-calculator">
+        <div className="price-calculator order-first  xl:order-last">
           <Calculator />
         </div>
       </div>

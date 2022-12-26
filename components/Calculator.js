@@ -2,12 +2,12 @@ import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 export default function Calculator() {
   return (
-    <form className="w-full max-w-lg    shadow-md  ">
+    <form className="  w-full shadow-md  ">
       <h4
         className={` font-bold  p-2  pl-5 rounded-tl-md 
             
             rounded-tr-md shadow-sm
-            bg-[#111827]  w-full text-white  ${styles.borderGradient} `}
+            bg-[#111827]   text-white  ${styles.borderGradient} `}
       >
         Price Calculator
       </h4>

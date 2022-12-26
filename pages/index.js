@@ -4,7 +4,6 @@ import Image from "next/image";
 import logo from "../img/logo.png";
 import styles from "@/styles/Home.module.css";
 import { MdAccountCircle, MdPhoneCallback, MdEmail } from "react-icons/md";
-import { RiShoppingCartLine } from "react-icons/ri";
 import { HiHome } from "react-icons/hi";
 import { AiFillClockCircle } from "react-icons/ai";
 

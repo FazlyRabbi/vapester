@@ -22,7 +22,9 @@ module.exports = {
       primary: "#F45DA0",
       white: "#ffffff",
       gray: "#191919",
+      softBlack:"#1E1E1E",
       second: "#47B8E7",
+      link:"#416DEC",
       black: "#000",
       softGray: "#ddd",
       silver: "#ecebff",
@@ -32,7 +34,7 @@ module.exports = {
     },
 
     screens: {
-      sm: "568px",
+      sm: "556px",
       // => @media (min-width: 640px) { ... }
 
       md: "768px",
