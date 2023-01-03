@@ -10,7 +10,7 @@ function Sidebar() {
         All Products
       </Link>
 
-      <div className="aec-bluprints"> 
+      <div className="aec-bluprints">
         <ul className="w-[80%] ">
           <li
             className={`text-titleSm  capitalize font-bold bg-[#111827] text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
@@ -21,7 +21,9 @@ function Sidebar() {
             <Link href={"/shop/blueprint"}>AEC - Blueprints - Bond prints</Link>
           </li>
           <li className="text-base hover:text-primary border-b cursor-pointer border-softGray p-2 font-bold capitalize">
-            menu sub items
+            <Link href={"/shop/18oz-vinyl-banner-vinyl-banners"}>
+              18oz Vinyl Banner (Vinyl Banners)
+            </Link>
           </li>
           <li className="text-base hover:text-primary border-b cursor-pointer border-softGray p-2 font-bold capitalize">
             menu sub items

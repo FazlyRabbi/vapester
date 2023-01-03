@@ -1,16 +1,49 @@
-import Header from "@/components/Header";
 import Link from "next/link";
 import Image from "next/image";
+import { API_URL, NEXT_URL } from "@/config/index";
+import cookie from "cookie"
 import { RxCrossCircled } from "react-icons/rx";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
-
 import logo from "img/logo.png";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 export default function signin() {
+  const { error, singin, user } = useContext(AuthContext);
+
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      router.push("/shop");
+      toast.success("Login Successfully!");
+    } else if (error) {
+      if (error.message) {
+        toast.error(error.message[0].messages[0].message);
+      } else {
+        toast.error(error.error.message);
+      }
+    }
+  }, [user, error]);
+
+  const handleSignin = async (e) => {
+    e.preventDefault();
+    cookie.serialize("token","cookie")
+    singin({ email, password });
+  };
+
   return (
     <>
       <section className="bg-gray-50 dark:bg-gray-900 ">
+        <Toaster position="top-center" />
         <div className="container mx-auto relative">
           <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0  ">
             <Link
@@ -34,7 +67,10 @@ export default function signin() {
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                   Sign in to your account
                 </h1>
-                <form className="space-y-4 md:space-y-6" action="#">
+                <form
+                  className="space-y-4 md:space-y-6"
+                  onSubmit={handleSignin}
+                >
                   <div>
                     <label
                       htmlFor="email"
@@ -43,6 +79,7 @@ export default function signin() {
                       Your email
                     </label>
                     <input
+                      onChange={(e) => setEmail(e.target.value)}
                       type="email"
                       name="email"
                       id="email"
@@ -59,6 +96,7 @@ export default function signin() {
                       Password
                     </label>
                     <input
+                      onChange={(e) => setPassword(e.target.value)}
                       type="password"
                       name="password"
                       id="password"
@@ -67,26 +105,7 @@ export default function signin() {
                       required
                     />
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-start">
-                      <div className="flex items-center h-5">
-                        <input
-                          id="remember"
-                          aria-describedby="remember"
-                          type="checkbox"
-                          className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                          required
-                        />
-                      </div>
-                      <div className="ml-3 text-sm">
-                        <label
-                          htmlFor="remember"
-                          className="text-gray-500 dark:text-gray-300"
-                        >
-                          Remember me
-                        </label>
-                      </div>
-                    </div>
+                  <div className="flex items-center justify-end">
                     <a
                       href="#"
                       className="text-sm font-medium text-link hover:underline dark:text-primary-500"
@@ -111,35 +130,31 @@ export default function signin() {
                   </p>
                 </form>
 
-
-
-<div className="border-b  border-gray-300  mt-2 mb-4">
-  <h1 className=" text-center  text-[20px] pb-2 text-gray-600">or</h1>
- </div>
-
+                <div className="border-b  border-gray-300  mt-2 mb-4">
+                  <h1 className=" text-center  text-[20px] pb-2 text-gray-600">
+                    or
+                  </h1>
+                </div>
 
                 <div className="social__login flex items-center  justify-center  space-x-5">
-                  <button className=" flex  space-x-3  items-center
+                  <button
+                    className=" flex  space-x-3  items-center
                    border border-gray-300 rounded-md p-2 font-bold text-[13px]
                   
-                  ">
+                  "
+                  >
                     <FcGoogle className="text-[1.5rem]" />
-                    <span className=" inline-block">
-
-                    Log in with Google
-                    </span>
+                    <span className=" inline-block">Log in with Google</span>
                   </button>
-                  <button className=" flex  space-x-3  items-center
+                  <button
+                    className=" flex  space-x-3  items-center
                    border border-gray-300 rounded-md p-2 font-bold text-[13px]
                   
-                  ">
+                  "
+                  >
                     <FaFacebook className="text-[1.4rem]" />
-                    <span className=" inline-block">
-
-                    Log in with Google
-                    </span>
+                    <span className=" inline-block">Log in with Google</span>
                   </button>
-                 
                 </div>
               </div>
             </div>

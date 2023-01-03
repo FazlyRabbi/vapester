@@ -1,4 +1,3 @@
-import "tailwindcss/tailwind.css";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../img/logo.png";
@@ -6,7 +5,6 @@ import styles from "@/styles/Home.module.css";
 import { MdAccountCircle, MdPhoneCallback, MdEmail } from "react-icons/md";
 import { HiHome } from "react-icons/hi";
 import { AiFillClockCircle } from "react-icons/ai";
-
 import falyer from "../img/travel-sale-flyer-template_52683-46904.webp";
 import like from "../img/like.webp";
 import headphone from "../img/headpone.webp";
@@ -26,6 +24,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 export default function Home() {
+
+
   return (
     <section>
       <header className="  sticky top-0  z-[9999]">
@@ -134,7 +134,6 @@ export default function Home() {
           </div>
         </div>
       </header>
-
       <div className="hero ">
         <Swiper
           pagination={true}
@@ -146,7 +145,18 @@ export default function Home() {
           modules={[Autoplay, Pagination]}
           className="mySwiper text-white h-full w-full"
         >
-          <SwiperSlide className={`${styles.hero}   `}>
+          <SwiperSlide 
+           
+           style={{
+              backgroundImage:`url(aa)`,
+              backgroundSize:"cover",
+              
+
+
+           }}
+          
+          
+          className={`${styles.hero}    `}>
             <div className=" h-full">
               <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
                 <div className="text-center md:text-left">
@@ -202,7 +212,7 @@ export default function Home() {
                   </p>
 
                   <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                  <Link href={`/shop`}>
+                    <Link href={`/shop`}>
                       <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                         View Products
                       </button>
@@ -237,7 +247,7 @@ export default function Home() {
                   </p>
 
                   <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                     <Link href={`/shop`}>
+                    <Link href={`/shop`}>
                       <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                         View Products
                       </button>
@@ -271,7 +281,7 @@ export default function Home() {
                   </p>
 
                   <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                     <Link href={`/shop`}>
+                    <Link href={`/shop`}>
                       <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                         View Products
                       </button>
@@ -305,7 +315,7 @@ export default function Home() {
                   </p>
 
                   <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                     <Link href={`/shop`}>
+                    <Link href={`/shop`}>
                       <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
                         View Products
                       </button>
@@ -618,4 +628,18 @@ export default function Home() {
       <Footer />
     </section>
   );
+}
+
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch("http://localhost:1337/api/people");
+  const people = await res.json();
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: { people },
+    revalidate: 1,
+  };
 }

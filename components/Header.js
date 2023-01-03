@@ -7,10 +7,13 @@ import { BiPhoneCall } from "react-icons/bi";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { GoSearch } from "react-icons/go";
-
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
 import styles from "@/styles/Home.module.css";
 
 export default function Header() {
+  const { user } = useContext(AuthContext);
+
   return (
     <header className="sticky top-0    md:static   z-[9999]">
       <div className="header-sm md:hidden  shadow-sm   bg-white   p-4">
@@ -26,18 +29,18 @@ export default function Header() {
           </div>
           <div className="header-right flex items-center space-x-2">
             <div className="search cursor-pointer">
-              <GoSearch className="text-[1.5rem]"/>
+              <GoSearch className="text-[1.5rem]" />
             </div>
             <div
-                  className={`cart pl-5 ${sytles.cart} relative cursor-pointer `}
-                >
-                  <Link href={`/shopping`}>
-                    <RiShoppingCartLine />
-                    <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
-                      5
-                    </span>
-                  </Link>
-                </div>
+              className={`cart pl-5 ${sytles.cart} relative cursor-pointer `}
+            >
+              <Link href={`/shopping`}>
+                <RiShoppingCartLine />
+                <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
+                  5
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -65,13 +68,22 @@ export default function Header() {
                 </li>
               </ul>
               <ul className="   capitalize text-sm flex space-x-3 p-3 ">
-                <li className="border-r border-white pr-3">
-                  <Link href={"/signin"}>Sing In</Link>
-                </li>
-
-                <li>
-                  <Link href={"/signup"}>Create Account</Link>
-                </li>
+                {user ? (
+                  <>
+                    <li className="pr-3 bg-white text-black px-2   font-bold rounded-sm">
+                      <Link href={"/"}>Sing Out</Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="border-r border-white pr-3">
+                      <Link href={"/signin"}>Sing In</Link>
+                    </li>
+                    <li>
+                      <Link href={"/signup"}>Create Account</Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>
