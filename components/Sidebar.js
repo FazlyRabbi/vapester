@@ -15,10 +15,10 @@ function Sidebar() {
           <li
             className={`text-titleSm  capitalize font-bold bg-[#111827] text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
           >
-            <Link href={"/shop/blueprint/products"}>BluePrint</Link>
+            <Link href={"/shop"}>BluePrint</Link>
           </li>
           <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-            <Link href={"/shop/blueprint"}>AEC - Blueprints - Bond prints</Link>
+            <Link href={"/shop/aec-blueprints-bond-prints"}>AEC - Blueprints - Bond prints</Link>
           </li>
           <li className="text-base hover:text-primary border-b cursor-pointer border-softGray p-2 font-bold capitalize">
             <Link href={"/shop/18oz-vinyl-banner-vinyl-banners"}>
