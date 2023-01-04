@@ -1,17 +1,16 @@
 import { API_URL } from "@/config/index";
-import cookie from "cookie";
+const { parseCookies } = require("nookies");
 
 export default async (req, res) => {
   if (req.method === "GET") {
-    if (!req.headers.cookie) {
+    const { token } = parseCookies({ req });
+
+    if (!token) {
       res.status(403).json({ message: "Not Authorized" });
       return;
     }
 
-    const { token } = cookie.parse(req.headers.cookie);
-
     const strapiRes = await fetch(`http://localhost:1337/api/users/me`, {
-      method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -21,8 +20,9 @@ export default async (req, res) => {
 
     if (strapiRes.ok) {
       res.status(200).json({ user });
+      console.log("hello-1");
     } else {
-      res.status(403).json({ message: "User Forbidden!" });
+      res.status(401).json({ message: "User Forbidden!" });
     }
   } else {
     res.send(req.method, "this method is not allowd!");

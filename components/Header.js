@@ -12,7 +12,7 @@ import { AuthContext } from "@/context/AuthContext";
 import styles from "@/styles/Home.module.css";
 
 export default function Header() {
-  const { user } = useContext(AuthContext);
+  const { user, sinout } = useContext(AuthContext);
 
   return (
     <header className="sticky top-0    md:static   z-[9999]">
@@ -71,7 +71,9 @@ export default function Header() {
                 {user ? (
                   <>
                     <li className="pr-3 bg-white text-black px-2   font-bold rounded-sm">
-                      <Link href={"/"}>Sing Out</Link>
+                      <Link href={"/"} onClick={sinout}>
+                        Sing Out
+                      </Link>
                     </li>
                   </>
                 ) : (

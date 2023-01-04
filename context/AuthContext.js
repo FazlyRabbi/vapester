@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { NEXT_URL } from "@/config/index";
 export const AuthContext = createContext();
-
+import { destroyCookie } from "nookies";
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -47,7 +47,6 @@ export const AuthProvider = ({ children }) => {
       }),
     });
     const data = await res.json();
-
     if (data.user) {
       setUser(data);
     } else {
@@ -56,16 +55,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   const sinout = async (user) => {
-    console.log(user);
+    setUser(null);
+    setError(null);
+    destroyCookie(null, "token");
   };
 
-  const checkUserLoggedId = async (user) => {
+  const checkUserLoggedId = async () => {
     const res = await fetch(`${NEXT_URL}/api/user`);
-
     const data = await res.json();
 
     if (res.ok) {
-      setUser(data.user);
+      setUser(data);
     } else {
       setUser(null);
     }
@@ -84,6 +84,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         error,
+        setUser,
         singin,
         signup,
         sinout,

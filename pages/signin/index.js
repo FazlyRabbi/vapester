@@ -1,7 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { API_URL, NEXT_URL } from "@/config/index";
-import cookie from "cookie"
 import { RxCrossCircled } from "react-icons/rx";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
@@ -11,6 +9,7 @@ import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
+import { setCookie } from "nookies";
 
 export default function signin() {
   const { error, singin, user } = useContext(AuthContext);
@@ -23,6 +22,11 @@ export default function signin() {
 
   useEffect(() => {
     if (user) {
+      setCookie(null, "token", user.jwt, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+        secure: true,
+      });
       router.push("/shop");
       toast.success("Login Successfully!");
     } else if (error) {
@@ -36,7 +40,6 @@ export default function signin() {
 
   const handleSignin = async (e) => {
     e.preventDefault();
-    cookie.serialize("token","cookie")
     singin({ email, password });
   };
 

@@ -14,7 +14,7 @@ export default function signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
-  const { error, looding, user, signup } = useContext(AuthContext);
+  const { error, setUser, user, signup } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -22,6 +22,7 @@ export default function signup() {
     if (user) {
       toast.success("Successfully created!");
       router.push("/shop");
+      setUser(null);
     } else if (error) {
       toast.error(error.error.message);
     }
