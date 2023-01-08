@@ -15,6 +15,7 @@ export default function Slider() {
  
   useEffect(() => {
     getHomeSliderImage();
+    console.log(sliderImage);
   }, []);
 
   return (
@@ -30,7 +31,7 @@ export default function Slider() {
       {sliderImage?.data?.attributes?.Images.data.map((img) => (
         <SwiperSlide key={img.id}>
           <Image
-            src={`http://localhost:1337${img.attributes.url}`}
+            src={`https://demo-production-edcf.up.railway.app${img.attributes.url}`}
             width={50}
             height={10}
             className=" rounded-md shadow-sm w-[100%] "

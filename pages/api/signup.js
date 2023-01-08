@@ -3,7 +3,7 @@ export default async (req, res) => {
     const { username, email, password } = req.body;
 
     const strapiRes = await fetch(
-      `http://localhost:1337/api/auth/local/register`,
+      `https://demo-production-edcf.up.railway.app/api/auth/local/register`,
       {
         method: "POST",
         headers: {

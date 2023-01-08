@@ -31,7 +31,7 @@ export default function Shop({ products: { data } }) {
 export async function getStaticProps() {
 
 
-  const res = await fetch("http://localhost:1337/api/products?populate=*");
+  const res = await fetch("https://demo-production-edcf.up.railway.app/api/products?populate=*");
   const products = await res.json();
 
   return {

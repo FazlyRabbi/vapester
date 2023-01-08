@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
 
   const getHomeSliderImage = async () => {
     const res = await fetch(
-      "http://localhost:1337/api/service-page-slider?populate=*"
+      "https://demo-production-edcf.up.railway.app/api/service-page-slider-image-should-be-w-1920px-h-600px?populate=*"
     );
     const data = await res.json();
     setSliderImage(data);

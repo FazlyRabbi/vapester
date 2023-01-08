@@ -22,7 +22,7 @@ export async function getServerSideProps({ query }) {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res = await fetch(
-    `http://localhost:1337/api/products?populate=Images&filters[Slug]$[$eqi]=${query.slug}`
+    `https://demo-production-edcf.up.railway.app/api/products?populate=Images&filters[Slug]$[$eqi]=${query.slug}`
   );
   const product = await res.json();
 

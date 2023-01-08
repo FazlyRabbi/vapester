@@ -633,7 +633,7 @@ export default function Home() {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch("http://localhost:1337/api/people");
+  const res = await fetch("https://demo-production-edcf.up.railway.app/api/people");
   const people = await res.json();
 
   // By returning { props: { posts } }, the Blog component

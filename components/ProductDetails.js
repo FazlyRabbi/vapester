@@ -38,7 +38,7 @@ function ProductDetails({ data }) {
           {data[0].attributes.Images.data.map((img) => (
             <SwiperSlide key={img.id}>
               <Image
-                src={`http://localhost:1337${img.attributes.url}`}
+                src={`https://demo-production-edcf.up.railway.app${img.attributes.url}`}
                 alt="img"
                 width={800}
                 height={800}
@@ -59,7 +59,7 @@ function ProductDetails({ data }) {
           {data[0].attributes.Images.data.map((img) => (
             <SwiperSlide key={img.id}>
               <Image
-                src={`http://localhost:1337${img.attributes.url}`}
+                src={`https://demo-production-edcf.up.railway.app${img.attributes.url}`}
                 alt="img"
                 width={800}
                 height={800}

@@ -11,7 +11,7 @@ export default function SingleProduct({ attributes }) {
 
       <div className="product-img">
         <Image
-          src={`http://localhost:1337${attributes.Images.data[0].attributes.url}`}
+          src={`https://demo-production-edcf.up.railway.app${attributes.Images.data[0].attributes.url}`}
           height="350"
           width="350"
           className="rounded-md"
