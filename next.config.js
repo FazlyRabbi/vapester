@@ -5,6 +5,6 @@ module.exports = {
   images: {
     unoptimized: true,
 
-    domains: ["demo-production-edcf.up.railway.app"],
+    domains: ["localhost"],
   },
 };
