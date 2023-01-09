@@ -35,7 +35,7 @@ function ProductDetails({ data }) {
 
           mb-2`}
         >
-          {data[0].attributes.Images.data.map((img) => (
+          {data?.data[0]?.attributes.Images.data.map((img) => (
             <SwiperSlide key={img.id}>
               <Image
                 src={`https://demo-production-edcf.up.railway.app${img.attributes.url}`}
@@ -56,7 +56,7 @@ function ProductDetails({ data }) {
           modules={[FreeMode, Navigation, Thumbs]}
           className="mySwiper lg:mb-5 h-[4rem] cursor-pointer "
         >
-          {data[0].attributes.Images.data.map((img) => (
+          {data?.data[0]?.attributes.Images.data.map((img) => (
             <SwiperSlide key={img.id}>
               <Image
                 src={`https://demo-production-edcf.up.railway.app${img.attributes.url}`}
@@ -69,7 +69,7 @@ function ProductDetails({ data }) {
         </Swiper>
       </div>
       <div className="product-content mt-4">
-        <ReactMarkdown>{data[0].attributes.Description}</ReactMarkdown>
+        <ReactMarkdown>{data?.data[0].attributes.Description}</ReactMarkdown>
       </div>
     </section>
   );
