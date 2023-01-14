@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
     checkUserLoggedId();
   }, []);
 
+  
   const signup = async ({ username, email, password }) => {
     const res = await fetch(`${NEXT_URL}/api/signup`, {
       method: "POST",
@@ -73,22 +74,6 @@ export const AuthProvider = ({ children }) => {
       setUser(null);
     }
   };
-
-  // const getProductsForFilter = async () => {
-  //   const res = await fetch(
-  //     `https://demo-production-edcf.up.railway.app/api/products?populate=*`
-  //   );
-
-  //   const product = await res.json();
-
-  //   const filteredProduct = product?.data.map((data) => {
-  //     if (params.menu === data.attributes.sibebar.data.attributes.Menu) {
-  //       return data;
-  //     }
-  //   });
-
-    
-  // };
 
   const getSidebar = async () => {
     const res = await fetch(`${NEXT_URL}/api/sidebar`);
