@@ -43,7 +43,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu2 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu2}`}>
                     {menu.attributes.SubMenu2}
                   </Link>
                 </li>
@@ -51,7 +51,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu3 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu3}
                   </Link>
                 </li>
@@ -59,7 +59,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu4 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu4}
                   </Link>
                 </li>
@@ -67,7 +67,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu5 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu5}
                   </Link>
                 </li>
@@ -75,7 +75,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu6 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu6}
                   </Link>
                 </li>
@@ -83,7 +83,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu7 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu7}
                   </Link>
                 </li>
@@ -91,7 +91,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu8 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu8}
                   </Link>
                 </li>
@@ -99,7 +99,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu9 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu9}
                   </Link>
                 </li>
@@ -107,7 +107,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu10 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu10}
                   </Link>
                 </li>
@@ -115,7 +115,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu11 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu11}
                   </Link>
                 </li>
@@ -123,7 +123,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu12 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu12}
                   </Link>
                 </li>
@@ -131,7 +131,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu13 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu13}
                   </Link>
                 </li>
@@ -139,7 +139,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu14 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
                     {menu.attributes.SubMenu14}
                   </Link>
                 </li>
@@ -147,7 +147,7 @@ function Sidebar() {
 
               {menu.attributes.SubMenu15 && (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link href={"/shop/aec-blueprints-bond-prints"}>
+                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu15}`}>
                     {menu.attributes.SubMenu15}
                   </Link>
                 </li>

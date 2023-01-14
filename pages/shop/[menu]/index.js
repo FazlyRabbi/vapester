@@ -11,7 +11,7 @@ export default function productDetails({ product, params }) {
   });
 
   return (
-    <Layout title={"shop"}>
+    <Layout title={params.menu}>
       <div className=" slider rounded-md my-4  md:mb-0 lg:h-[26rem] md:h-[12rem]">
         <Slider />
       </div>

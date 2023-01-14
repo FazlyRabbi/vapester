@@ -8,7 +8,7 @@ function index({ products }) {
   const router = useRouter();
 
   const filteredProduct = products?.data.find(
-    (data) => data.attributes.Title === data.attributes.Title
+    (data) => data.attributes.Title === router.query.submenu
   );
 
   return (
@@ -40,7 +40,7 @@ export async function getStaticProps() {
 
 export async function getStaticPaths() {
   const res = await fetch(
-    `https://demo-production-edcf.up.railway.app/api/sibebars?populate=*`
+    `https://demo-production-edcf.up.railway.app/api/products?populate=*`
   );
 
   const path = await res.json();
@@ -49,8 +49,8 @@ export async function getStaticPaths() {
     paths: path.data.map((menu) => {
       return {
         params: {
-          menu: menu.attributes.Menu,
-          submenu: menu.attributes.SubMenu1,
+          menu: menu.attributes.sibebar.data.attributes.Menu,
+          submenu: menu.attributes.Title,
         },
       };
     }),
