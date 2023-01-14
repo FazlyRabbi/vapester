@@ -4,15 +4,9 @@ import SingleProduct from "@/components/SingleProduct";
 import { useRouter } from "next/router";
 import { AuthContext } from "@/context/AuthContext";
 import { useContext, useEffect } from "react";
-export default function Shop({ products: { data } }) {
-  const { user } = useContext(AuthContext);
-  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push("/signin");
-  //   }
-  // }, [user]);
+export default function Shop({ products: { data } }) {
+
 
   return (
     <Layout title={"shop"}>
@@ -29,10 +23,8 @@ export default function Shop({ products: { data } }) {
 }
 
 export async function getStaticProps() {
-
   const res = await fetch("https://demo-production-edcf.up.railway.app/api/products?populate=*");
   const products = await res.json();
-
   return {
     props: { products},
     revalidate: 1,

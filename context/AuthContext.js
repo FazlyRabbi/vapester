@@ -1,12 +1,15 @@
 import { createContext, useEffect, useState } from "react";
 import { NEXT_URL } from "@/config/index";
-export const AuthContext = createContext();
 import { destroyCookie } from "nookies";
+
+export const AuthContext = createContext();
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [looding, setLooding] = useState(true);
   const [sliderImage, setSliderImage] = useState(null);
+  const [sidebar, setSidbar] = useState(null);
 
   useEffect(() => {
     checkUserLoggedId();
@@ -71,6 +74,28 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // const getProductsForFilter = async () => {
+  //   const res = await fetch(
+  //     `https://demo-production-edcf.up.railway.app/api/products?populate=*`
+  //   );
+
+  //   const product = await res.json();
+
+  //   const filteredProduct = product?.data.map((data) => {
+  //     if (params.menu === data.attributes.sibebar.data.attributes.Menu) {
+  //       return data;
+  //     }
+  //   });
+
+    
+  // };
+
+  const getSidebar = async () => {
+    const res = await fetch(`${NEXT_URL}/api/sidebar`);
+    const sidebar = await res.json();
+    setSidbar(sidebar);
+  };
+
   const getHomeSliderImage = async () => {
     const res = await fetch(
       "https://demo-production-edcf.up.railway.app/api/service-page-slider-image-should-be-w-1920px-h-600px?populate=*"
@@ -92,6 +117,8 @@ export const AuthProvider = ({ children }) => {
         looding,
         sliderImage,
         getHomeSliderImage,
+        getSidebar,
+        sidebar,
       }}
     >
       {children}

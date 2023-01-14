@@ -9,23 +9,22 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
 // import required modules
-import {  Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper";
 export default function Slider() {
   const { sliderImage, getHomeSliderImage } = useContext(AuthContext);
- 
+  
   useEffect(() => {
     getHomeSliderImage();
-    console.log(sliderImage);
   }, []);
 
   return (
     <Swiper
-      navigation={true} 
+      navigation={true}
       spaceBetween={0}
       pagination={{
         dynamicBullets: true,
       }}
-      modules={[Pagination,Navigation]}
+      modules={[Pagination, Navigation]}
       className=" w-[100%]"
     >
       {sliderImage?.data?.attributes?.Images.data.map((img) => (
