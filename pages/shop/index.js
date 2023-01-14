@@ -1,13 +1,9 @@
 import Layout from "@/components/Layout";
 import Slider from "@/components/Slider";
 import SingleProduct from "@/components/SingleProduct";
-import { useRouter } from "next/router";
-import { AuthContext } from "@/context/AuthContext";
-import { useContext, useEffect } from "react";
+
 
 export default function Shop({ products: { data } }) {
-
-
   return (
     <Layout title={"shop"}>
       <div className=" slider rounded-md my-4  md:mb-0 lg:h-[26rem] md:h-[12rem]">
