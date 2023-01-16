@@ -40,8 +40,8 @@ function ProductDetails({ data }) {
               <Image
                 src={`https://demo-production-edcf.up.railway.app${img.attributes.url}`}
                 alt="img"
-                width={800}
-                height={800}
+                width={400}
+                height={400}
               />
             </SwiperSlide>
           ))}

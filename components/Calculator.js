@@ -1,8 +1,57 @@
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
 export default function Calculator() {
+  // geting all input data
+  const [ratio, setRatio] = useState(0);
+  const [customHeigh, setCustomHeigh] = useState(0);
+  const [customWidth, setCustomWidth] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [reinforce, setReinforce] = useState("");
+  const [lamination, setLamination] = useState("None");
+
+  const [time, setTime] = useState("");
+  const [total, setTotal] = useState(10);
+  const [error, setError] = useState(null);
+
+  const [widthError, setWidthError] = useState(null);
+  // make the main calculations
+
+  const price = 10;
+
+  useEffect(() => {
+    let totalPrice =
+      parseInt(customWidth) * parseInt(customHeigh) * price * quantity;
+    setTotal(totalPrice);
+  }, [ratio, quantity, reinforce, time, customHeigh, customWidth]);
+
+  // set quantity
+
+  const handleQuantity = (e) => {
+    if (e.target.value > 0) {
+      setQuantity(e.target.value);
+      setError(null);
+    } else {
+      setError("plz enter valid quantity");
+    }
+  };
+
+  const handleWidth = (e) => {
+    if (e.target.value < 49) {
+      setCustomWidth(e.target.value);
+      setWidthError(null);
+    } else {
+      setWidthError("Max value is 48");
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log("hello");
+  };
+
   return (
-    <form className="  w-full shadow-md  ">
+    <form className="  w-full shadow-md  " onSubmit={handleSubmit}>
       <h4
         className={` font-bold  p-2  pl-5 rounded-tl-md 
             
@@ -11,37 +60,85 @@ export default function Calculator() {
       >
         Price Calculator
       </h4>
+
       <div className="flex flex-wrap -mx-3 mb-6 px-8  pb-4   ">
         <div className="w-full mt-4 ">
           <label
             className="block  tracking-wide text-gray-700  mb-1  "
             htmlFor="grid-state"
           >
-            Drawing Size
+            Width & Length
           </label>
           <div className="relative">
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
+              onChange={(e) => setRatio(e.target.value)}
             >
-              <option>11" x 17"</option>
-              <option>12" x 18"</option>
-              <option>18" x 24"</option>
-              <option>24" x 36"</option>
-              <option>30" x 42"</option>
-              <option>36" x 48"</option>
+              <option>1' x 1'</option>
+              <option>2' x 3'</option>
+              <option>3' x 4'</option>
               <option>Custom Size</option>
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg
-                className="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+          </div>
+        </div>
+
+        {ratio === "Custom Size" ? (
+          <div className="flex  space-x-10">
+            <div className="w-full mt-4   ">
+              <label
+                className="block tracking-wide text-gray-700  mb-1"
+                htmlFor="grid-first-name"
               >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
+                Width <span className="text-red-600 font-bold">(Fet)</span>
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                id="grid-first-name"
+                type="number"
+                value={customWidth}
+                onChange={handleWidth}
+              />
+              {widthError && (
+                <p className="text-red-600 text-sm">{widthError}</p>
+              )}
+            </div>
+            <div className="w-full mt-4   ">
+              <label
+                className="block tracking-wide text-gray-700  mb-1"
+                htmlFor="grid-first-name"
+              >
+                Height <span className="text-red-600 font-bold">(Fet)</span>
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                id="grid-first-name"
+                type="number"
+                placeholder="0"
+                onChange={(e) => setCustomHeigh(e.target.value)}
+              />
             </div>
           </div>
+        ) : (
+          ""
+        )}
+
+        <div className="w-full mt-4   ">
+          <label
+            className="block tracking-wide text-gray-700  mb-1"
+            htmlFor="grid-first-name"
+          >
+            Quantity
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+            id="grid-first-name"
+            type="number"
+            value={quantity}
+            onChange={handleQuantity}
+          />
+          {error && <p className="text-red-600 text-sm">{error}</p>}
         </div>
 
         <div className="w-full mt-4   ">
@@ -49,38 +146,10 @@ export default function Calculator() {
             className="block tracking-wide text-gray-700  mb-1"
             htmlFor="grid-first-name"
           >
-            How many original pages?
+            Material
           </label>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
-            type="text"
-            placeholder="1"
-          />
-        </div>
-        <div className="w-full mt-4   ">
-          <label
-            className="block tracking-wide text-gray-700  mb-1"
-            htmlFor="grid-first-name"
-          >
-            How many copies/sets?
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
-            type="number"
-            placeholder="1"
-          />
-        </div>
-        <div className="w-full mt-4   ">
-          <label
-            className="block tracking-wide text-gray-700  mb-1"
-            htmlFor="grid-first-name"
-          >
-            Paper
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
             id="grid-first-name"
             type="text"
             placeholder="bond paper"
@@ -92,26 +161,27 @@ export default function Calculator() {
             className="block  tracking-wide text-gray-700  mb-1  "
             htmlFor="grid-state"
           >
-            Color
+            Reinforce
           </label>
           <div className="relative">
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
+              onChange={(e) => setReinforce(e.target.value)}
             >
-              <option>Black & White</option>
-              <option>Color</option>
+              <option>Binded</option>
+              <option>Loose</option>
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg
-                className="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
-            </div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
           </div>
+        </div>
+        <div className="w-full mt-4 ">
+          <label
+            className="block  tracking-wide text-gray-700  mb-1  "
+            htmlFor="grid-state"
+          >
+            Color
+          </label>
         </div>
         <div className="w-full mt-4 ">
           <label
@@ -124,61 +194,50 @@ export default function Calculator() {
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
+              onChange={(e) => setLamination(e.target.value)}
             >
-              <option>Yes</option>
-              <option>No</option>
+              <option>None</option>
+              <option>Matte</option>
+              <option>Gloss</option>
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg
-                className="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
-            </div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
           </div>
         </div>
+
         <div className="w-full mt-4 ">
           <label
             className="block  tracking-wide text-gray-700  mb-1  "
             htmlFor="grid-state"
           >
-            Finishing
+            Production Time
           </label>
           <div className="relative">
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
+              onChange={(e) => setTime(e.target.value)}
             >
-              <option>Binded</option>
-              <option>Loose</option>
+              <option>2-3 Business Days</option>
+              <option>Next Day</option>
+              <option>Same Day</option>
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg
-                className="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
-            </div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
           </div>
         </div>
 
         <div className="w-full mt-4   ">
           <input
-            className="appearance-none text-right block w-full bg-white  text-primary  border-red-500 rounded py-2 px-4 my-5 leading-tight font-bold text-[18px] focus:outline-none focus:bg-white "
+            className="appearance-none text-right block w-full bg-white  text-primary   rounded py-2 px-4 my-5 leading-tight font-bold text-[18px] focus:outline-none focus:bg-white "
             id="grid-first-name"
             disabled
             type="text"
             placeholder="1"
-            value={`Total : $10.00`}
+            value={`Total : $${total}`}
           />
         </div>
 
         <Link
-          href={"blueprint/upload"}
+          href={"#"}
           className="appearance-none text-center block w-full bg-[#111827]  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
         >
           add to cart
@@ -187,3 +246,253 @@ export default function Calculator() {
     </form>
   );
 }
+
+// import styles from "@/styles/Home.module.css";
+// import Link from "next/link";
+// import { useEffect, useState } from "react";
+
+// export default function Calculator() {
+//   // geting all input data
+//   const [ratio, setRatio] = useState(0);
+//   const [customHeigh, setCustomHeigh] = useState(0);
+//   const [customWidth, setCustomWidth] = useState(0);
+//   const [quantity, setQuantity] = useState(1);
+//   const [reinforce, setReinforce] = useState("");
+//   const [lamination, setLamination] = useState("None");
+//   const [color, setColor] = useState("Black & White");
+//   const [time, setTime] = useState("");
+//   const [total, setTotal] = useState(10);
+//   const [error, setError] = useState(null);
+//   // make the main calculations
+
+//   const price = 10;
+
+//   let colorPrice = color === "Black & White" ? 0.55 : 0.94;
+
+//   useEffect(() => {
+//     let totalPrice = quantity * price + colorPrice;
+//     setTotal(totalPrice);
+//   }, [ratio, quantity, reinforce, time, customHeigh, customWidth, color]);
+
+//   // set quantity
+
+//   const handleQuantity = (e) => {
+//     if (e.target.value > 0) {
+//       setQuantity(e.target.value);
+//       setError(null);
+//     } else {
+//       setError("plz enter valid quantity");
+//     }
+//   };
+
+//   const handleSubmit = () => {
+//     console.log("hello");
+//   };
+
+//   return (
+//     <form className="  w-full shadow-md  " onSubmit={handleSubmit}>
+//       <h4
+//         className={` font-bold  p-2  pl-5 rounded-tl-md
+
+//             rounded-tr-md shadow-sm
+//             bg-[#111827]   text-white  ${styles.borderGradient} `}
+//       >
+//         Price Calculator
+//       </h4>
+
+//       <div className="flex flex-wrap -mx-3 mb-6 px-8  pb-4   ">
+//         <div className="w-full mt-4 ">
+//           <label
+//             className="block  tracking-wide text-gray-700  mb-1  "
+//             htmlFor="grid-state"
+//           >
+//             Width & Length
+//           </label>
+//           <div className="relative">
+//             <select
+//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+//               id="grid-state"
+//               onChange={(e) => setRatio(e.target.value)}
+//             >
+//               <option>11" x 17"</option>
+//               <option>12" x 18"</option>
+//               <option>18" x 24"</option>
+//               <option>24" x 36"</option>
+//               <option>30" x 42"</option>
+//               <option>36" x 48"</option>
+//               <option>Custom Size</option>
+//             </select>
+//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+//           </div>
+//         </div>
+
+//         {ratio === "Custom Size" ? (
+//           <div className="flex  space-x-10">
+//             <div className="w-full mt-4   ">
+//               <label
+//                 className="block tracking-wide text-gray-700  mb-1"
+//                 htmlFor="grid-first-name"
+//               >
+//                 Width <span className="text-red-600 font-bold">(Inch)</span>
+//               </label>
+//               <input
+//                 className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+//                 id="grid-first-name"
+//                 type="number"
+//                 placeholder="0"
+//                 onChange={(e) => setCustomWidth(e.target.value)}
+//               />
+//             </div>
+//             <div className="w-full mt-4   ">
+//               <label
+//                 className="block tracking-wide text-gray-700  mb-1"
+//                 htmlFor="grid-first-name"
+//               >
+//                 Height <span className="text-red-600 font-bold">(Inch)</span>
+//               </label>
+//               <input
+//                 className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+//                 id="grid-first-name"
+//                 type="number"
+//                 placeholder="0"
+//                 onChange={(e) => setCustomHeigh(e.target.value)}
+//               />
+//             </div>
+//           </div>
+//         ) : (
+//           ""
+//         )}
+
+//         <div className="w-full mt-4   ">
+//           <label
+//             className="block tracking-wide text-gray-700  mb-1"
+//             htmlFor="grid-first-name"
+//           >
+//             Quantity
+//           </label>
+//           <input
+//             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+//             id="grid-first-name"
+//             type="number"
+//             value={quantity}
+//             onChange={handleQuantity}
+//           />
+//           {error && <p className="text-red-600 text-sm">{error}</p>}
+//         </div>
+
+//         <div className="w-full mt-4   ">
+//           <label
+//             className="block tracking-wide text-gray-700  mb-1"
+//             htmlFor="grid-first-name"
+//           >
+//             Material
+//           </label>
+//           <input
+//             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+//             id="grid-first-name"
+//             type="text"
+//             placeholder="bond paper"
+//           />
+//         </div>
+
+//         <div className="w-full mt-4 ">
+//           <label
+//             className="block  tracking-wide text-gray-700  mb-1  "
+//             htmlFor="grid-state"
+//           >
+//             Reinforce
+//           </label>
+//           <div className="relative">
+//             <select
+//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+//               id="grid-state"
+//               onChange={(e) => setReinforce(e.target.value)}
+//             >
+//               <option>Binded</option>
+//               <option>Loose</option>
+//             </select>
+//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+//           </div>
+//         </div>
+//         <div className="w-full mt-4 ">
+//           <label
+//             className="block  tracking-wide text-gray-700  mb-1  "
+//             htmlFor="grid-state"
+//           >
+//             Color
+//           </label>
+//           <div className="relative">
+//             <select
+//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+//               id="grid-state"
+//               onChange={(e) => setColor(e.target.value)}
+//             >
+//               <option>Black & White</option>
+//               <option>Color</option>
+//             </select>
+//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+//           </div>
+//         </div>
+//         <div className="w-full mt-4 ">
+//           <label
+//             className="block  tracking-wide text-gray-700  mb-1  "
+//             htmlFor="grid-state"
+//           >
+//             Lamination
+//           </label>
+//           <div className="relative">
+//             <select
+//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+//               id="grid-state"
+//               onChange={(e) => setLamination(e.target.value)}
+//             >
+//               <option>None</option>
+//               <option>Matte</option>
+//               <option>Gloss</option>
+//             </select>
+//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+//           </div>
+//         </div>
+
+//         <div className="w-full mt-4 ">
+//           <label
+//             className="block  tracking-wide text-gray-700  mb-1  "
+//             htmlFor="grid-state"
+//           >
+//             Production Time
+//           </label>
+//           <div className="relative">
+//             <select
+//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+//               id="grid-state"
+//               onChange={(e) => setTime(e.target.value)}
+//             >
+//               <option>2-3 Business Days</option>
+//               <option>Next Day</option>
+//               <option>Same Day</option>
+//             </select>
+//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+//           </div>
+//         </div>
+
+//         <div className="w-full mt-4   ">
+//           <input
+//             className="appearance-none text-right block w-full bg-white  text-primary   rounded py-2 px-4 my-5 leading-tight font-bold text-[18px] focus:outline-none focus:bg-white "
+//             id="grid-first-name"
+//             disabled
+//             type="text"
+//             placeholder="1"
+//             value={`Total : $${total}`}
+//           />
+//         </div>
+
+//         <Link
+//           href={"#"}
+//           className="appearance-none text-center block w-full bg-[#111827]  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
+//         >
+//           add to cart
+//         </Link>
+//       </div>
+//     </form>
+//   );
+// }

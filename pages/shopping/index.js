@@ -1,21 +1,50 @@
 import Header from "@/components/Header";
+
+import { MdDeleteForever } from "react-icons/md";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import photo from "../../img/bg/travel-sale-flyer-template_52683-46904.webp";
 export default function shopping() {
   return (
     <>
-      {" "}
       <Header />
-      <section className="py-[2rem]">
-        <div className="container mx-auto">
-          <h3 className="font-bold text-[25px] mb-[3rem]">Shopping Cart</h3>
-          <div className="shoppin-cart  mt-4 shadow-md p-10 lg:mx-[5rem] flex space-x-10">
+      <div className="container mx-auto">
+        <h3 className="font-bold text-[25px] my-[2rem] ml-[10rem]">
+          Shopping Cart
+        </h3>
+
+        <div className=" rounded-lg my-8 shadow-lg p-10 lg:mx-[10rem] ">
+          <div
+            className="shoppin-cart 
+         grid  grid-cols-1
+         md:grid-cols-4
+ justify-items-center
+
+ md:justify-items-start
+ 
+             justify-center
+           gap-5
+           gap-y-10
+      
+        "
+          >
             <div className="product-img">
-              <Image src={photo} height={200} width={200} alt="product-img" />
+              <Image
+                src={photo}
+                height={150}
+                width={150}
+                alt="product-img"
+                className="rounded-md"
+              />
             </div>
-            <div className="product-des flex   lg:space-x-[20rem]  space-x-[5rem]">
-              <div className="details">
+
+            <div
+              className="product-des 
+            col-span-3
+           flex justify-between 
+          xl:space-x-[20rem] "
+            >
+              <div className="details ">
                 <h2 className="font-bold mb-2">Banner 12 oz (Viny! Banners)</h2>
 
                 <ul>
@@ -49,220 +78,25 @@ export default function shopping() {
                   </li>
                 </ul>
               </div>
-              <div className="quantity">
+
+              <div className="quantity flex space-x-6 md:space-x-12 font-bold justify-between">
                 <p>
-                  <span>1</span>
-                  Qty
+                  1<span className="font-normal"> Qty</span>
                 </p>
-              </div>
-              <div className="price">
-                <p className="font-bold">$26.00</p>
+
+                <p>$26.00</p>
               </div>
             </div>
           </div>
-          <div className="shoppin-cart  mt-4 shadow-md p-10 lg:mx-[5rem] flex space-x-10">
-            <div className="product-img">
-              <Image src={photo} height={200} width={200} alt="product-img" />
-            </div>
-            <div className="product-des flex   lg:space-x-[20rem]  space-x-[5rem]">
-              <div className="details">
-                <h2 className="font-bold mb-2">Banner 12 oz (Viny! Banners)</h2>
-
-                <ul>
-                  <li>
-                    <span className="title font-bold">Job Name: </span>
-                    <span className="data">201564646778777</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Width & Length: </span>
-                    <span className="data">24`` Width x 36`` Height</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Width : </span>
-                    <span className="data">24``</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Height : </span>
-                    <span className="data">36``</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Meterial : </span>
-                    <span className="data">13 oz. Matte viny! Banner</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Reinforce : </span>
-                    <span className="data">Yss (1in)</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Finishing : </span>
-                    <span className="data">None</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="quantity">
-                <p>
-                  <span>1</span>
-                  Qty
-                </p>
-              </div>
-              <div className="price">
-                <p className="font-bold">$26.00</p>
-              </div>
-            </div>
-          </div>
-          <div className="shoppin-cart  mt-4 shadow-md p-10 lg:mx-[5rem] flex space-x-10">
-            <div className="product-img">
-              <Image src={photo} height={200} width={200} alt="product-img" />
-            </div>
-            <div className="product-des flex   lg:space-x-[20rem]  space-x-[5rem]">
-              <div className="details">
-                <h2 className="font-bold mb-2">Banner 12 oz (Viny! Banners)</h2>
-
-                <ul>
-                  <li>
-                    <span className="title font-bold">Job Name: </span>
-                    <span className="data">201564646778777</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Width & Length: </span>
-                    <span className="data">24`` Width x 36`` Height</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Width : </span>
-                    <span className="data">24``</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Height : </span>
-                    <span className="data">36``</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Meterial : </span>
-                    <span className="data">13 oz. Matte viny! Banner</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Reinforce : </span>
-                    <span className="data">Yss (1in)</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Finishing : </span>
-                    <span className="data">None</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="quantity">
-                <p>
-                  <span>1</span>
-                  Qty
-                </p>
-              </div>
-              <div className="price">
-                <p className="font-bold">$26.00</p>
-              </div>
-            </div>
-          </div>
-          <div className="shoppin-cart  mt-4 shadow-md p-10 lg:mx-[5rem] flex space-x-10">
-            <div className="product-img">
-              <Image src={photo} height={200} width={200} alt="product-img" />
-            </div>
-            <div className="product-des flex   lg:space-x-[20rem]  space-x-[5rem]">
-              <div className="details">
-                <h2 className="font-bold mb-2">Banner 12 oz (Viny! Banners)</h2>
-
-                <ul>
-                  <li>
-                    <span className="title font-bold">Job Name: </span>
-                    <span className="data">201564646778777</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Width & Length: </span>
-                    <span className="data">24`` Width x 36`` Height</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Width : </span>
-                    <span className="data">24``</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Height : </span>
-                    <span className="data">36``</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Meterial : </span>
-                    <span className="data">13 oz. Matte viny! Banner</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Reinforce : </span>
-                    <span className="data">Yss (1in)</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Finishing : </span>
-                    <span className="data">None</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="quantity">
-                <p>
-                  <span>1</span>
-                  Qty
-                </p>
-              </div>
-              <div className="price">
-                <p className="font-bold">$26.00</p>
-              </div>
-            </div>
-          </div>
-          <div className="shoppin-cart  mt-4 shadow-md p-10 lg:mx-[5rem] flex space-x-10">
-            <div className="product-img">
-              <Image src={photo} height={200} width={200} alt="product-img" />
-            </div>
-            <div className="product-des flex   lg:space-x-[20rem]  space-x-[5rem]">
-              <div className="details">
-                <h2 className="font-bold mb-2">Banner 12 oz (Viny! Banners)</h2>
-
-                <ul>
-                  <li>
-                    <span className="title font-bold">Job Name: </span>
-                    <span className="data">201564646778777</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Width & Length: </span>
-                    <span className="data">24`` Width x 36`` Height</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Width : </span>
-                    <span className="data">24``</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Height : </span>
-                    <span className="data">36``</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Meterial : </span>
-                    <span className="data">13 oz. Matte viny! Banner</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Reinforce : </span>
-                    <span className="data">Yss (1in)</span>
-                  </li>
-                  <li>
-                    <span className="title font-bold">Finishing : </span>
-                    <span className="data">None</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="quantity">
-                <p>
-                  <span>1</span>
-                  Qty
-                </p>
-              </div>
-              <div className="price">
-                <p className="font-bold">$26.00</p>
-              </div>
-            </div>
+          <div className="editOrder max-w-[75%] ml-[10%] md:ml-[25%] mt-6 p-2  border-gray-200 border-t    flex justify-between items-center   ">
+            <p className="cursor-pointer">Edit Order</p>
+            <p>
+              <MdDeleteForever className="text-[1.4rem] cursor-pointer text-red-600" />
+            </p>
           </div>
         </div>
-      </section>
-      <Footer className=" bottom-0 absolute" />
+      </div>
+      <Footer />
     </>
   );
 }
