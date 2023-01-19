@@ -1,9 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { NEXT_URL } from "@/config/index";
+
 import { destroyCookie } from "nookies";
-
 export const AuthContext = createContext();
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -11,11 +10,45 @@ export const AuthProvider = ({ children }) => {
   const [sliderImage, setSliderImage] = useState(null);
   const [sidebar, setSidbar] = useState(null);
 
+  const [cart, setCart] = useState({
+    cartItems: [],
+  });
+
   useEffect(() => {
     checkUserLoggedId();
   }, []);
 
-  
+  // shoping cart functionality
+  const addToCart = async (calData) => {
+    const res = await fetch(
+      `https://demo-production-edcf.up.railway.app/api/carts`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: {
+            cart: {
+              ratio: calData.ratio,
+              customHeigh: calData.customHeigh,
+              customWidth: calData.customWidth,
+              quantity: calData.quantity,
+              reinforce: calData.reinforce,
+              lamination: calData.lamination,
+              time: calData.time,
+              total: calData.total,
+              email: user.user.email,
+            },
+          },
+        }),
+      }
+    );
+    const data = await res.json();
+    setCart({ cartItems: [...cart.cartItems, data.data.attributes.cart] });
+    console.log(cart);
+  };
+
   const signup = async ({ username, email, password }) => {
     const res = await fetch(`${NEXT_URL}/api/signup`, {
       method: "POST",
@@ -69,6 +102,20 @@ export const AuthProvider = ({ children }) => {
     const data = await res.json();
 
     if (res.ok) {
+      // let filteredEmail = cartRes.data[0].((data) => data);
+
+      // console.log(filteredEmail);
+      if (data.user.email) {
+        const res = await fetch(
+          `https://demo-production-edcf.up.railway.app/api/carts`
+        );
+        const cartRes = await res.json();
+        cartRes.data.filter((e) => {
+          if (e.attributes.cart.email === data.user.email) {
+            setCart({ cartItems: [...cart.cartItems, e.attributes.cart] });
+          }
+        });
+      }
       setUser(data);
     } else {
       setUser(null);
@@ -104,6 +151,9 @@ export const AuthProvider = ({ children }) => {
         getHomeSliderImage,
         getSidebar,
         sidebar,
+        cart: cart.cartItems,
+        setCart,
+        addToCart,
       }}
     >
       {children}

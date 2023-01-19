@@ -10,7 +10,7 @@ export default function Shop({ products: { data } }) {
         <Slider />
       </div>
       <div className="single-products grid md:grid-cols-2  lg:grid-cols-3 lg:gap-10 md:gap-5 justify-center  gap-y-8 justify-items-center">
-        {data.map((data) => (
+        { data && data.map((data) => (
           <SingleProduct {...data} key={data.id} />
         ))}
       </div>

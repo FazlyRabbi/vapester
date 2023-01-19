@@ -12,7 +12,7 @@ import { AuthContext } from "@/context/AuthContext";
 import styles from "@/styles/Home.module.css";
 
 export default function Header() {
-  const { user, sinout } = useContext(AuthContext);
+  const { user, sinout, cart } = useContext(AuthContext);
 
   return (
     <header className="sticky top-0    md:static   z-[9999]">
@@ -37,7 +37,7 @@ export default function Header() {
               <Link href={`/shopping`}>
                 <RiShoppingCartLine />
                 <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
-                  5
+                  {cart.length}
                 </span>
               </Link>
             </div>
@@ -145,7 +145,7 @@ export default function Header() {
                   <Link href={`/shopping`}>
                     <RiShoppingCartLine />
                     <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
-                      5
+                      {cart.length}
                     </span>
                   </Link>
                 </div>

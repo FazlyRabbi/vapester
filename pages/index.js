@@ -18,14 +18,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Autoplay, Pagination } from "swiper";
 
+// ads image
+import add1 from "../img/ads1.jpg";
+import add2 from "../img/ads2.jpg";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 export default function Home() {
-
-
   return (
     <section>
       <header className="  sticky top-0  z-[9999]">
@@ -112,6 +113,9 @@ export default function Home() {
                   <Link href={"/contacts"} className="font-bold text-[14px]">
                     Request A Quote
                   </Link>
+                  <Link href={"/contacts"} className="font-bold text-[14px]">
+                    Our Catalog
+                  </Link>
                 </Navbar.Collapse>
 
                 <div className="dropdown  hidden lg:block  font-bold cursor-pointer">
@@ -145,51 +149,14 @@ export default function Home() {
           modules={[Autoplay, Pagination]}
           className="mySwiper text-white h-full w-full"
         >
-          <SwiperSlide 
-           
-           style={{
-              backgroundImage:`url(aa)`,
-              backgroundSize:"cover",
-              
-
-
-           }}
-          
-          
-          className={`${styles.hero}    `}>
-            <div className=" h-full">
-              <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
-                <div className="text-center md:text-left">
-                  <h4 className=" text-gray-800 font-bold text-[14px]">
-                    #1 YOUR PRINTING PARTNER
-                  </h4>
-
-                  <h1 className="font-bold lg:text-[85px] text-[40px] text-gray-800 ">
-                    {" "}
-                    <span className=" text-primary ">Same Day</span> Print
-                  </h1>
-
-                  <p className="  text-black  leading-[1.8rem] mt-[1rem] lg:pr-[50rem] lg:mt-[3rem] text-[14px] lg:text-[16px]">
-                    In the city that never sleeps... <br />
-                    You can rely on Printing New York, your trusted printing
-                    services NYC partner. From business cards to brochures, this
-                    local print shop has you covered.
-                  </p>
-
-                  <div className="cta-btn flex md:flex-row  flex-col    space-y-4 md:space-y-0 md:space-x-4 mt-[3rem] items-center">
-                    <Link href={`/shop`}>
-                      <button className="  w-[18rem] bg-primary px-[3rem]  text-white  font-bold  rounded-md text-[14px]">
-                        View Products
-                      </button>
-                    </Link>
-
-                    <button className="   text-black w-[18rem] border px-[3rem]  font-bold   border-black rounded-md text-[14px]">
-                      View Products+
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <SwiperSlide>
+            <Image
+              src={add2}
+              height={700}
+              width={1400}
+              alt="img"
+              className="w-[100%]  h-[100%]"
+            />
           </SwiperSlide>
           <SwiperSlide className={`${styles.hero2}   `}>
             <div className=" bg-[#000000ac] h-full ">
@@ -225,7 +192,6 @@ export default function Home() {
               </div>
             </div>
           </SwiperSlide>
-
           <SwiperSlide className={`${styles.hero4}   `}>
             <div className=" bg-[#000000ac] h-full ">
               <div className="hero-content py-[10rem] flex container mx-auto   leading-[3.5rem] ">
@@ -633,7 +599,9 @@ export default function Home() {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch("https://demo-production-edcf.up.railway.app/api/people");
+  const res = await fetch(
+    "https://demo-production-edcf.up.railway.app/api/people"
+  );
   const people = await res.json();
 
   // By returning { props: { posts } }, the Blog component

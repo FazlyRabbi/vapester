@@ -1,36 +1,52 @@
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+import { AuthContext } from "@/context/AuthContext";
+import { useContext } from "react";
 export default function Calculator() {
+  const {addToCart } = useContext(AuthContext);
   // geting all input data
-  const [ratio, setRatio] = useState(0);
-  const [customHeigh, setCustomHeigh] = useState(0);
-  const [customWidth, setCustomWidth] = useState(0);
-  const [quantity, setQuantity] = useState(1);
-  const [reinforce, setReinforce] = useState("");
-  const [lamination, setLamination] = useState("None");
-
-  const [time, setTime] = useState("");
-  const [total, setTotal] = useState(10);
   const [error, setError] = useState(null);
-
   const [widthError, setWidthError] = useState(null);
+
+  const [calData, setCalData] = useState({
+    ratio: 0,
+    customHeigh: 0,
+    customWidth: 0,
+    quantity: 1,
+    reinforce: "",
+    lamination: "none",
+    time: "",
+    total: 10,
+  });
+
   // make the main calculations
 
-  const price = 10;
+  const price = 10; //10 doller
 
   useEffect(() => {
-    let totalPrice =
-      parseInt(customWidth) * parseInt(customHeigh) * price * quantity;
-    setTotal(totalPrice);
-  }, [ratio, quantity, reinforce, time, customHeigh, customWidth]);
+    // let totalPrice =
+    //   parseInt(customWidth) * parseInt(customHeigh) * price * quantity;
+    if (calData.ratio !== "Custom Size") {
+      setCalData({ ...calData, customHeigh: 0, customWidth: 0 });
+    }
+  }, [
+    calData.ratio,
+    calData.quantity,
+    calData.reinforce,
+    calData.time,
+    calData.customHeigh,
+    calData.customWidth,
+  ]);
 
   // set quantity
 
   const handleQuantity = (e) => {
     if (e.target.value > 0) {
-      setQuantity(e.target.value);
+      setCalData({
+        ...calData,
+        quantity: e.target.value,
+      });
       setError(null);
     } else {
       setError("plz enter valid quantity");
@@ -39,7 +55,10 @@ export default function Calculator() {
 
   const handleWidth = (e) => {
     if (e.target.value < 49) {
-      setCustomWidth(e.target.value);
+      setCalData({
+        ...calData,
+        customWidth: e.target.value,
+      });
       setWidthError(null);
     } else {
       setWidthError("Max value is 48");
@@ -47,7 +66,7 @@ export default function Calculator() {
   };
 
   const handleSubmit = () => {
-    console.log("hello");
+     addToCart(calData)
   };
 
   return (
@@ -73,7 +92,12 @@ export default function Calculator() {
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
-              onChange={(e) => setRatio(e.target.value)}
+              onChange={(e) =>
+                setCalData({
+                  ...calData,
+                  ratio: e.target.value,
+                })
+              }
             >
               <option>1' x 1'</option>
               <option>2' x 3'</option>
@@ -84,7 +108,7 @@ export default function Calculator() {
           </div>
         </div>
 
-        {ratio === "Custom Size" ? (
+        {calData.ratio === "Custom Size" ? (
           <div className="flex  space-x-10">
             <div className="w-full mt-4   ">
               <label
@@ -97,7 +121,7 @@ export default function Calculator() {
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="number"
-                value={customWidth}
+                value={calData.customWidth}
                 onChange={handleWidth}
               />
               {widthError && (
@@ -116,7 +140,12 @@ export default function Calculator() {
                 id="grid-first-name"
                 type="number"
                 placeholder="0"
-                onChange={(e) => setCustomHeigh(e.target.value)}
+                onChange={(e) =>
+                  setCalData({
+                    ...calData,
+                    customHeigh: e.target.value,
+                  })
+                }
               />
             </div>
           </div>
@@ -135,7 +164,7 @@ export default function Calculator() {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
             id="grid-first-name"
             type="number"
-            value={quantity}
+            value={calData.quantity}
             onChange={handleQuantity}
           />
           {error && <p className="text-red-600 text-sm">{error}</p>}
@@ -167,7 +196,9 @@ export default function Calculator() {
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
-              onChange={(e) => setReinforce(e.target.value)}
+              onChange={(e) =>
+                setCalData({ ...calData, reinforce: e.target.value })
+              }
             >
               <option>Binded</option>
               <option>Loose</option>
@@ -180,21 +211,15 @@ export default function Calculator() {
             className="block  tracking-wide text-gray-700  mb-1  "
             htmlFor="grid-state"
           >
-            Color
-          </label>
-        </div>
-        <div className="w-full mt-4 ">
-          <label
-            className="block  tracking-wide text-gray-700  mb-1  "
-            htmlFor="grid-state"
-          >
             Lamination
           </label>
           <div className="relative">
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
-              onChange={(e) => setLamination(e.target.value)}
+              onChange={(e) =>
+                setCalData({ ...calData, lamination: e.target.value })
+              }
             >
               <option>None</option>
               <option>Matte</option>
@@ -215,7 +240,7 @@ export default function Calculator() {
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
-              onChange={(e) => setTime(e.target.value)}
+              onChange={(e) => setCalData({ ...calData, time: e.target.value })}
             >
               <option>2-3 Business Days</option>
               <option>Next Day</option>
@@ -232,12 +257,13 @@ export default function Calculator() {
             disabled
             type="text"
             placeholder="1"
-            value={`Total : $${total}`}
+            value={`Total : $${calData.total}`}
           />
         </div>
 
         <Link
           href={"#"}
+          onClick={handleSubmit}
           className="appearance-none text-center block w-full bg-[#111827]  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
         >
           add to cart
