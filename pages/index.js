@@ -8,8 +8,6 @@ import { AiFillClockCircle } from "react-icons/ai";
 import falyer from "../img/travel-sale-flyer-template_52683-46904.webp";
 import like from "../img/like.webp";
 import headphone from "../img/headpone.webp";
-import banner from "../img/card/banners.svg";
-import mog from "../img/bg/mog.webp";
 import Footer from "@/components/Footer";
 import charlotte from "../img/man/charlotte.webp";
 import { Navbar } from "flowbite-react";
@@ -19,12 +17,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper";
 
 // ads image
-import add1 from "../img/ads1.jpg";
 import add2 from "../img/ads2.jpg";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import HomeCatagory from "@/components/HomeCatagory";
+import HomeProducts from "@/components/HomeProducts";
 
 export default function Home() {
   return (
@@ -313,46 +312,7 @@ export default function Home() {
 
       <div className="catagory py-[6rem]">
         <div className="container mx-auto grid gap-10 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 px-[5rem]">
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
-          <div className={`${styles.catagoryCard}  px-3 py-2`}>
-            <Image src={banner} height={25} width={25} alt="img" />
-            <p className="font-bold ">Banners</p>
-          </div>
+          <HomeCatagory />
         </div>
       </div>
 
@@ -361,102 +321,7 @@ export default function Home() {
           Free Worldwide Shipping on orders over $500
         </h1>
         <div className="container mx-auto grid mt-6  sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:px-[13rem] justify-items-center ">
-          <div className="product  p-5  cursor-pointer">
-            <div className=" bg-white rounded-sm text-center min-h-[15rem] w-[15rem] p-2 ">
-              <Image src={mog} height={250} width={250} alt="img" />
-            </div>
-
-            <div className="product-des p-2 text-[#C8C3C3] shadow-xl min-h-[5rem] w-[15rem]">
-              <h4 className="mb-3">Epoxy Business Cards</h4>
-              <p>
-                <span className="font-bold">$424</span> for 100
-              </p>
-            </div>
-          </div>
-          <div className="product  p-5  cursor-pointer">
-            <div className=" bg-white rounded-sm text-center min-h-[15rem] w-[15rem] p-2 ">
-              <Image src={mog} height={250} width={250} alt="img" />
-            </div>
-
-            <div className="product-des p-2 text-[#C8C3C3] shadow-xl min-h-[5rem] w-[15rem]">
-              <h4 className="mb-3">Epoxy Business Cards</h4>
-              <p>
-                <span className="font-bold">$424</span> for 100
-              </p>
-            </div>
-          </div>
-          <div className="product  p-5  cursor-pointer">
-            <div className=" bg-white rounded-sm text-center min-h-[15rem] w-[15rem] p-2 ">
-              <Image src={mog} height={250} width={250} alt="img" />
-            </div>
-
-            <div className="product-des p-2 text-[#C8C3C3] shadow-xl min-h-[5rem] w-[15rem]">
-              <h4 className="mb-3">Epoxy Business Cards</h4>
-              <p>
-                <span className="font-bold">$424</span> for 100
-              </p>
-            </div>
-          </div>
-          <div className="product  p-5  cursor-pointer">
-            <div className=" bg-white rounded-sm text-center min-h-[15rem] w-[15rem] p-2 ">
-              <Image src={mog} height={250} width={250} alt="img" />
-            </div>
-
-            <div className="product-des p-2 text-[#C8C3C3] shadow-xl min-h-[5rem] w-[15rem]">
-              <h4 className="mb-3">Epoxy Business Cards</h4>
-              <p>
-                <span className="font-bold">$424</span> for 100
-              </p>
-            </div>
-          </div>
-          <div className="product  p-5  cursor-pointer">
-            <div className=" bg-white rounded-sm text-center min-h-[15rem] w-[15rem] p-2 ">
-              <Image src={mog} height={250} width={250} alt="img" />
-            </div>
-
-            <div className="product-des p-2 text-[#C8C3C3] shadow-xl min-h-[5rem] w-[15rem]">
-              <h4 className="mb-3">Epoxy Business Cards</h4>
-              <p>
-                <span className="font-bold">$424</span> for 100
-              </p>
-            </div>
-          </div>
-          <div className="product  p-5  cursor-pointer">
-            <div className=" bg-white rounded-sm text-center min-h-[15rem] w-[15rem] p-2 ">
-              <Image src={mog} height={250} width={250} alt="img" />
-            </div>
-
-            <div className="product-des p-2 text-[#C8C3C3] shadow-xl min-h-[5rem] w-[15rem]">
-              <h4 className="mb-3">Epoxy Business Cards</h4>
-              <p>
-                <span className="font-bold">$424</span> for 100
-              </p>
-            </div>
-          </div>
-          <div className="product  p-5  cursor-pointer">
-            <div className=" bg-white rounded-sm text-center min-h-[15rem] w-[15rem] p-2 ">
-              <Image src={mog} height={250} width={250} alt="img" />
-            </div>
-
-            <div className="product-des p-2 text-[#C8C3C3] shadow-xl min-h-[5rem] w-[15rem]">
-              <h4 className="mb-3">Epoxy Business Cards</h4>
-              <p>
-                <span className="font-bold">$424</span> for 100
-              </p>
-            </div>
-          </div>
-          <div className="product  p-5  cursor-pointer">
-            <div className=" bg-white rounded-sm text-center min-h-[15rem] w-[15rem] p-2 ">
-              <Image src={mog} height={250} width={250} alt="img" />
-            </div>
-
-            <div className="product-des p-2 text-[#C8C3C3] shadow-xl min-h-[5rem] w-[15rem]">
-              <h4 className="mb-3">Epoxy Business Cards</h4>
-              <p>
-                <span className="font-bold">$424</span> for 100
-              </p>
-            </div>
-          </div>
+          <HomeProducts />
         </div>
       </div>
 
