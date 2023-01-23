@@ -11,6 +11,7 @@ import headphone from "../img/headpone.webp";
 import Footer from "@/components/Footer";
 import charlotte from "../img/man/charlotte.webp";
 import { Navbar } from "flowbite-react";
+import tvPhoto from "../img/tv-01.jpg"
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
@@ -141,16 +142,16 @@ export default function Home() {
         <Swiper
           pagination={true}
           centeredSlides={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
+          // autoplay={{
+          //   delay: 5000,
+          //   disableOnInteraction: false,
+          // }}
           modules={[Autoplay, Pagination]}
           className="mySwiper text-white h-full w-full"
         >
           <SwiperSlide>
             <Image
-              src={add2}
+              src={tvPhoto}
               height={700}
               width={1400}
               alt="img"

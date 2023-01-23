@@ -94,6 +94,7 @@ export const AuthProvider = ({ children }) => {
   const sinout = async (user) => {
     setUser(null);
     setError(null);
+    setCart({ cartItems: [] });
     destroyCookie(null, "token");
   };
 
@@ -102,24 +103,25 @@ export const AuthProvider = ({ children }) => {
     const data = await res.json();
 
     if (res.ok) {
-      // let filteredEmail = cartRes.data[0].((data) => data);
-
-      // console.log(filteredEmail);
-      if (data.user.email) {
-        const res = await fetch(
-          `https://demo-production-edcf.up.railway.app/api/carts`
-        );
-        const cartRes = await res.json();
-        cartRes.data.filter((e) => {
-          if (e.attributes.cart.email === data.user.email) {
-            setCart({ cartItems: [...cart.cartItems, e.attributes.cart] });
-          }
-        });
-      }
       setUser(data);
+      checkUser(data);
     } else {
       setUser(null);
     }
+  };
+
+  const checkUser = async (user) => {
+
+    const res = await fetch(
+      `https://demo-production-edcf.up.railway.app/api/carts`
+    );
+    const cartRes = await res.json();
+    const filteredProducts = cartRes.data.filter((e) => {
+      if (e.attributes.cart.email === user.user.email) {
+        return e.attributes.cart;
+      }
+    });
+    setCart({ cartItems: filteredProducts });
   };
 
   const getSidebar = async () => {
@@ -154,6 +156,7 @@ export const AuthProvider = ({ children }) => {
         cart: cart.cartItems,
         setCart,
         addToCart,
+        checkUser
       }}
     >
       {children}

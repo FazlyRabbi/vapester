@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { setCookie } from "nookies";
 
 export default function signin() {
-  const { error, singin, user } = useContext(AuthContext);
+  const { error, singin, user, setCart, checkUser } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -22,6 +22,7 @@ export default function signin() {
 
   useEffect(() => {
     if (user) {
+      checkUser(user);
       setCookie(null, "token", user.jwt, {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
@@ -40,6 +41,7 @@ export default function signin() {
 
   const handleSignin = async (e) => {
     e.preventDefault();
+
     singin({ email, password });
   };
 

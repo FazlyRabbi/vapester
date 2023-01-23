@@ -9,6 +9,7 @@ html {
   scroll-behavior: smooth;
 }
 
+
 *,
 *::after,
 *::before {
@@ -36,3 +37,7 @@ li {
 }
 
 
+
+.swiper-slide {
+  height: 43rem !important;
+}
