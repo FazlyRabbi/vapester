@@ -6,7 +6,7 @@ import photo from "../../img/bg/travel-sale-flyer-template_52683-46904.webp";
 import { AuthContext } from "@/context/AuthContext";
 import { useContext } from "react";
 export default function shopping() {
-  const { cart, user } = useContext(AuthContext);
+  const { cart } = useContext(AuthContext);
 
   return (
     <>
@@ -68,20 +68,20 @@ md:justify-items-start
                               Width & Length:
                             </span>
                             <span className="data">
-                              {data.attributes.cart.customWidth}`` Width x{" "}
-                              {data.attributes.cart.customHeigh} `` Height
+                              {data?.attributes?.cart.customWidth}`` Width x{" "}
+                              {data?.attributes?.cart.customHeigh} `` Height
                             </span>
                           </li>
                           <li>
                             <span className="title font-bold">Width : </span>
                             <span className="data">
-                              {data.attributes.cart.customWidth}``
+                              {data?.attributes?.cart.customWidth}``
                             </span>
                           </li>
                           <li>
                             <span className="title font-bold">Height : </span>
                             <span className="data">
-                              {data.attributes.cart.customHeigh}``
+                              {data?.attributes?.cart.customHeigh}``
                             </span>
                           </li>
                           <li>
@@ -95,7 +95,7 @@ md:justify-items-start
                               Reinforce :{" "}
                             </span>
                             <span className="data">
-                              {data.attributes.cart.lamination}
+                              {data?.attributes?.cart.lamination}
                             </span>
                           </li>
                           <li>
@@ -109,11 +109,11 @@ md:justify-items-start
 
                       <div className="quantity flex space-x-6 md:space-x-12 font-bold justify-between">
                         <p>
-                          {data.attributes.cart.quantity}
+                          {data?.attributes?.cart.quantity}
                           <span className="font-normal"> Qty</span>
                         </p>
 
-                        <p> {data.attributes.cart.total}</p>
+                        <p> {data?.attributes?.cart.total}</p>
                       </div>
                     </div>
                   </div>

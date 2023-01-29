@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AiOutlineRight } from "react-icons/ai";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function SingleProduct({ attributes }) {
   return (
