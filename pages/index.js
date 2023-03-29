@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Head from "next/head";
 import Image from "next/image";
 import logo from "../img/logo.png";
 import styles from "@/styles/Home.module.css";
@@ -11,7 +12,8 @@ import headphone from "../img/headpone.webp";
 import Footer from "@/components/Footer";
 import charlotte from "../img/man/charlotte.webp";
 import { Navbar } from "flowbite-react";
-import tvPhoto from "../img/tv-01.jpg"
+import tvPhoto from "../img/tv-01.jpg";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
@@ -29,6 +31,10 @@ import HomeProducts from "@/components/HomeProducts";
 export default function Home() {
   return (
     <section>
+      <Head>
+   
+        <title>Print and Graph</title>
+      </Head>
       <header className="  sticky top-0  z-[9999]">
         <div className="header-top bg-[#1E1E1E] py-3">
           <div className="container mx-auto lg:px-10">
@@ -462,18 +468,18 @@ export default function Home() {
   );
 }
 
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await fetch(
-    "https://demo-production-edcf.up.railway.app/api/people"
-  );
-  const people = await res.json();
+// export async function getStaticProps() {
+//   // Call an external API endpoint to get posts.
+//   // You can use any data fetching library
+//   const res = await fetch(
+//     "https://demo-production-edcf.up.railway.app/api/people"
+//   );
+//   const people = await res.json();
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: { people },
-    revalidate: 1,
-  };
-}
+//   // By returning { props: { posts } }, the Blog component
+//   // will receive `posts` as a prop at build time
+//   return {
+//     props: { people },
+//     revalidate: 3,
+//   };
+// }

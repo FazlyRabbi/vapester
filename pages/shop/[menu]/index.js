@@ -4,6 +4,7 @@ import SingleProduct from "@/components/SingleProduct";
 import Slider from "@/components/Slider";
 
 export default function productDetails({ product, params }) {
+  
   const filteredProduct = product?.data.filter((data) => {
     if (params.menu === data.attributes.sibebar.data.attributes.Menu) {
       return data;
@@ -18,9 +19,9 @@ export default function productDetails({ product, params }) {
         <Slider />
       </div>
       <div className="single-products grid md:grid-cols-2  lg:grid-cols-3 lg:gap-10 md:gap-5 justify-center  gap-y-8 justify-items-center">
-        {filteredProduct && filteredProduct?.map((data,index) => (
+        {/* {filteredProduct && filteredProduct?.map((data,index) => (
           <SingleProduct {...data} key={index} />
-        ))}
+        ))} */}
       </div>
     </Layout>
   );

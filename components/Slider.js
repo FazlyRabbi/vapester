@@ -1,43 +1,28 @@
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
 import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "@/context/AuthContext";
-// import required modules
-import { Navigation, Pagination } from "swiper";
-export default function Slider() {
-  const { sliderImage, getHomeSliderImage } = useContext(AuthContext);
-  
-  useEffect(() => {
-    getHomeSliderImage();
-  }, []);
+import s1 from "../img/banner2.jpg";
 
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+
+SwiperCore.use([Navigation, Pagination, Autoplay]);
+
+function slider() {
   return (
     <Swiper
-      navigation={true}
-      spaceBetween={0}
-      pagination={{
-        dynamicBullets: true,
-      }}
-      modules={[Pagination, Navigation]}
-      className=" w-[100%]"
+      slidesPerView={1}
+      autoplay={{ delay: 3000 }}
+      pagination={{ clickable: true }}
+      navigation
     >
-      {sliderImage?.data?.attributes?.Images.data.map((img) => (
-        <SwiperSlide key={img.id}>
-          <Image
-            src={`https://demo-production-edcf.up.railway.app${img.attributes.url}`}
-            width={50}
-            height={10}
-            className=" rounded-md shadow-sm w-[100%] "
-            alt="img"
-          />
-        </SwiperSlide>
-      ))}
+      <SwiperSlide>
+        <Image src={s1} height={400} width={400} alt="product banner" className=" rounded-md" />
+      </SwiperSlide>
+      <SwiperSlide>
+        <Image src={s1} height={500} width={500} alt="product banner" className=" rounded-md" />
+      </SwiperSlide>
     </Swiper>
   );
 }
+
+export default slider;

@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
     );
     const data = await res.json();
     setCart({ cartItems: [...cart.cartItems, data.data.attributes.cart] });
-    console.log(cart);
+
   };
 
   const signup = async ({ username, email, password }) => {
@@ -130,13 +130,13 @@ export const AuthProvider = ({ children }) => {
     setSidbar(sidebar);
   };
 
-  const getHomeSliderImage = async () => {
-    const res = await fetch(
-      "https://demo-production-edcf.up.railway.app/api/service-page-slider-image-should-be-w-1920px-h-600px?populate=*"
-    );
-    const data = await res.json();
-    setSliderImage(data);
-  };
+  // const getHomeSliderImage = async () => {
+  //   const res = await fetch(
+  //     "https://demo-production-edcf.up.railway.app/api/service-page-slider-image-should-be-w-1920px-h-600px?populate=*"
+  //   );
+  //   const data = await res.json();
+  //   setSliderImage(data);
+  // };
 
   return (
     <AuthContext.Provider
@@ -150,7 +150,7 @@ export const AuthProvider = ({ children }) => {
         checkUserLoggedId,
         looding,
         sliderImage,
-        getHomeSliderImage,
+        // getHomeSliderImage,
         getSidebar,
         sidebar,
         cart: cart.cartItems,

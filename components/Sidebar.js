@@ -1,14 +1,15 @@
-import { useContext, useEffect } from "react";
 import { AuthContext } from "@/context/AuthContext";
-import Link from "next/link";
 import styles from "@/styles/Home.module.css";
+import Link from "next/link";
+import { useContext } from "react";
 
 function Sidebar() {
+
   const { sidebar, getSidebar } = useContext(AuthContext);
 
-  useEffect(() => {
-    getSidebar();
-  }, []);
+  // useEffect(() => {
+  //   getSidebar();
+  // }, []);
 
   return (
     <aside className="sidebar">
@@ -19,6 +20,32 @@ function Sidebar() {
         All Products
       </Link>
 
+
+      <div className="aec-bluprints">
+            <ul className="w-[80%] ">
+              <li
+                className={`text-titleSm   capitalize font-bold bg-[#111827] text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
+              >
+                <Link href={`#`}>
+                  photo
+                  {/* {menu.attributes.Menu} */}
+                </Link>
+              </li>
+
+              { (
+                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
+                  <Link
+                    href={`#`}
+                  >
+                    hello
+                    {/* {menu.attributes.SubMenu1} */}
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
+
+
       {sidebar &&
         sidebar.data.map((menu, index) => (
           <div className="aec-bluprints" key={index}>
@@ -27,16 +54,18 @@ function Sidebar() {
                 className={`text-titleSm   capitalize font-bold bg-[#111827] text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
               >
                 <Link href={`/shop/${menu.attributes.Menu}`}>
-                  {menu.attributes.Menu}
+                  photo
+                  {/* {menu.attributes.Menu} */}
                 </Link>
               </li>
 
-              {menu.attributes.SubMenu1 && (
+              { (
                 <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
                   <Link
                     href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}
                   >
-                    {menu.attributes.SubMenu1}
+                    hello
+                    {/* {menu.attributes.SubMenu1} */}
                   </Link>
                 </li>
               )}

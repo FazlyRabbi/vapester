@@ -2,6 +2,7 @@ import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from 'next/router'
 import { useContext } from "react";
 export default function Calculator() {
   const {addToCart } = useContext(AuthContext);
@@ -69,7 +70,17 @@ export default function Calculator() {
      addToCart(calData)
   };
 
+
+  const route = useRouter();
+
+  
+
+
   return (
+
+
+
+
     <form className="  w-full shadow-md  " onSubmit={handleSubmit}>
       <h4
         className={` font-bold  p-2  pl-5 rounded-tl-md 
@@ -262,7 +273,7 @@ export default function Calculator() {
         </div>
 
         <Link
-          href={"#"}
+          href={`${route.asPath}/uploads`}
           onClick={handleSubmit}
           className="appearance-none text-center block w-full bg-[#111827]  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
         >

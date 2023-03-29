@@ -5,16 +5,18 @@ import banner from "../img/card/banners.svg";
 
 function HomeCatagory() {
   const [catagory, setCatagory] = useState(null)
-  useEffect(() => {
-    const loadCatagory = async () => {
-      const res = await fetch(
-        "https://demo-production-edcf.up.railway.app/api/home-catagorys?populate=*"
-      );
-      const catagorys = await res.json();
-      setCatagory(catagorys);
-    };
-    loadCatagory();
-  }, []);
+
+  // useEffect(() => {
+  //   const loadCatagory = async () => {
+  //     const res = await fetch(
+  //       "https://demo-production-edcf.up.railway.app/api/home-catagorys?populate=*"
+  //     );
+  //     const catagorys = await res.json();
+  //     setCatagory(catagorys);
+  //   };
+  //   loadCatagory();
+  // }, []);
+
 
   return (
     <>

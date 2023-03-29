@@ -1,6 +1,8 @@
-import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
-
+import "../styles/globals.css";
+// imports swiper sliders
+import "swiper/swiper-bundle.css";
+import { ThemeProvider } from "@material-tailwind/react";
 import { AuthProvider } from "@/context/AuthContext";
 
 export default function MyApp({ Component, pageProps }) {
@@ -12,9 +14,11 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <AuthProvider>
-        <Component {...pageProps} />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
+      </ThemeProvider>
     </>
   );
 }

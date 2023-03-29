@@ -1,11 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
 
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./public/**/*.html",
     "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
+    "path-to-your-node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   plugins: [require("flowbite/plugin"), require("flowbite-typography")],
 
@@ -22,9 +26,9 @@ module.exports = {
       primary: "#F45DA0",
       white: "#ffffff",
       gray: "#191919",
-      softBlack:"#1E1E1E",
+      softBlack: "#1E1E1E",
       second: "#47B8E7",
-      link:"#416DEC",
+      link: "#416DEC",
       black: "#000",
       softGray: "#ddd",
       silver: "#ecebff",
@@ -50,4 +54,4 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
   },
-};
+});
