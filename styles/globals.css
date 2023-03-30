@@ -84,3 +84,15 @@ li {
   content: "\2192" !important;
   /* add a right arrow icon */
 }
+
+
+.wrapperClass{
+  min-height: 20rem;
+  border: 2px solid black;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.products:hover + ul {
+  height: 100%;
+}

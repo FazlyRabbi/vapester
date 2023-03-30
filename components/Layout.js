@@ -12,9 +12,9 @@ export default function layout({ title, des, content, children, mainContent }) {
       </Head>
       <Header />
       <Main> {children} </Main>
-      <div className="mt-[4rem]">
+      {/* <div className="mt-[4rem]">
         <Footer></Footer>
-      </div>
+      </div> */}
     </>
   );
 }

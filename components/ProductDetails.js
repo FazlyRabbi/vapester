@@ -1,75 +1,28 @@
-import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import Image from "next/image";
+import m1 from "../img/p1.jpg";
+import m2 from "../img/p2.jpg";
+import m3 from "../img/p3.jpg";
+import RichText from "./RitchText/RichText";
+
+// import image
+import ThumbsGallery from "./Slider/ThumbGellery";
 
 // import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper";
-
 function ProductDetails({ data }) {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
 
   return (
     <section className=" overflow-hidden w-full">
       <div className="product-slider">
-        <Swiper
-          style={{
-            "--swiper-navigation-color": "#fff",
-            "--swiper-pagination-color": "#fff",
-          }}
-          spaceBetween={2}
-          navigation={true}
-          thumbs={{ swiper: thumbsSwiper }}
-          modules={[FreeMode, Navigation, Thumbs]}
-          className={`
-           h-auto
-  
-           w-auto
-  
-            mb-2`}
-        >
-          {data.attributes.Images.data.map((img) => (
-            <SwiperSlide key={img.id}>
-              <Image
-                src={`https://demo-production-edcf.up.railway.app${img.attributes.url}`}
-                alt="img"
-                width={400}
-                height={400}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <Swiper
-          onSwiper={setThumbsSwiper}
-          spaceBetween={5}
-          slidesPerView={4}
-          freeMode={true}
-          watchSlidesProgress={true}
-          modules={[FreeMode, Navigation, Thumbs]}
-          className="mySwiper lg:mb-5 h-[4rem] cursor-pointer "
-        >
-          {data.attributes.Images.data.map((img) => (
-            <SwiperSlide key={img.id}>
-              <Image
-                src={`https://demo-production-edcf.up.railway.app${img.attributes.url}`}
-                alt="img"
-                width={800}
-                height={800}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <ThumbsGallery url={{
+       url_1:m1.src,
+       url_2:m2.src,
+       url_3:m3.src,
+       url_4:m1.src,
+      }}/>
       </div>
       <div className="product-content mt-4">
-        <ReactMarkdown>{data?.attributes.Description}</ReactMarkdown>
+        <RichText />
       </div>
     </section>
   );

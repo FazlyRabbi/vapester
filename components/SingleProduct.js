@@ -2,15 +2,10 @@ import Image from "next/image";
 import s1 from "../img/product.jpg";
 
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Avatar,
-  Button,
-  Tooltip,
+  Button, Card, CardBody,
+  CardFooter, CardHeader, Typography
 } from "@material-tailwind/react";
+import Link from "next/link";
 
 export default function SingleProduct({ attributes }) {
   return (
@@ -28,14 +23,16 @@ export default function SingleProduct({ attributes }) {
           <Typography variant="h1" color="blue-gray">
             UI/UX Review Check
           </Typography>
-          <Typography variant="p" color="gray" className="mt-3 font-normal">
+          <Typography variant="paragraph" color="gray" className="mt-3 font-normal">
             Because it&apos;s about motivating the doers. Because I&apos;m here
             to follow my dreams and inspire others.
           </Typography>
         </CardBody>
         <CardFooter className="flex items-center !py-0 mb-4  justify-between">
   
-        <Button variant="gradient" size="sm">Details</Button>
+    <Link href={`/shop/menu/submenu`}>
+        <Button variant="gradient"  size="sm">Details</Button>
+    </Link>
         </CardFooter>
       </Card>
     </section>
