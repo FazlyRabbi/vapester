@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { BiPhoneCall } from "react-icons/bi";
 import { GoSearch } from "react-icons/go";
-import MobileNav from "./MobileNav/MobileNav";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { RiShoppingCartLine } from "react-icons/ri";
 import "tailwindcss/tailwind.css";
 import logo from "../img/logo.png";
+import MobileNav from "./MobileNav/MobileNav";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -17,7 +17,6 @@ export default function Header() {
   const updateOpen = ()=>{
     setOpen(false)
   }
-
 
   const { user, sinout, cart } = useContext(AuthContext);
 
@@ -94,7 +93,7 @@ export default function Header() {
                 <Link href={`/shopping`}>
                   <RiShoppingCartLine />
                   <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
-                    {cart.length}
+                    {/* {cart.length} */}
                   </span>
                 </Link>
               </div>
@@ -163,7 +162,7 @@ export default function Header() {
                     <Link href={`/shopping`}>
                       <RiShoppingCartLine />
                       <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
-                        {cart.length}
+                        {/* {cart.length} */}
                       </span>
                     </Link>
                   </div>

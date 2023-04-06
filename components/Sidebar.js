@@ -4,6 +4,7 @@ import { useContext } from "react";
 import styles from "../styles/Home.module.css";
 
 function Sidebar() {
+
   const { sidebars } = useContext(SidebarContext);
 
   return (
@@ -22,7 +23,7 @@ function Sidebar() {
               <li
                 className={`text-titleSm   capitalize font-bold bg-[#111827] text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
               >
-                <Link href={`/shop/${menu.attributes.MainManu}`}>
+                <Link href={`/shop/${menu.attributes.MainManu.toLowerCase()}`}>
                   {menu.attributes.MainManu}
                 </Link>
               </li>
@@ -33,7 +34,7 @@ function Sidebar() {
                   key={index}
                 >
                   <Link
-                    href={`/shop/${menu.attributes.MainManu}/${submenu?.Submenu}`}
+                    href={`/shop/${menu.attributes?.MainManu.toLowerCase()}/${submenu?.Submenu.toLowerCase()}`}
                   >
                     {submenu?.Submenu}
                   </Link>

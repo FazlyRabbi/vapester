@@ -1,11 +1,17 @@
 import { AuthContext } from "@/context/AuthContext";
 import styles from "@/styles/Home.module.css";
-import Link from "next/link";
+import { CardContext } from "@/context/CardContext";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 
+function generateProductName() {
+  const randomNumber = Math.floor(Math.random() * 100000000);
+  const paddedNumber = randomNumber.toString().padStart(8, "0");
+  return paddedNumber;
+}
+
 export default function Calculator() {
-  const { addToCart } = useContext(AuthContext);
+  const { setCurrentProduct } = useContext(CardContext);
 
   // geting all input required data
   const [error, setError] = useState(null);
@@ -78,8 +84,6 @@ export default function Calculator() {
   useEffect(() => {
     const totalPrice = calculation();
     setCalData({ ...calData, total: totalPrice });
-
-    console.log(totalPrice);
   }, [
     calData.width_length,
     calData.quantity,
@@ -130,13 +134,15 @@ export default function Calculator() {
     }
   };
 
+  const route = useRouter();
+
+  const jobName = generateProductName();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(calData);
+    setCurrentProduct({ ...calData, jobName: jobName, file: null });
+    route.push(`${route.asPath}/upload`);
   };
-
-  const route = useRouter();
 
   return (
     <form className="w-full shadow-md " onSubmit={handleSubmit}>
@@ -358,16 +364,14 @@ export default function Calculator() {
           />
         </div>
 
-        <Link
-          href={`${route.asPath}/uploads`}
-          onClick={handleSubmit}
+        <button
+          type="submit"
           className="appearance-none
-          
            hover:text-white
           text-center block w-full bg-[#111827]  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
         >
           add to cart
-        </Link>
+        </button>
       </div>
     </form>
   );

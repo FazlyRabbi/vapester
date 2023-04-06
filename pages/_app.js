@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { SidebarProvider } from "@/context/SidebarContext";
 import { ThemeProvider } from "@material-tailwind/react";
+import { CardProvider } from "@/context/CardContext";
 import "swiper/swiper-bundle.css";
 
 export default function MyApp({ Component, pageProps }) {
@@ -17,9 +18,11 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <ThemeProvider>
         <AuthProvider>
-          <SidebarProvider>
-            <Component {...pageProps} />
-          </SidebarProvider>
+          <CardProvider>
+            <SidebarProvider>
+              <Component {...pageProps} />
+            </SidebarProvider>
+          </CardProvider>
         </AuthProvider>
       </ThemeProvider>
     </>

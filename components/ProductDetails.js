@@ -1,19 +1,20 @@
-
 import RichText from "./RitchText/RichText";
 // import image
 import ThumbsGallery from "./Slider/ThumbGellery";
 
 // import required modules
 function ProductDetails({ details }) {
-
   const imgUrl = {};
 
   return (
     <section className=" overflow-hidden w-full">
-      {details &&
-        details.attributes.Thubmnails.data.map(
-          (data, index) => (imgUrl[`m${index}`] = data.attributes.url)
-        )}
+      <div className=" hidden">
+        {details &&
+          details.attributes.Thubmnails.data.map(
+            (data, index) => (imgUrl[`m${index}`] = data.attributes.url)
+          )}
+      </div>
+
       <div className="product-slider">
         {imgUrl !== {} ? (
           <ThumbsGallery

@@ -27,7 +27,7 @@ function index() {
     <Layout title={router.query.submenu}>
       <div className="product heading ml-4 ">
         <Typography variant="h1" className={` my-3 text-[1.5rem]`}>
-          Material Tailwind
+          {singleProduct && singleProduct.attributes.Title}
         </Typography>
 
         <Breadcrumbs fullWidth>
@@ -54,33 +54,3 @@ function index() {
 
 export default index;
 
-// export async function getStaticProps() {
-//   const res = await fetch(
-//     "https://demo-production-edcf.up.railway.app/api/products?populate=*"
-//   );
-//   const products = await res.json();
-//   return {
-//     props: { products },
-//     revalidate: 1,
-//   };
-// }
-
-// export async function getStaticPaths() {
-//   const res = await fetch(
-//     `https://demo-production-edcf.up.railway.app/api/products?populate=*`
-//   );
-
-//   const path = await res.json();
-
-//   return {
-//     paths: path.data.map((menu) => {
-//       return {
-//         params: {
-//           menu: menu.attributes.sibebar.data.attributes.Menu,
-//           submenu: menu.attributes.Title,
-//         },
-//       };
-//     }),
-//     fallback: false, // can also be true or 'blocking'
-//   };
-// }

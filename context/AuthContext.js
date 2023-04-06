@@ -18,36 +18,6 @@ export const AuthProvider = ({ children }) => {
     checkUserLoggedId();
   }, []);
 
-  // shoping cart functionality
-  const addToCart = async (calData) => {
-    const res = await fetch(
-      `https://demo-production-edcf.up.railway.app/api/carts`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          data: {
-            cart: {
-              ratio: calData.ratio,
-              customHeigh: calData.customHeigh,
-              customWidth: calData.customWidth,
-              quantity: calData.quantity,
-              reinforce: calData.reinforce,
-              lamination: calData.lamination,
-              time: calData.time,
-              total: calData.total,
-              email: user.user.email,
-            },
-          },
-        }),
-      }
-    );
-    const data = await res.json();
-    setCart({ cartItems: [...cart.cartItems, data.data.attributes.cart] });
-
-  };
 
   const signup = async ({ username, email, password }) => {
     const res = await fetch(`${NEXT_URL}/api/signup`, {
@@ -130,13 +100,6 @@ export const AuthProvider = ({ children }) => {
     setSidbar(sidebar);
   };
 
-  // const getHomeSliderImage = async () => {
-  //   const res = await fetch(
-  //     "https://demo-production-edcf.up.railway.app/api/service-page-slider-image-should-be-w-1920px-h-600px?populate=*"
-  //   );
-  //   const data = await res.json();
-  //   setSliderImage(data);
-  // };
 
   return (
     <AuthContext.Provider
@@ -150,12 +113,9 @@ export const AuthProvider = ({ children }) => {
         checkUserLoggedId,
         looding,
         sliderImage,
-        // getHomeSliderImage,
         getSidebar,
         sidebar,
-        cart: cart.cartItems,
         setCart,
-        addToCart,
         checkUser
       }}
     >

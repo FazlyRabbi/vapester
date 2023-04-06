@@ -18,7 +18,9 @@ export default function Shop() {
         gap-y-[2rem]  justify-center   justify-items-center"
       >
         {products &&
-          products.map((product) => <SingleProduct details={product} />)}
+          products.map((product, index) => (
+            <SingleProduct key={index} details={product} />
+          ))}
       </div>
     </Layout>
   );
