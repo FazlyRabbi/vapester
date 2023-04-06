@@ -1,9 +1,10 @@
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 // imports swiper sliders
-import "swiper/swiper-bundle.css";
-import { ThemeProvider } from "@material-tailwind/react";
 import { AuthProvider } from "@/context/AuthContext";
+import { SidebarProvider } from "@/context/SidebarContext";
+import { ThemeProvider } from "@material-tailwind/react";
+import "swiper/swiper-bundle.css";
 
 export default function MyApp({ Component, pageProps }) {
   // if (pageProps.protected && !user) {
@@ -16,7 +17,9 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <ThemeProvider>
         <AuthProvider>
-          <Component {...pageProps} />
+          <SidebarProvider>
+            <Component {...pageProps} />
+          </SidebarProvider>
         </AuthProvider>
       </ThemeProvider>
     </>

@@ -32,7 +32,6 @@ export default function Home() {
   return (
     <section>
       <Head>
-   
         <title>Print and Graph</title>
       </Head>
       <header className="  sticky top-0  z-[9999]">

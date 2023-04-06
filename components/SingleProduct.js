@@ -1,13 +1,18 @@
 import Image from "next/image";
-import s1 from "../img/product.jpg";
+import { API_URL } from "../config";
 
 import {
-  Button, Card, CardBody,
-  CardFooter, CardHeader, Typography
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Typography,
 } from "@material-tailwind/react";
 import Link from "next/link";
 
-export default function SingleProduct({ attributes }) {
+export default function SingleProduct({ details }) {
+
   return (
     <section className="product  cursor-pointer  ">
       <Card className="max-w-[25rem] overflow-hidden rounded-md">
@@ -17,22 +22,36 @@ export default function SingleProduct({ attributes }) {
           color="transparent"
           className="m-0 rounded-none"
         >
-          <Image src={s1} alt="ui/ux review check" />
+          {details && (
+            <Image
+              src={`${
+                details.attributes.Thubmnails.data[0].attributes.url &&
+                `${API_URL}${details.attributes.Thubmnails.data[0].attributes.url}`
+              }`}
+              width={400}
+              height={400}
+              alt="ui/ux review check"
+            />
+          )}
         </CardHeader>
         <CardBody>
           <Typography variant="h1" color="blue-gray">
-            UI/UX Review Check
+            {details?.attributes.Title}
           </Typography>
-          <Typography variant="paragraph" color="gray" className="mt-3 font-normal">
-            Because it&apos;s about motivating the doers. Because I&apos;m here
-            to follow my dreams and inspire others.
+          <Typography
+            variant="paragraph"
+            color="gray"
+            className="mt-3 font-normal"
+          >
+            {`${details?.attributes.Description.slice(0, 30)}.....`}
           </Typography>
         </CardBody>
         <CardFooter className="flex items-center !py-0 mb-4  justify-between">
-  
-    <Link href={`/shop/menu/submenu`}>
-        <Button variant="gradient"  size="sm">Details</Button>
-    </Link>
+          <Link href={`/shop/menu/submenu`}>
+            <Button variant="gradient" size="sm">
+              Details
+            </Button>
+          </Link>
         </CardFooter>
       </Card>
     </section>

@@ -3,7 +3,6 @@
 
 export default async (req, res) => {
 
-
   // if (req.method === "GET") {
   //   const sidebar = await fetch(
   //     `https://demo-production-edcf.up.railway.app/api/sibebars?populate=*`

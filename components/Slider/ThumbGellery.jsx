@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { API_URL } from "@/config/index";
 
 // Import Swiper styles
 import "swiper/css";
@@ -13,6 +14,8 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 
 export default function ThumbGellery({ url }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+
 
   return (
     <div>
@@ -34,7 +37,7 @@ export default function ThumbGellery({ url }) {
             width={400}
             className={`max-h-[30rem]  rounded-md`}
             alt="product__imgae"
-            src={url.url_1}
+            src={`${url.url_1 && `${API_URL}${url.url_1}`}`}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -43,7 +46,7 @@ export default function ThumbGellery({ url }) {
             width={400}
             className={`max-h-[30rem]  rounded-md`}
             alt="product__imgae"
-            src={url.url_2}
+            src={`${url.url_2 && `${API_URL}${url.url_2}`}`}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -52,7 +55,7 @@ export default function ThumbGellery({ url }) {
             width={400}
             className={`max-h-[30rem]  rounded-md`}
             alt="product__imgae"
-            src={url.url_3}
+            src={`${url.url_3 && `${API_URL}${url.url_3}`}`}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -61,7 +64,7 @@ export default function ThumbGellery({ url }) {
             width={400}
             className={`max-h-[30rem]  rounded-md`}
             alt="product__imgae"
-            src={url.url_4}
+            src={`${url.url_4 && `${API_URL}${url.url_4}`}`}
           />
         </SwiperSlide>
       </Swiper>
@@ -80,7 +83,7 @@ export default function ThumbGellery({ url }) {
             width={400}
             className={`rounded-md max-h-[5rem]`}
             alt="product__imgae"
-            src={url.url_1}
+            src={`${url.url_1 && `${API_URL}${url.url_1}`}`}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -89,7 +92,7 @@ export default function ThumbGellery({ url }) {
             width={400}
             className={`rounded-md max-h-[5rem]`}
             alt="product__imgae"
-            src={url.url_2}
+            src={`${url.url_2 && `${API_URL}${url.url_2}`}`}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -98,7 +101,7 @@ export default function ThumbGellery({ url }) {
             width={400}
             className={`rounded-md max-h-[5rem]`}
             alt="product__imgae"
-            src={url.url_3}
+            src={`${url.url_3 && `${API_URL}${url.url_3}`}`}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -107,7 +110,7 @@ export default function ThumbGellery({ url }) {
             width={400}
             className={`rounded-md max-h-[5rem]`}
             alt="product__imgae"
-            src={url.url_4}
+            src={`${url.url_4 && `${API_URL}${url.url_4}`}`}
           />
         </SwiperSlide>
       </Swiper>

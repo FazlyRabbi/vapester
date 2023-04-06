@@ -1,25 +1,32 @@
 
-import m1 from "../img/p1.jpg";
-import m2 from "../img/p2.jpg";
-import m3 from "../img/p3.jpg";
 import RichText from "./RitchText/RichText";
-
 // import image
 import ThumbsGallery from "./Slider/ThumbGellery";
 
 // import required modules
-function ProductDetails({ data }) {
+function ProductDetails({ details }) {
 
+  const imgUrl = {};
 
   return (
     <section className=" overflow-hidden w-full">
+      {details &&
+        details.attributes.Thubmnails.data.map(
+          (data, index) => (imgUrl[`m${index}`] = data.attributes.url)
+        )}
       <div className="product-slider">
-      <ThumbsGallery url={{
-       url_1:m1.src,
-       url_2:m2.src,
-       url_3:m3.src,
-       url_4:m1.src,
-      }}/>
+        {imgUrl !== {} ? (
+          <ThumbsGallery
+            url={{
+              url_1: imgUrl?.m0,
+              url_2: imgUrl?.m1,
+              url_3: imgUrl?.m2,
+              url_4: imgUrl?.m3,
+            }}
+          />
+        ) : (
+          ""
+        )}
       </div>
       <div className="product-content mt-4">
         <RichText />

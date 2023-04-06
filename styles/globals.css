@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* input[type="file"] {
   display: none;
 } */
@@ -10,7 +9,6 @@
 html {
   scroll-behavior: smooth;
 }
-
 
 *,
 *::after,
@@ -38,7 +36,11 @@ li {
   cursor: pointer;
 }
 
+input[type="file"] {
 
+  font-size: 16px;
+  opacity: 0;
+}
 
 .swiper {
   width: inherit;
@@ -85,8 +87,7 @@ li {
   /* add a right arrow icon */
 }
 
-
-.wrapperClass{
+.wrapperClass {
   min-height: 20rem;
   border: 2px solid black;
   padding: 1rem;

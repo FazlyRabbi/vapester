@@ -1,15 +1,10 @@
-import { AuthContext } from "@/context/AuthContext";
-import styles from "@/styles/Home.module.css";
+import { SidebarContext } from "@/context/SidebarContext";
 import Link from "next/link";
 import { useContext } from "react";
+import styles from "../styles/Home.module.css";
 
 function Sidebar() {
-
-  const { sidebar, getSidebar } = useContext(AuthContext);
-
-  // useEffect(() => {
-  //   getSidebar();
-  // }, []);
+  const { sidebars } = useContext(SidebarContext);
 
   return (
     <aside className="sidebar">
@@ -20,167 +15,30 @@ function Sidebar() {
         All Products
       </Link>
 
-
-      <div className="aec-bluprints">
-            <ul className="w-[80%] ">
-              <li
-                className={`text-titleSm   capitalize font-bold bg-[#111827] text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
-              >
-                <Link href={`#`}>
-                  photo
-                  {/* {menu.attributes.Menu} */}
-                </Link>
-              </li>
-
-              { (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link
-                    href={`#`}
-                  >
-                    hello
-                    {/* {menu.attributes.SubMenu1} */}
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </div>
-
-
-      {sidebar &&
-        sidebar.data.map((menu, index) => (
+      {sidebars &&
+        sidebars.map((menu, index) => (
           <div className="aec-bluprints" key={index}>
             <ul className="w-[80%] ">
               <li
                 className={`text-titleSm   capitalize font-bold bg-[#111827] text-white p-2 rounded-tl-md rounded-tr-md text-left ${styles.borderGradient}`}
               >
-                <Link href={`/shop/${menu.attributes.Menu}`}>
-                  photo
-                  {/* {menu.attributes.Menu} */}
+                <Link href={`/shop/${menu.attributes.MainManu}`}>
+                  {menu.attributes.MainManu}
                 </Link>
               </li>
 
-              { (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
+              {menu?.attributes?.SubItems.map((submenu, index) => (
+                <li
+                  className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary"
+                  key={index}
+                >
                   <Link
-                    href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}
+                    href={`/shop/${menu.attributes.MainManu}/${submenu?.Submenu}`}
                   >
-                    hello
-                    {/* {menu.attributes.SubMenu1} */}
+                    {submenu?.Submenu}
                   </Link>
                 </li>
-              )}
-
-              {menu.attributes.SubMenu2 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu2}`}>
-                    {menu.attributes.SubMenu2}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu3 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu3}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu4 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu4}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu5 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu5}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu6 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu6}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu7 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu7}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu8 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu8}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu9 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu9}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu10 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu10}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu11 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu11}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu12 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu12}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu13 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu13}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu14 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu1}`}>
-                    {menu.attributes.SubMenu14}
-                  </Link>
-                </li>
-              )}
-
-              {menu.attributes.SubMenu15 && (
-                <li className="text-base  border-b cursor-pointer border-softGray p-2 font-bold capitalize hover:text-primary">
-                  <Link  href={`/shop/${menu.attributes.Menu}/${menu.attributes.SubMenu15}`}>
-                    {menu.attributes.SubMenu15}
-                  </Link>
-                </li>
-              )}
+              ))}
             </ul>
           </div>
         ))}

@@ -1,43 +1,95 @@
+import { AuthContext } from "@/context/AuthContext";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { AuthContext } from "@/context/AuthContext";
-import { useRouter } from 'next/router'
-import { useContext } from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
+
 export default function Calculator() {
-  const {addToCart } = useContext(AuthContext);
-  // geting all input data
+  const { addToCart } = useContext(AuthContext);
+
+  // geting all input required data
   const [error, setError] = useState(null);
   const [widthError, setWidthError] = useState(null);
+  const [heightError, setHeightError] = useState(null);
 
-  const [calData, setCalData] = useState({
-    ratio: 0,
-    customHeigh: 0,
-    customWidth: 0,
+  const inital = {
+    width_length: "1' x 1'",
     quantity: 1,
-    reinforce: "",
-    lamination: "none",
-    time: "",
-    total: 10,
-  });
+    material: "default",
+    reinforce: "1/binded",
+    color: "1/black & white",
+    lamination: "0/none",
+    production_time: "5/2-3 Business Days ",
+    customWidth: 1,
+    customHeight: 1,
+    total: 0,
+  };
+
+  const [calData, setCalData] = useState(inital);
 
   // make the main calculations
-
   const price = 10; //10 doller
 
-  useEffect(() => {
-    // let totalPrice =
-    //   parseInt(customWidth) * parseInt(customHeigh) * price * quantity;
-    if (calData.ratio !== "Custom Size") {
-      setCalData({ ...calData, customHeigh: 0, customWidth: 0 });
+  const calculation = () => {
+    // convert string to number
+    // this is for width and length
+    const value = calData.width_length.split(" x ");
+    const custom = calData.width_length;
+
+    const height = parseInt(value[0]);
+    const width = parseInt(value[1]);
+    const area = width * height;
+
+    // Reinforce
+    const reinforceInput = calData.reinforce.split("/");
+    const rainforce = parseInt(reinforceInput[0]);
+
+    // color
+    const colorInput = calData.color.split("/");
+    const color = parseInt(colorInput[0]);
+
+    // Lamination Time
+    const laminationInput = calData.lamination.split("/");
+    const lamination = parseInt(laminationInput[0]);
+
+    // Production
+    const productionInput = calData.production_time.split("/");
+    const production = parseInt(productionInput[0]);
+
+    const quantity = calData.quantity;
+
+    // custom area
+    const areaFromCustom = calData.customHeight * calData.customWidth;
+
+    if (areaFromCustom > 0 && custom === "custom") {
+      const totalPrice =
+        (areaFromCustom * price + rainforce + production + color + lamination) *
+        quantity;
+
+      return totalPrice;
+    } else {
+      const totalPrice =
+        (area * price + rainforce + production + color + lamination) * quantity;
+
+      return totalPrice;
     }
+  };
+
+  useEffect(() => {
+    const totalPrice = calculation();
+    setCalData({ ...calData, total: totalPrice });
+
+    console.log(totalPrice);
   }, [
-    calData.ratio,
+    calData.width_length,
     calData.quantity,
+    calData.material,
     calData.reinforce,
-    calData.time,
-    calData.customHeigh,
+    calData.color,
+    calData.lamination,
+    calData.production_time,
     calData.customWidth,
+    calData.customHeight,
   ]);
 
   // set quantity
@@ -55,33 +107,39 @@ export default function Calculator() {
   };
 
   const handleWidth = (e) => {
-    if (e.target.value < 49) {
+    if (e.target.value > 49 || e.target.value <= 0) {
+      setWidthError("Max value is 48 and Min value is 1");
+    } else {
       setCalData({
         ...calData,
         customWidth: e.target.value,
       });
       setWidthError(null);
-    } else {
-      setWidthError("Max value is 48");
     }
   };
 
-  const handleSubmit = () => {
-     addToCart(calData)
+  const handleHeight = (e) => {
+    if (e.target.value <= 0) {
+      setHeightError("Min value is 1");
+    } else {
+      setCalData({
+        ...calData,
+        customHeight: e.target.value,
+      });
+      setHeightError(null);
+    }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(calData);
+  };
 
   const route = useRouter();
 
-  
-
-
   return (
-
-
-
-
-    <form className="  w-full shadow-md  " onSubmit={handleSubmit}>
+    <form className="w-full shadow-md " onSubmit={handleSubmit}>
       <h4
         className={` font-bold  p-2  pl-5 rounded-tl-md 
             
@@ -101,25 +159,26 @@ export default function Calculator() {
           </label>
           <div className="relative">
             <select
+              required
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
               onChange={(e) =>
                 setCalData({
                   ...calData,
-                  ratio: e.target.value,
+                  width_length: e.target.value,
                 })
               }
             >
               <option>1' x 1'</option>
               <option>2' x 3'</option>
               <option>3' x 4'</option>
-              <option>Custom Size</option>
+              <option value={"custom"}>Custom Size</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
           </div>
         </div>
 
-        {calData.ratio === "Custom Size" ? (
+        {calData.width_length === "custom" ? (
           <div className="flex  space-x-10">
             <div className="w-full mt-4   ">
               <label
@@ -150,14 +209,13 @@ export default function Calculator() {
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="number"
+                value={calData.customHeight}
                 placeholder="0"
-                onChange={(e) =>
-                  setCalData({
-                    ...calData,
-                    customHeigh: e.target.value,
-                  })
-                }
+                onChange={handleHeight}
               />
+              {heightError && (
+                <p className="text-red-600 text-sm">{heightError}</p>
+              )}
             </div>
           </div>
         ) : (
@@ -172,6 +230,7 @@ export default function Calculator() {
             Quantity
           </label>
           <input
+            required
             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
             id="grid-first-name"
             type="number"
@@ -189,6 +248,7 @@ export default function Calculator() {
             Material
           </label>
           <input
+            required
             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
             id="grid-first-name"
             type="text"
@@ -211,12 +271,35 @@ export default function Calculator() {
                 setCalData({ ...calData, reinforce: e.target.value })
               }
             >
-              <option>Binded</option>
-              <option>Loose</option>
+              <option value={`1/binded`}>Binded</option>
+              <option value={`2/loose`}>Loose</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
           </div>
         </div>
+
+        <div className="w-full mt-4 ">
+          <label
+            className="block  tracking-wide text-gray-700  mb-1  "
+            htmlFor="grid-state"
+          >
+            Color
+          </label>
+          <div className="relative">
+            <select
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-state"
+              onChange={(e) =>
+                setCalData({ ...calData, color: e.target.value })
+              }
+            >
+              <option value={`1/black & white`}>Black & White</option>
+              <option value={`2/color`}>Color</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+          </div>
+        </div>
+
         <div className="w-full mt-4 ">
           <label
             className="block  tracking-wide text-gray-700  mb-1  "
@@ -232,9 +315,9 @@ export default function Calculator() {
                 setCalData({ ...calData, lamination: e.target.value })
               }
             >
-              <option>None</option>
-              <option>Matte</option>
-              <option>Gloss</option>
+              <option value={`0/none`}>None</option>
+              <option value={`1/matte`}>Matte</option>
+              <option value={`2/gloss`}>Gloss</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
           </div>
@@ -251,11 +334,13 @@ export default function Calculator() {
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
-              onChange={(e) => setCalData({ ...calData, time: e.target.value })}
+              onChange={(e) =>
+                setCalData({ ...calData, production_time: e.target.value })
+              }
             >
-              <option>2-3 Business Days</option>
-              <option>Next Day</option>
-              <option>Same Day</option>
+              <option value={`5/2-3 Business Days `}>2-3 Business Days</option>
+              <option value={`10/next day`}>Next Day</option>
+              <option value={`15/same day`}>Same Day</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
           </div>
@@ -263,6 +348,7 @@ export default function Calculator() {
 
         <div className="w-full mt-4   ">
           <input
+            required
             className="appearance-none text-right block w-full bg-white  text-primary   rounded py-2 px-4 my-5 leading-tight font-bold text-[18px] focus:outline-none focus:bg-white "
             id="grid-first-name"
             disabled
@@ -275,7 +361,10 @@ export default function Calculator() {
         <Link
           href={`${route.asPath}/uploads`}
           onClick={handleSubmit}
-          className="appearance-none text-center block w-full bg-[#111827]  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
+          className="appearance-none
+          
+           hover:text-white
+          text-center block w-full bg-[#111827]  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
         >
           add to cart
         </Link>
@@ -283,253 +372,3 @@ export default function Calculator() {
     </form>
   );
 }
-
-// import styles from "@/styles/Home.module.css";
-// import Link from "next/link";
-// import { useEffect, useState } from "react";
-
-// export default function Calculator() {
-//   // geting all input data
-//   const [ratio, setRatio] = useState(0);
-//   const [customHeigh, setCustomHeigh] = useState(0);
-//   const [customWidth, setCustomWidth] = useState(0);
-//   const [quantity, setQuantity] = useState(1);
-//   const [reinforce, setReinforce] = useState("");
-//   const [lamination, setLamination] = useState("None");
-//   const [color, setColor] = useState("Black & White");
-//   const [time, setTime] = useState("");
-//   const [total, setTotal] = useState(10);
-//   const [error, setError] = useState(null);
-//   // make the main calculations
-
-//   const price = 10;
-
-//   let colorPrice = color === "Black & White" ? 0.55 : 0.94;
-
-//   useEffect(() => {
-//     let totalPrice = quantity * price + colorPrice;
-//     setTotal(totalPrice);
-//   }, [ratio, quantity, reinforce, time, customHeigh, customWidth, color]);
-
-//   // set quantity
-
-//   const handleQuantity = (e) => {
-//     if (e.target.value > 0) {
-//       setQuantity(e.target.value);
-//       setError(null);
-//     } else {
-//       setError("plz enter valid quantity");
-//     }
-//   };
-
-//   const handleSubmit = () => {
-//     console.log("hello");
-//   };
-
-//   return (
-//     <form className="  w-full shadow-md  " onSubmit={handleSubmit}>
-//       <h4
-//         className={` font-bold  p-2  pl-5 rounded-tl-md
-
-//             rounded-tr-md shadow-sm
-//             bg-[#111827]   text-white  ${styles.borderGradient} `}
-//       >
-//         Price Calculator
-//       </h4>
-
-//       <div className="flex flex-wrap -mx-3 mb-6 px-8  pb-4   ">
-//         <div className="w-full mt-4 ">
-//           <label
-//             className="block  tracking-wide text-gray-700  mb-1  "
-//             htmlFor="grid-state"
-//           >
-//             Width & Length
-//           </label>
-//           <div className="relative">
-//             <select
-//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-//               id="grid-state"
-//               onChange={(e) => setRatio(e.target.value)}
-//             >
-//               <option>11" x 17"</option>
-//               <option>12" x 18"</option>
-//               <option>18" x 24"</option>
-//               <option>24" x 36"</option>
-//               <option>30" x 42"</option>
-//               <option>36" x 48"</option>
-//               <option>Custom Size</option>
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-//           </div>
-//         </div>
-
-//         {ratio === "Custom Size" ? (
-//           <div className="flex  space-x-10">
-//             <div className="w-full mt-4   ">
-//               <label
-//                 className="block tracking-wide text-gray-700  mb-1"
-//                 htmlFor="grid-first-name"
-//               >
-//                 Width <span className="text-red-600 font-bold">(Inch)</span>
-//               </label>
-//               <input
-//                 className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-//                 id="grid-first-name"
-//                 type="number"
-//                 placeholder="0"
-//                 onChange={(e) => setCustomWidth(e.target.value)}
-//               />
-//             </div>
-//             <div className="w-full mt-4   ">
-//               <label
-//                 className="block tracking-wide text-gray-700  mb-1"
-//                 htmlFor="grid-first-name"
-//               >
-//                 Height <span className="text-red-600 font-bold">(Inch)</span>
-//               </label>
-//               <input
-//                 className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-//                 id="grid-first-name"
-//                 type="number"
-//                 placeholder="0"
-//                 onChange={(e) => setCustomHeigh(e.target.value)}
-//               />
-//             </div>
-//           </div>
-//         ) : (
-//           ""
-//         )}
-
-//         <div className="w-full mt-4   ">
-//           <label
-//             className="block tracking-wide text-gray-700  mb-1"
-//             htmlFor="grid-first-name"
-//           >
-//             Quantity
-//           </label>
-//           <input
-//             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-//             id="grid-first-name"
-//             type="number"
-//             value={quantity}
-//             onChange={handleQuantity}
-//           />
-//           {error && <p className="text-red-600 text-sm">{error}</p>}
-//         </div>
-
-//         <div className="w-full mt-4   ">
-//           <label
-//             className="block tracking-wide text-gray-700  mb-1"
-//             htmlFor="grid-first-name"
-//           >
-//             Material
-//           </label>
-//           <input
-//             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-//             id="grid-first-name"
-//             type="text"
-//             placeholder="bond paper"
-//           />
-//         </div>
-
-//         <div className="w-full mt-4 ">
-//           <label
-//             className="block  tracking-wide text-gray-700  mb-1  "
-//             htmlFor="grid-state"
-//           >
-//             Reinforce
-//           </label>
-//           <div className="relative">
-//             <select
-//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-//               id="grid-state"
-//               onChange={(e) => setReinforce(e.target.value)}
-//             >
-//               <option>Binded</option>
-//               <option>Loose</option>
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-//           </div>
-//         </div>
-//         <div className="w-full mt-4 ">
-//           <label
-//             className="block  tracking-wide text-gray-700  mb-1  "
-//             htmlFor="grid-state"
-//           >
-//             Color
-//           </label>
-//           <div className="relative">
-//             <select
-//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-//               id="grid-state"
-//               onChange={(e) => setColor(e.target.value)}
-//             >
-//               <option>Black & White</option>
-//               <option>Color</option>
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-//           </div>
-//         </div>
-//         <div className="w-full mt-4 ">
-//           <label
-//             className="block  tracking-wide text-gray-700  mb-1  "
-//             htmlFor="grid-state"
-//           >
-//             Lamination
-//           </label>
-//           <div className="relative">
-//             <select
-//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-//               id="grid-state"
-//               onChange={(e) => setLamination(e.target.value)}
-//             >
-//               <option>None</option>
-//               <option>Matte</option>
-//               <option>Gloss</option>
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-//           </div>
-//         </div>
-
-//         <div className="w-full mt-4 ">
-//           <label
-//             className="block  tracking-wide text-gray-700  mb-1  "
-//             htmlFor="grid-state"
-//           >
-//             Production Time
-//           </label>
-//           <div className="relative">
-//             <select
-//               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-//               id="grid-state"
-//               onChange={(e) => setTime(e.target.value)}
-//             >
-//               <option>2-3 Business Days</option>
-//               <option>Next Day</option>
-//               <option>Same Day</option>
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-//           </div>
-//         </div>
-
-//         <div className="w-full mt-4   ">
-//           <input
-//             className="appearance-none text-right block w-full bg-white  text-primary   rounded py-2 px-4 my-5 leading-tight font-bold text-[18px] focus:outline-none focus:bg-white "
-//             id="grid-first-name"
-//             disabled
-//             type="text"
-//             placeholder="1"
-//             value={`Total : $${total}`}
-//           />
-//         </div>
-
-//         <Link
-//           href={"#"}
-//           className="appearance-none text-center block w-full bg-[#111827]  text-white  border-red-500 rounded py-2  my-3 leading-tight font-bold text-[18px]  uppercase cursor-pointer focus:outline-none  "
-//         >
-//           add to cart
-//         </Link>
-//       </div>
-//     </form>
-//   );
-// }

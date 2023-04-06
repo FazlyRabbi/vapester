@@ -1,15 +1,27 @@
+import Calculator from "@/components/Calculator";
 import Layout from "@/components/Layout";
 import ProductDetails from "@/components/ProductDetails";
-import Calculator from "@/components/Calculator";
-import { Typography, Breadcrumbs } from "@material-tailwind/react";
+import { Breadcrumbs, Typography } from "@material-tailwind/react";
 import { useRouter } from "next/router";
-// (data) => router.query.menu ===
-function index() {
-  const router = useRouter();
+import { useContext, useEffect, useState } from "react";
+import { SidebarContext } from "../../../../context/SidebarContext";
+import slugify from "slugify";
 
-  // const filteredProduct = products?.data.find(
-  //   (data) => data.attributes.Title === router.query.submenu
-  // );
+// (data) => router.query.menu ===
+
+function index() {
+  const [singleProduct, setSingleProduct] = useState(null);
+
+  const router = useRouter();
+  const { products } = useContext(SidebarContext);
+
+  useEffect(() => {
+    const slug = slugify(`${router.query.submenu}`);
+    const singleProduct = products?.find(
+      (product) => product?.attributes.Slug === slug.toLowerCase()
+    );
+    setSingleProduct(singleProduct);
+  }, [router.query.submenu]);
 
   return (
     <Layout title={router.query.submenu}>
@@ -28,10 +40,9 @@ function index() {
           <a href="#">Breadcrumbs</a>
         </Breadcrumbs>
       </div>
-
       <div className="wrapper p-4 grid xl:grid-cols-3 grid-cols-1 gap-16  ">
         <div className="xl:col-span-2 ">
-          <ProductDetails />
+          {singleProduct && <ProductDetails details={singleProduct} />}
         </div>
         <div>
           <Calculator />
