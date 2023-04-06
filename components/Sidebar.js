@@ -4,7 +4,6 @@ import { useContext } from "react";
 import styles from "../styles/Home.module.css";
 
 function Sidebar() {
-
   const { sidebars } = useContext(SidebarContext);
 
   return (

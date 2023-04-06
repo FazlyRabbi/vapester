@@ -6,20 +6,21 @@ import banner from "../img/card/banners.svg";
 function HomeProducts() {
   const [products, setProducts] = useState(null);
 
-  useEffect(() => {
-    const loadProducts = async () => {
-      const res = await fetch(
-        "https://demo-production-edcf.up.railway.app/api/home-products?populate=*"
-      );
-      const products = await res.json();
-      setProducts(products);
-    };
-    loadProducts();
-  }, []);
+  // useEffect(() => {
+  //   const loadProducts = async () => {
+  //     const res = await fetch(
+  //       "https://demo-production-edcf.up.railway.app/api/home-products?populate=*"
+  //     );
+  //     const products = await res.json();
+  //     setProducts(products);
+  //   };
+  //   loadProducts();
+  // }, []);
 
   return (
     <>
-      {products?.data?.map((data, index) => (
+
+      {/* {products?.data?.map((data, index) => (
         <div className="product  p-5  cursor-pointer" key={index}>
           <div className=" bg-white rounded-sm text-center min-h-[15rem] w-[15rem] p-2 ">
             {data.attributes.Image.data.map((img,index) => (
@@ -36,7 +37,7 @@ function HomeProducts() {
             <h4 className="mb-3">{data.attributes.Title}</h4>
           </div>
         </div>
-      ))}
+      ))} */}
     </>
   );
 }

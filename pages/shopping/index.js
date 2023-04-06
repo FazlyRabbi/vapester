@@ -153,39 +153,3 @@ export default function shopping() {
 
 
 
-color
-: 
-"1/black & white"
-customHeight
-: 
-1
-customWidth
-: 
-1
-file
-: 
-null
-jobName
-: 
-"12840279"
-lamination
-: 
-"0/none"
-material
-: 
-"default"
-production_time
-: 
-"5/2-3 Business Days "
-quantity
-: 
-1
-reinforce
-: 
-"1/binded"
-total
-: 
-17
-width_length
-: 
-"1' x 1'"
