@@ -1,6 +1,5 @@
-import { AuthContext } from "@/context/AuthContext";
-import styles from "@/styles/Home.module.css";
 import { CardContext } from "@/context/CardContext";
+import styles from "@/styles/Home.module.css";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 
@@ -10,7 +9,7 @@ function generateProductName() {
   return paddedNumber;
 }
 
-export default function Calculator() {
+export default function Calculator({ product }) {
   const { setCurrentProduct } = useContext(CardContext);
 
   // geting all input required data
@@ -21,7 +20,7 @@ export default function Calculator() {
   const inital = {
     width_length: "1' x 1'",
     quantity: 1,
-    material: "default",
+    material: "",
     reinforce: "1/binded",
     color: "1/black & white",
     lamination: "0/none",
@@ -140,7 +139,15 @@ export default function Calculator() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCurrentProduct({ ...calData, jobName: jobName, file: null });
+    setCurrentProduct({
+      ...calData,
+      material: product?.attributes?.Title,
+      jobName: jobName,
+      file: null,
+      imgUrl: product?.attributes?.Thubmnails.data[0].attributes.url,
+      title: product?.attributes?.Title,
+    });
+
     route.push(`${route.asPath}/upload`);
   };
 
@@ -254,7 +261,9 @@ export default function Calculator() {
             Material
           </label>
           <input
+            readOnly
             required
+            value={product?.attributes?.Title}
             className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
             id="grid-first-name"
             type="text"

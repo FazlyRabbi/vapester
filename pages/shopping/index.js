@@ -1,16 +1,13 @@
 import Header from "@/components/Header";
 import { MdDeleteForever } from "react-icons/md";
+import { API_URL } from "@/config/index";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import photo from "../../img/bg/travel-sale-flyer-template_52683-46904.webp";
 import { CardContext } from "@/context/CardContext";
-import { useContext, useEffect, useState } from "react";
-import { data } from "autoprefixer";
+import { useContext } from "react";
 
 export default function shopping() {
   const { cart } = useContext(CardContext);
-
-  console.log(cart);
 
   // const [subtotal, setSubtotal] = useState(0);
 
@@ -31,13 +28,16 @@ export default function shopping() {
       <Header />
 
       {
-        <div className="container mx-auto">
-          <h3 className="font-bold text-[25px] my-[2rem] ml-[10rem]">
+        <div className="container mx-auto px-4">
+          <h3 className="font-bold text-[25px] my-[2rem] xl:pl-0  pl-2 xl:ml-[10rem]">
             {cart !== [] ? "Shopping Cart" : "No Cart"}
           </h3>
           {cart !== []
             ? cart.map((data, index) => (
-                <div className=" rounded-lg my-8 shadow-lg p-10 lg:mx-[10rem] ">
+                <div
+                  key={index}
+                  className=" rounded-lg my-8 shadow-lg p-10 lg:mx-[10rem] "
+                >
                   <div
                     className="shoppin-cart
            grid  grid-cols-1
@@ -50,71 +50,57 @@ export default function shopping() {
           "
                   >
                     <div className="product-img">
-                      {/* <Image
-                          src={photo}
-                          height={150}
-                          width={150}
-                          alt="product-img"
-                          className="rounded-md"
-                        /> */}
+                      <Image
+                        src={`${API_URL}${data.imgUrl}`}
+                        height={150}
+                        width={150}
+                        alt="product-img"
+                        className="rounded-md"
+                      />
                     </div>
                     <div
                       className="product-des
               col-span-3
              flex justify-between
+              space-x-10
             xl:space-x-[20rem] "
                     >
                       <div className="details ">
-                        <h2 className="font-bold mb-2">
-                          Banner 12 oz (Viny! Banners)
-                        </h2>
-                        <ul>
+                        <h2 className="font-bold mb-2">{data.title}</h2>
+                        <ul className=" space-y-2">
                           <li>
                             <span className="title font-bold">Job Name: </span>
-                            <span className="data">201564646778777</span>
+                            <span className="data"> {data.jobName}</span>
                           </li>
                           <li>
                             <span className="title font-bold">
                               Width & Length:
                             </span>
-                            <span className="data">Width x Height</span>
+                            <span className="data"> {data.width_length}</span>
                           </li>
                           <li>
-                            <span className="title font-bold">Width : </span>
-                            <span className="data">fsafsaf</span>
+                            <span className="title font-bold">Meterial :</span>
+                            <span className="data">{data.material}</span>
                           </li>
                           <li>
-                            <span className="title font-bold">Height : </span>
-                            <span className="data">safdsadf</span>
+                            <span className="title font-bold">Reinforce :</span>
+                            <span className="data"> {data.reinforce}</span>
                           </li>
                           <li>
-                            <span className="title font-bold">
-                              Meterial : asfsaf
+                            <span className="title font-bold">Price :</span>
+                            <span className="data font-bold">
+                              {" "}
+                              {data.total}$
                             </span>
-                            <span className="data">
-                              13 oz. Matte viny! Banner
-                            </span>
-                          </li>
-                          <li>
-                            <span className="title font-bold">
-                              Reinforce :{" "}
-                            </span>
-                            <span className="data">asfsaf</span>
-                          </li>
-                          <li>
-                            <span className="title font-bold">
-                              Finishing : asfs
-                            </span>
-                            <span className="data">None</span>
                           </li>
                         </ul>
                       </div>
+
                       <div className="quantity flex space-x-6 md:space-x-12 font-bold justify-between">
                         <p>
-                          fsafsf
                           <span className="font-normal"> Qty</span>
                         </p>
-                        <p> safsf</p>
+                        <p>{data.quantity}</p>
                       </div>
                     </div>
                   </div>
@@ -128,17 +114,17 @@ export default function shopping() {
               ))
             : ""}
 
-          <div className="my-4">
-            <div className=" flex space-x-[5rem]  justify-end items-center">
+          <div className="my-6">
+            <div className=" flex space-x-[5rem]  justify-center  items-center">
               <span className=" text-xl  ">Subtotal</span>
               <span className="font-bold">$14.00</span>
             </div>
-            <div className=" flex  justify-end mt-6">
+            <div className=" flex  justify-center  mt-6">
               <button
                 className=" text-right   bg-primary  px-[4.5rem] py-[.8rem]  text-white  rounded-md"
                 // onClick={chechnum}
               >
-                Continue
+                Checkout
               </button>
             </div>
           </div>
@@ -149,7 +135,3 @@ export default function shopping() {
     </>
   );
 }
-
-
-
-

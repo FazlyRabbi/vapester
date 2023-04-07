@@ -1,4 +1,5 @@
 import { AuthContext } from "@/context/AuthContext";
+import { CardContext } from "@/context/CardContext";
 import { default as styles, default as sytles } from "@/styles/Home.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,11 +15,11 @@ import MobileNav from "./MobileNav/MobileNav";
 export default function Header() {
   const [open, setOpen] = useState(false);
 
-  const updateOpen = ()=>{
-    setOpen(false)
-  }
+  const updateOpen = () => {
+    setOpen(false);
+  };
 
-  const { user, sinout, cart } = useContext(AuthContext);
+  const { cart } = useContext(CardContext);
 
   const menuItmes = (
     <>
@@ -41,7 +42,7 @@ export default function Header() {
         </li>
       </ul>
       <ul className="   capitalize text-sm flex space-x-3 p-3 ">
-        {user ? (
+        {/* { (
           <>
             <li className="pr-3 bg-white text-black px-2   font-bold rounded-sm">
               <Link href={"/"} onClick={sinout}>
@@ -58,15 +59,14 @@ export default function Header() {
               <Link href={"/signup"}>Create Account</Link>
             </li>
           </>
-        )}
+        )} */}
       </ul>
     </>
   );
 
   return (
     <>
-
-   <MobileNav  open={open} setOpen={updateOpen} />
+      <MobileNav open={open} setOpen={updateOpen} />
 
       <header className="sticky top-0   md:static   z-10">
         <div className="header-sm md:hidden  shadow-sm   bg-white   p-4">
@@ -162,7 +162,7 @@ export default function Header() {
                     <Link href={`/shopping`}>
                       <RiShoppingCartLine />
                       <span className="count text-[11px]  text-white  font-bold absolute top-0 right-[7px] px-1 rounded-full bg-primary">
-                        {/* {cart.length} */}
+                        {cart?.length}
                       </span>
                     </Link>
                   </div>

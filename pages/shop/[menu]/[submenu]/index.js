@@ -7,7 +7,6 @@ import { useContext, useEffect, useState } from "react";
 import { SidebarContext } from "../../../../context/SidebarContext";
 import slugify from "slugify";
 
-// (data) => router.query.menu ===
 
 function index() {
   const [singleProduct, setSingleProduct] = useState(null);
@@ -45,7 +44,7 @@ function index() {
           {singleProduct && <ProductDetails details={singleProduct} />}
         </div>
         <div>
-          <Calculator />
+          <Calculator product={singleProduct} />
         </div>
       </div>
     </Layout>
