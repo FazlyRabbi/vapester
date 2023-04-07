@@ -1,34 +1,33 @@
 import { createContext, useEffect, useState } from "react";
-import { NEXT_URL } from "@/config/index";
+import { API_URL, API_TOKEN } from "@/config/index";
+import { useRouter } from "next/router";
 
-import { destroyCookie } from "nookies";
 export const AuthContext = createContext();
+
 export const AuthProvider = ({ children }) => {
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const [looding, setLooding] = useState(true);
-  const [sliderImage, setSliderImage] = useState(null);
-  const [sidebar, setSidbar] = useState(null);
-
-  const [cart, setCart] = useState({
-    cartItems: [],
-  });
+  const [open, setOpen] = useState(false);
+  const [isFatching, setIsFatching] = useState(false);
 
   useEffect(() => {
     checkUserLoggedId();
   }, []);
 
-
-  const signup = async ({ username, email, password }) => {
-    const res = await fetch(`${NEXT_URL}/api/signup`, {
+  const signup = async (userData) => {
+    console.log(userData);
+    const res = await fetch(`${API_URL}/api/auth/local/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: API_TOKEN,
       },
+
       body: JSON.stringify({
-        username,
-        email,
-        password,
+        username: userData.username,
+        email: userData.email,
+        password: userData.password,
       }),
     });
 
@@ -36,87 +35,85 @@ export const AuthProvider = ({ children }) => {
 
     if (data.user) {
       setUser(data);
+       console.log(data);
+      return;
     } else {
       setError(data);
     }
   };
 
   const singin = async ({ email: identifier, password }) => {
-    const res = await fetch(`${NEXT_URL}/api/signin`, {
-      method: "POST",
 
+    setIsFatching(true);
+
+    const res = await fetch(`${API_URL}/api/auth/local`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: API_TOKEN,
       },
+
       body: JSON.stringify({
         identifier,
         password,
       }),
     });
+
     const data = await res.json();
+
     if (data.user) {
       setUser(data);
+      setIsFatching(false);
     } else {
+      setIsFatching(false);
       setError(data);
     }
   };
 
-  const sinout = async (user) => {
+  const signOut = async () => {
     setUser(null);
     setError(null);
-    setCart({ cartItems: [] });
-    destroyCookie(null, "token");
+    localStorage.removeItem("Token");
+    // destroyCookie(null, "token");
+    router.push("/");
   };
 
   const checkUserLoggedId = async () => {
-    const res = await fetch(`${NEXT_URL}/api/user`);
-    const data = await res.json();
+    
+    const token = localStorage.getItem("Token");
 
-    if (res.ok) {
-      setUser(data);
-      checkUser(data);
+    if (!token) return;
+
+    const strapiRes = await fetch(`${API_URL}/api/users/me`, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`,
+      },
+    });
+
+    const user = await strapiRes.json();
+
+    user.jwt = JSON.parse(token);
+
+    if (strapiRes.ok) {
+      setUser(user);
     } else {
       setUser(null);
     }
   };
 
-  const checkUser = async (user) => {
-
-    const res = await fetch(
-      `https://demo-production-edcf.up.railway.app/api/carts`
-    );
-    const cartRes = await res.json();
-    const filteredProducts = cartRes.data.filter((e) => {
-      if (e.attributes.cart.email === user.user.email) {
-        return e.attributes.cart;
-      }
-    });
-    setCart({ cartItems: filteredProducts });
-  };
-
-  const getSidebar = async () => {
-    const res = await fetch(`${NEXT_URL}/api/sidebar`);
-    const sidebar = await res.json();
-    setSidbar(sidebar);
-  };
-
-
   return (
     <AuthContext.Provider
       value={{
-        user,
-        error,
-        setUser,
-        singin,
         signup,
-        sinout,
-        checkUserLoggedId,
-        looding,
-        sliderImage,
-        getSidebar,
-        sidebar,
-        setCart,
-        checkUser
+        error,
+        isFatching,
+        user,
+        singin,
+        setUser,
+        setError,
+        signOut,
+        setOpen,
+        open,
       }}
     >
       {children}

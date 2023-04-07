@@ -1,12 +1,104 @@
 import Header from "@/components/Header";
+import { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { API_URL } from "@/config/index";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import { CardContext } from "@/context/CardContext";
 import { useContext } from "react";
+import useProtectedRoute from "Hooks/useProtectedRoute";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+
 
 export default function shopping() {
+
+
+  useProtectedRoute();
+
+  const [isFetching, setIsFetching] = useState(false);
+
+
+
+  // onetime payment
+  const createOntimePayment = async () => {
+    try {
+      if (elements.getElement("card") === null) return;
+
+      setIsFetching(true);
+      const { error } = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement("card"),
+      });
+
+      if (error) {
+        setCardError(error);
+        return;
+      }
+
+      setCardError(null);
+
+      const res = await fetch(`/api/chargepayment`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: donation.Amount,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) return alert("Payment unsuccessfull!");
+
+      const { paymentIntent, error: confirmError } =
+        await stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: {
+            card: elements.getElement("card"),
+          },
+        });
+
+      setButton(false);
+
+      if (confirmError) return alert("Payment unsuccessfull!");
+
+      setDonation({
+        ...donation,
+        CardInfo: `Amount: $${paymentIntent.amount}  \n ClientSecret: ${paymentIntent.client_secret}`,
+      });
+
+      setButton(true);
+
+      elements.getElement(CardElement).clear();
+
+      // send mail
+      const sendmail = await fetch(`/api/emails/donationmail`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: donation.Email,
+          subject: `Your Donation $${donation.Amount / 100} to people!`,
+          message: `Thank you so much for your generous gift! It's donors like you that make our work possible. Your contribution is enabling us to accomplish Kingdom of Kush as well as helping us make progress toward`,
+        }),
+      });
+
+      setDonation(donationInitial);
+      showAlerts(
+        donation.Email,
+        donation.Name,
+        paymentIntent.amount,
+        paymentIntent.client_secret
+      );
+
+      setIsFetching(false);
+    } catch (err) {
+      console.error(err);
+      alert("Payment Faild!" + err.message);
+    }
+  };
+
+
   const { cart } = useContext(CardContext);
 
   // const [subtotal, setSubtotal] = useState(0);
@@ -22,6 +114,9 @@ export default function shopping() {
   // const chechnum = () => {
   //   console.log(subtotal);
   // };
+
+  // <CardElement className=" border p-3  rounded-md" />
+
 
   return (
     <>

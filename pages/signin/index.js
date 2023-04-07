@@ -9,10 +9,10 @@ import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
-import { setCookie } from "nookies";
 
 export default function signin() {
-  const { error, singin, user, setCart, checkUser } = useContext(AuthContext);
+  
+  const { error, singin, user, setError } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -22,14 +22,10 @@ export default function signin() {
 
   useEffect(() => {
     if (user) {
-      checkUser(user);
-      setCookie(null, "token", user.jwt, {
-        maxAge: 30 * 24 * 60 * 60,
-        path: "/",
-        secure: true,
-      });
+      localStorage.setItem("Token", JSON.stringify(user.jwt));
       router.push("/shop");
       toast.success("Login Successfully!");
+      setError(null);
     } else if (error) {
       if (error.message) {
         toast.error(error.message[0].messages[0].message);

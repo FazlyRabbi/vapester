@@ -13,6 +13,7 @@ import logo from "../img/logo.png";
 import MobileNav from "./MobileNav/MobileNav";
 
 export default function Header() {
+  const { user, signOut } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
 
   const updateOpen = () => {
@@ -42,10 +43,10 @@ export default function Header() {
         </li>
       </ul>
       <ul className="   capitalize text-sm flex space-x-3 p-3 ">
-        {/* { (
+        {user ? (
           <>
             <li className="pr-3 bg-white text-black px-2   font-bold rounded-sm">
-              <Link href={"/"} onClick={sinout}>
+              <Link href={"/"} onClick={signOut}>
                 Sing Out
               </Link>
             </li>
@@ -59,7 +60,7 @@ export default function Header() {
               <Link href={"/signup"}>Create Account</Link>
             </li>
           </>
-        )} */}
+        )}
       </ul>
     </>
   );
