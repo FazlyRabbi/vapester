@@ -109,7 +109,7 @@ export default function Home6() {
                         <p className="text-titleSm font-light">There are many variations of passages of Lorem Ipsum available, <br /> but the majority have suffered</p>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-7 mx-2">
-                        <div className="col-span-1 xl:col-span-2 row-span-1 xl:row-span-2 relative flex">
+                        <div className="col-span-1 xl:col-span-2 row-span-1 md:row-span-3 xl:row-span-2 relative flex">
                             <p className="text-white font-semibold tracking-widest uppercase absolute top-16 left-10">Box by style</p>
                             <p className="text-white font-bold text-[28px] absolute left-10 top-24">Surprise  <br /> large gormat</p>
                             <button className="bg-white text-gray-800 px-5 py-2.5 text-xl font-semibold rounded-3xl absolute block top-56 left-10 ">Shop Now</button>

@@ -1,29 +1,25 @@
-import Link from "next/link";
-import Image from "next/image";
-import { RxCrossCircled } from "react-icons/rx";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
-import logo from "img/logo.png";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
-import toast, { Toaster } from "react-hot-toast";
+import logo from "img/logo.png";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { RxCrossCircled } from "react-icons/rx";
 
 export default function signin() {
-  
   const { error, singin, user, setError } = useContext(AuthContext);
-
   const router = useRouter();
-
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (user) {
       localStorage.setItem("Token", JSON.stringify(user.jwt));
-      router.push("/shop");
+      router.back();
+      // router.push("/shop");
       toast.success("Login Successfully!");
       setError(null);
     } else if (error) {
