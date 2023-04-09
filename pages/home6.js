@@ -9,9 +9,11 @@ import { FaLock } from 'react-icons/fa';
 import NewsLetter from "@/components/NewsLetter";
 import ProductSlider from "@/components/ProductSlider";
 import FooterNew from "@/components/FooterNew";
+import BannerSlider from "@/components/BannerSlider";
 export default function Home6() {
     return (
         <section>
+            <BannerSlider />
             <div className="bg-[#f5f7fa] px-6 py-16">
                 <div className="grid grid-cols-2 md:grid-cols-4 text-[18px]">
                     <div className="flex flex-col md:flex-row items-center px-2">
@@ -108,54 +110,55 @@ export default function Home6() {
                         <p className="text-[25px] md:text-[40px] font-semibold mb-4">New Products</p>
                         <p className="text-titleSm font-light">There are many variations of passages of Lorem Ipsum available, <br /> but the majority have suffered</p>
                     </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-7 mx-2">
-                        <div className="col-span-1 xl:col-span-2 row-span-1 md:row-span-3 xl:row-span-2 relative flex">
+                    <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5">
+                        <div className="col-span-1 xl:col-span-2 row-span-2 relative flex">
                             <p className="text-white font-semibold tracking-widest uppercase absolute top-16 left-10">Box by style</p>
                             <p className="text-white font-bold text-[28px] absolute left-10 top-24">Surprise  <br /> large gormat</p>
                             <button className="bg-white text-gray-800 px-5 py-2.5 text-xl font-semibold rounded-3xl absolute block top-56 left-10 ">Shop Now</button>
-                            <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_banner1.jpg" className="rounded-3xl" alt="img" />
+                            <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_banner1.jpg" className="rounded-3xl h-fit" alt="img" />
                         </div>
-
-                        <div className="col-span-1 xl:col-span-1 row-span-1 xl:row-span-1 ">
-                            <div className=" text-center">
-                                <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
-                                <p className="mt-5">Poster Mockup</p>
-                                <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 col-span-1 md:col-span-2 xl:col-span-3">
+                            <div className="">
+                                <div className=" text-center">
+                                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
+                                    <p className="mt-5">Poster Mockup</p>
+                                    <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-span-1 xl:col-span-1 row-span-1 xl:row-span-1 ">
-                            <div className=" text-center">
-                                <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
-                                <p className="mt-5">Poster Mockup</p>
-                                <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                            <div className=" ">
+                                <div className=" text-center">
+                                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
+                                    <p className="mt-5">Poster Mockup</p>
+                                    <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-span-1 xl:col-span-1 row-span-1 xl:row-span-1 ">
-                            <div className=" text-center">
-                                <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
-                                <p className="mt-5">Poster Mockup</p>
-                                <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                            <div className=" ">
+                                <div className=" text-center">
+                                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
+                                    <p className="mt-5">Poster Mockup</p>
+                                    <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-span-1 xl:col-span-1 row-span-1 xl:row-span-1 ">
-                            <div className=" text-center">
-                                <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
-                                <p className="mt-5">Poster Mockup</p>
-                                <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                            <div className=" ">
+                                <div className=" text-center">
+                                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
+                                    <p className="mt-5">Poster Mockup</p>
+                                    <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-span-1 xl:col-span-1 row-span-1 xl:row-span-1 ">
-                            <div className=" text-center">
-                                <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
-                                <p className="mt-5">Poster Mockup</p>
-                                <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                            <div className=" ">
+                                <div className=" text-center">
+                                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
+                                    <p className="mt-5">Poster Mockup</p>
+                                    <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-span-1 xl:col-span-1 row-span-1 xl:row-span-1 ">
-                            <div className=" text-center">
-                                <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
-                                <p className="mt-5">Poster Mockup</p>
-                                <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                            <div className="">
+                                <div className=" text-center">
+                                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_cat1.jpg" className="rounded-3xl w-full" alt="img" />
+                                    <p className="mt-5">Poster Mockup</p>
+                                    <p className="mt-3 text-[18px] font-semibold">$9.90 – $49.90</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -172,7 +175,7 @@ export default function Home6() {
                     <FaStar />
                 </div>
                 <div className="w-3/5 mx-auto text-center bg-[url('https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h4_bg1.png')] bg-no-repeat">
-                    <p className="font-semibold text-[24px] text-gray-800 my-7">“All good thanks. Delay with delivery probably a knock-on from strikes...but there was no way to track the parcel via the website so we didn't know that it would be a couple of days late....just that it was delayed.”</p>
+                    <p className="font-semibold text-[18px] md:text-[24px] text-gray-800 my-7">“All good thanks. Delay with delivery probably a knock-on from strikes...but there was no way to track the parcel via the website so we didn't know that it would be a couple of days late....just that it was delayed.”</p>
                     <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h2_avatar-1.png" className="mx-auto mt-10 mb-6 w-28" alt="" />
                     <p className="text-xl text-gray-900 font-medium">Jessica Cherner</p>
                     <p className="text-gray-500">Senior Artist Developer</p>
@@ -181,13 +184,13 @@ export default function Home6() {
             <div className="bg-[#f5f7fa] px-7 py-20 grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="relative">
                     <p className="text-white font-semibold tracking-widest uppercase absolute top-16 left-10">Flat 25% off</p>
-                    <p className="text-white font-bold text-[28px] absolute left-10 top-24">Standard Business <br /> Cards</p>
+                    <p className="text-white font-bold text-xl md:text-[28px] absolute left-10 top-24">Standard Business <br /> Cards</p>
                     <button className="bg-white text-gray-800 px-5 py-2.5 text-[18px] font-semibold rounded-3xl absolute block top-52 left-10 ">Explore More</button>
                     <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_banner2.jpg" className="rounded-3xl" alt="img" />
                 </div>
                 <div className="relative">
                     <p className="text-white font-semibold tracking-widest uppercase absolute top-16 left-10">Flat 25% off</p>
-                    <p className="text-white font-bold text-[28px] absolute left-10 top-24">Booklet and <br /> log printing</p>
+                    <p className="text-white font-bold text-xl md:text-[28px] absolute left-10 top-24">Booklet and <br /> log printing</p>
                     <button className="bg-white text-gray-800 px-5 py-2.5 text-[18px] font-semibold rounded-3xl absolute block top-52 left-10 ">Explore More</button>
                     <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_banner3.jpg" className="rounded-3xl" alt="img" />
                 </div>
