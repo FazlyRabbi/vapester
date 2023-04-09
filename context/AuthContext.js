@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
     if (data.user) {
       setUser(data);
-       console.log(data);
+      console.log(data);
       return;
     } else {
       setError(data);
@@ -43,7 +43,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const singin = async ({ email: identifier, password }) => {
-
     setIsFatching(true);
 
     const res = await fetch(`${API_URL}/api/auth/local`, {
@@ -79,7 +78,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const checkUserLoggedId = async () => {
-    
     const token = localStorage.getItem("Token");
 
     if (!token) return;

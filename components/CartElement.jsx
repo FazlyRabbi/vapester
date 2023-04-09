@@ -1,8 +1,11 @@
 import { API_URL } from "@/config/index";
 import { CardContext } from "@/context/CardContext";
+import { useRouter } from "next/router";
+import { AuthContext } from "@/context/AuthContext";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
+
 import { MdDeleteForever } from "react-icons/md";
 
 import {
@@ -12,12 +15,20 @@ import {
 
 import countryNam from "../public/country";
 import billingCountryNam from "../public/country.json";
+
 import {
   default as billingStateNam,
   default as stateNam,
 } from "../public/state.json";
+import useSweetAlert from "../components/lib/sweetalert2";
 
 import { Button, Card, CardBody, Checkbox } from "@material-tailwind/react";
+
+function generateOrderid() {
+  const randomNumber = Math.floor(Math.random() * 100000000);
+  const paddedNumber = randomNumber.toString().padStart(10, "0");
+  return paddedNumber;
+}
 
 function CartElement() {
   const [isFetching, setIsFetching] = useState(false);
@@ -27,16 +38,43 @@ function CartElement() {
   const [billingStates, setBillingStates] = useState("");
   const [billingCities, setBillingCities] = useState("");
   const [same, setSame] = useState(true);
-  const { cart } = useContext(CardContext);
+  const { cart, setCart } = useContext(CardContext);
+  const { user } = useContext(AuthContext);
+
+  // showing alert
+  const { showAlert } = useSweetAlert();
+
+  const showAlerts = (email, ammount) => {
+    showAlert({
+      title: `Payment`,
+      html: `  <div>
+       <div style="display:flex; justify-content: space-between; padding:2 3rem;   ">
+       <h5>Pyament type</h5>
+       <h5 style="color:#000">Card</h5>
+       </div>
+       <div style="display:flex; justify-content: space-between; padding:2 3rem;   ">
+       <h5>Email</h5>
+       <h5 style="color:#000">${email}</h5>
+       </div>
+       <div style="display:flex; justify-content: space-between; padding:2 3rem; margin:2rem 0;  ">
+       <h5 style="font-weight:bold;">Amount Paid</h5>
+       <h5 style="color:#000">$${ammount}</h5>
+       </div>
+
+    </div>`,
+      icon: "success",
+      confirmButtonText: "Close",
+      confirmButtonColor: "green",
+    }).then((result) => {
+      console.log(result);
+    });
+  };
 
   const initial = {
     product: {
-      orderName: "",
       orderId: "",
-      paidAmmount: "",
-      TrxId: "",
-      file: "",
-      info: {},
+      paymentInfo: "",
+      products: null,
     },
     Billing: {
       firstName: "",
@@ -63,8 +101,6 @@ function CartElement() {
   };
 
   const [order, setOrder] = useState(initial);
-
-
 
   useEffect(() => {
     if (same) {
@@ -157,86 +193,6 @@ function CartElement() {
     handleCities();
   }, [order?.Billing.state]);
 
-  // onetime payment
-
-  // const createOntimePayment = async () => {
-  //   try {
-  //     if (elements.getElement("card") === null) return;
-
-  //     setIsFetching(true);
-  //     const { error } = await stripe.createPaymentMethod({
-  //       type: "card",
-  //       card: elements.getElement("card"),
-  //     });
-
-  //     if (error) {
-  //       setCardError(error);
-  //       return;
-  //     }
-
-  //     setCardError(null);
-
-  //     const res = await fetch(`/api/chargepayment`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         amount: donation.Amount,
-  //       }),
-  //     });
-
-  //     const data = await res.json();
-  //     if (!res.ok) return alert("Payment unsuccessfull!");
-
-  //     const { paymentIntent, error: confirmError } =
-  //       await stripe.confirmCardPayment(data.clientSecret, {
-  //         payment_method: {
-  //           card: elements.getElement("card"),
-  //         },
-  //       });
-
-  //     setButton(false);
-
-  //     if (confirmError) return alert("Payment unsuccessfull!");
-
-  //     setDonation({
-  //       ...donation,
-  //       CardInfo: `Amount: $${paymentIntent.amount}  \n ClientSecret: ${paymentIntent.client_secret}`,
-  //     });
-
-  //     setButton(true);
-
-  //     elements.getElement(CardElement).clear();
-
-  //     // send mail
-  //     const sendmail = await fetch(`/api/emails/donationmail`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         email: donation.Email,
-  //         subject: `Your Donation $${donation.Amount / 100} to people!`,
-  //         message: `Thank you so much for your generous gift! It's donors like you that make our work possible. Your contribution is enabling us to accomplish Kingdom of Kush as well as helping us make progress toward`,
-  //       }),
-  //     });
-
-  //     setDonation(donationInitial);
-  //     showAlerts(
-  //       donation.Email,
-  //       donation.Name,
-  //       paymentIntent.amount,
-  //       paymentIntent.client_secret
-  //     );
-
-  //     setIsFetching(false);
-  //   } catch (err) {
-  //     console.error(err);
-  //     alert("Payment Faild!" + err.message);
-  //   }
-  // };
-
   ///////////////////////////////////
   //  stripe related funtionality
   // to access stripe server
@@ -244,19 +200,144 @@ function CartElement() {
   // to access card element
   const elements = useElements();
 
+  useEffect(() => {
+    const orderID = generateOrderid();
+
+    setOrder({
+      ...order,
+      product: {
+        ...order.product,
+
+        orderId: orderID,
+
+        products: cart,
+      },
+    });
+  }, []);
+
+  let totalPrice = 0;
+
+  const router = useRouter();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createOntimePayment();
+  };
+
+  const delteProductFromCart = (data) => {
+    const deletedProducts = cart.filter(
+      (product) => product.jobName !== data.jobName
+    );
+
+    setCart(deletedProducts);
+    localStorage.setItem("cart", JSON.stringify(deletedProducts));
+  };
+
+  // onetime payment
+  const createOntimePayment = async () => {
+    try {
+      if (elements.getElement("card") === null) return;
+
+      setIsFetching(true);
+
+      const { error } = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement("card"),
+      });
+
+      if (error) {
+        setCardError(error);
+        setIsFetching(false);
+        return;
+      }
+      setIsFetching(true);
+      setCardError(null);
+
+      const res = await fetch(`/api/payment`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: totalPrice,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert("Payment unsuccessfull!");
+        setIsFetching(false);
+        return;
+      }
+      setIsFetching(true);
+      const { paymentIntent, error: confirmError } =
+        await stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: {
+            card: elements.getElement("card"),
+          },
+        });
+
+      if (confirmError) {
+        alert("Payment unsuccessfull!");
+        setIsFetching(false);
+        return;
+      }
+      setIsFetching(false);
+
+      setOrder({
+        ...order,
+        product: { ...order.product, paymentInfo: paymentIntent },
+      });
+      elements.getElement(CardElement).clear();
+      showAlerts(user.email, totalPrice);
+      setCart([]);
+      router.push(`/shop`);
+      localStorage.removeItem("cart");
+      // send mail
+      // const sendmail = await fetch(`/api/emails/donationmail`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     email: donation.Email,
+      //     subject: `Your Donation $${donation.Amount / 100} to people!`,
+      //     message: `Thank you so much for your generous gift! It's donors like you that make our work possible. Your contribution is enabling us to accomplish Kingdom of Kush as well as helping us make progress toward`,
+      //   }),
+      // });
+      // setDonation(donationInitial);
+      // showAlerts(
+      //   donation.Email,
+      //   donation.Name,
+      //   paymentIntent.amount,
+      //   paymentIntent.client_secret
+      // );
+    } catch (err) {
+      console.error(err);
+      alert("Payment Faild!" + err.message);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4">
       <div className="grid  justify-items-center grid-cols-1 gap-x-2 md:grid-cols-2">
         {/* products */}
-        <div className="products">
-          <h3 className="font-bold text-[25px] my-[1rem]   ">
-            {cart !== [] ? "Products" : "No Cart"}
+        <div className="products mt-5">
+          <h3 className="font-bold text-[1.2rem] my-[1rem]  ">
+            {cart.length != 0 ? "Products" : "Your Cart is Empty!"}
           </h3>
           {cart !== []
             ? cart.map((data, index) => (
                 <Card className="w-96 my-6  relative" key={index}>
-                  <MdDeleteForever className=" right-2 top-2 cursor-pointer text-[1.3rem]  absolute text-red-500" />
+                  <MdDeleteForever
+                    onClick={() => delteProductFromCart(data)}
+                    className=" right-2 top-2 
+                  cursor-pointer text-[1.3rem]  absolute text-red-500"
+                  />
                   <CardBody className="  flex    space-x-8 items-center  p-4 ">
+                    <div className=" hidden">{(totalPrice += data?.total)}</div>
+
                     <div className="product-img ">
                       <Image
                         src={`${API_URL}${data.imgUrl}`}
@@ -312,420 +393,264 @@ function CartElement() {
             : ""}
         </div>
 
-        <div className="shipping mt-4 min-w-full">
-          <div className="shiping_info my-6">
-            <h5 className="font-bold text-[1.2rem] mb-2">
-              Shipping Information
-            </h5>
+        {cart.length === 0 ? (
+          ""
+        ) : (
+          <div className="shipping mt-4 min-w-full">
+            <form onSubmit={handleSubmit}>
+              <div className="shiping_info my-6">
+                <h5 className="font-bold text-[1.2rem] mb-2">
+                  Shipping Information
+                </h5>
 
-            <div className=" grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 mb-4 ">
-              <div className="">
-                <label
-                  className="block tracking-wide text-base text-gray-700  mb-1"
-                  htmlFor="grid-first-name"
-                >
-                  First name
-                </label>
-                <input
-                  required
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="First Name"
-                />
-              </div>
-              <div className="">
-                <label
-                  className="block tracking-wide text-base text-gray-700  mb-1"
-                  htmlFor="grid-first-name"
-                >
-                  Last name
-                </label>
-                <input
-                  required
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="Last Name"
-                />
-              </div>
-            </div>
-
-            <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
-              <div>
-                <label
-                  className="block tracking-wide text-base text-gray-700  mb-1"
-                  htmlFor="grid-first-name"
-                >
-                  Zip Code
-                </label>
-                <input
-                  required
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="Zip code"
-                />
-              </div>
-              <div className="w-full ">
-                <label
-                  className="block  tracking-wide text-gray-700   "
-                  htmlFor="country"
-                >
-                  Country
-                </label>
-                <div>
-                  <select
-                    required
-                    id="country"
-                    onChange={(e) =>
-                      setOrder({
-                        ...order,
-                        Shipping: {
-                          ...order.Shipping,
-                          country: e.target.value,
-                        },
-                      })
-                    }
-                    disabled={isFetching}
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                  >
-                    <option selected>Select country</option>
-                    {countryNam?.map((country, country_id) => (
-                      <option key={country_id} value={country?.country_name}>
-                        {country?.country_name}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-                </div>
-              </div>
-            </div>
-
-            <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
-              <div className="w-full ">
-                <label
-                  className="block  tracking-wide text-gray-700   "
-                  htmlFor="country"
-                >
-                  State
-                </label>
-                <div>
-                  <select
-                    required
-                    onChange={(e) =>
-                      setOrder({
-                        ...order,
-                        Shipping: {
-                          ...order.Shipping,
-                          state: e.target.value,
-                        },
-                      })
-                    }
-                    id="country"
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                  >
-                    <option selected>Select State</option>
-                    {states?.length > 0
-                      ? states?.map((state, state_id) => (
-                          <option key={state_id} value={state?.state_name}>
-                            {state?.state_name}
-                          </option>
-                        ))
-                      : ""}
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-                </div>
-              </div>
-
-              <div className="w-full ">
-                <label
-                  className="block  tracking-wide text-gray-700   "
-                  htmlFor="country"
-                >
-                  City
-                </label>
-                <div>
-                  <select
-                    required
-                    onChange={(e) =>
-                      setOrder({
-                        ...order,
-                        Shipping: {
-                          ...order.Shipping,
-                          city: e.target.value,
-                        },
-                      })
-                    }
-                    id="country"
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                  >
-                    <option selected>Select City</option>
-                    {cities?.length > 0
-                      ? cities?.map((city, city_id) => (
-                          <option key={city_id} value={city?.city_name}>
-                            {city?.city_name}
-                          </option>
-                        ))
-                      : ""}
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-                </div>
-              </div>
-            </div>
-
-            <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
-              <div className="">
-                <label
-                  className="block tracking-wide text-base text-gray-700  mb-1"
-                  htmlFor="grid-first-name"
-                >
-                  Company Name
-                </label>
-                <input
-                  required
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="Company Name"
-                />
-              </div>
-              <div className="">
-                <label
-                  className="block tracking-wide text-base text-gray-700  mb-1"
-                  htmlFor="grid-first-name"
-                >
-                  Phone
-                </label>
-                <input
-                  required
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="Phone"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
-            <div className="">
-              <label
-                className="block tracking-wide text-base text-gray-700  mb-1"
-                htmlFor="grid-first-name"
-              >
-                Address
-              </label>
-              <textarea
-                required
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                id="grid-first-name"
-                type="text"
-                placeholder="Address"
-              />
-            </div>
-          </div>
-
-          <div>
-            <h5 className="font-bold text-[1.2rem] ">Billing Information</h5>
-
-            <div className="-ml-3">
-              <Checkbox
-                label="Same as Shiping Address"
-                defaultChecked
-                onChange={(e) => setSame(e.target.checked)}
-              />
-            </div>
-          </div>
-
-          {!same ? (
-            <div className="billing_info  mb-6 mt-2">
-              <div className=" grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 mb-4 ">
-                <div className="">
-                  <label
-                    className="block tracking-wide text-base text-gray-700  mb-1"
-                    htmlFor="grid-first-name"
-                  >
-                    First name
-                  </label>
-                  <input
-                    required
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                    id="grid-first-name"
-                    type="text"
-                    placeholder="First Name"
-                  />
-                </div>
-                <div className="">
-                  <label
-                    className="block tracking-wide text-base text-gray-700  mb-1"
-                    htmlFor="grid-first-name"
-                  >
-                    Last name
-                  </label>
-                  <input
-                    required
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                    id="grid-first-name"
-                    type="text"
-                    placeholder="Last Name"
-                  />
-                </div>
-              </div>
-
-              <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
-                <div>
-                  <label
-                    className="block tracking-wide text-base text-gray-700  mb-1"
-                    htmlFor="grid-first-name"
-                  >
-                    Zip Code
-                  </label>
-                  <input
-                    required
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                    id="grid-first-name"
-                    type="text"
-                    placeholder="Zip code"
-                  />
-                </div>
-                <div className="w-full ">
-                  <label
-                    className="block  tracking-wide text-gray-700   "
-                    htmlFor="country"
-                  >
-                    Country
-                  </label>
-                  <div>
-                    <select
+                <div className=" grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 mb-4 ">
+                  <div className="">
+                    <label
+                      className="block tracking-wide text-base text-gray-700  mb-1"
+                      htmlFor="grid-first-name"
+                    >
+                      First name
+                    </label>
+                    <input
                       required
-                      id="country"
-                      onChange={(e) =>
-                        setOrder({
-                          ...order,
-                          Billing: {
-                            ...order.Billing,
-                            country: e.target.value,
-                          },
-                        })
-                      }
                       disabled={isFetching}
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                    >
-                      <option selected>Select country</option>
-                      {countryNam?.map((country, country_id) => (
-                        <option key={country_id} value={country?.country_name}>
-                          {country?.country_name}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
-                <div className="w-full ">
-                  <label
-                    className="block  tracking-wide text-gray-700   "
-                    htmlFor="country"
-                  >
-                    State
-                  </label>
-                  <div>
-                    <select
-                      required
+                      value={order.Shipping.firstName}
                       onChange={(e) =>
                         setOrder({
                           ...order,
-                          Billing: {
-                            ...order.Billing,
-                            state: e.target.value,
-                          },
-                        })
-                      }
-                      id="country"
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                    >
-                      <option selected>Select State</option>
-                      {billingStates?.length > 0
-                        ? billingStates?.map((state, state_id) => (
-                            <option key={state_id} value={state?.state_name}>
-                              {state?.state_name}
-                            </option>
-                          ))
-                        : ""}
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
-                  </div>
-                </div>
-
-                <div className="w-full ">
-                  <label
-                    className="block  tracking-wide text-gray-700   "
-                    htmlFor="country"
-                  >
-                    City
-                  </label>
-                  <div>
-                    <select
-                      required
-                      id="city"
-                      onChange={(e) =>
-                        setOrder({
-                          ...order,
-                          Billing: {
-                            ...order.Billing,
-                            city: e.target.value,
+                          Shipping: {
+                            ...order.Shipping,
+                            firstName: e.target.value,
                           },
                         })
                       }
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                      id="grid-first-name"
+                      type="text"
+                      placeholder="First Name"
+                    />
+                  </div>
+                  <div className="">
+                    <label
+                      className="block tracking-wide text-base text-gray-700  mb-1"
+                      htmlFor="grid-first-name"
                     >
-                      <option selected>Select City</option>
-                      {billingCities?.length > 0
-                        ? billingCities?.map((city, city_id) => (
-                            <option key={city_id} value={city?.city_name}>
-                              {city?.city_name}
-                            </option>
-                          ))
-                        : ""}
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+                      Last name
+                    </label>
+                    <input
+                      required
+                      disabled={isFetching}
+                      value={order.Shipping.LastName}
+                      onChange={(e) =>
+                        setOrder({
+                          ...order,
+                          Shipping: {
+                            ...order.Shipping,
+                            LastName: e.target.value,
+                          },
+                        })
+                      }
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                      id="grid-first-name"
+                      type="text"
+                      placeholder="Last Name"
+                    />
                   </div>
                 </div>
-              </div>
 
-              <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
-                <div className="">
-                  <label
-                    className="block tracking-wide text-base text-gray-700  mb-1"
-                    htmlFor="grid-first-name"
-                  >
-                    Company Name
-                  </label>
-                  <input
-                    required
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                    id="grid-first-name"
-                    type="text"
-                    placeholder="Company Name"
-                  />
+                <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
+                  <div>
+                    <label
+                      className="block tracking-wide text-base text-gray-700  mb-1"
+                      htmlFor="grid-first-name"
+                    >
+                      Zip Code
+                    </label>
+                    <input
+                      required
+                      disabled={isFetching}
+                      value={order.Shipping.zipCode}
+                      onChange={(e) =>
+                        setOrder({
+                          ...order,
+                          Shipping: {
+                            ...order.Shipping,
+                            zipCode: e.target.value,
+                          },
+                        })
+                      }
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                      id="grid-first-name"
+                      type="number"
+                      placeholder="Zip code"
+                    />
+                  </div>
+                  <div className="w-full ">
+                    <label
+                      className="block  tracking-wide text-gray-700   "
+                      htmlFor="country"
+                    >
+                      Country
+                    </label>
+                    <div>
+                      <select
+                        required
+                        disabled={isFetching}
+                        id="country"
+                        onChange={(e) =>
+                          setOrder({
+                            ...order,
+                            Shipping: {
+                              ...order.Shipping,
+                              country: e.target.value,
+                            },
+                          })
+                        }
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border 
+                     rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                      >
+                        <option selected>Select country</option>
+                        {countryNam?.map((country, country_id) => (
+                          <option
+                            key={country_id}
+                            value={country?.country_name}
+                          >
+                            {country?.country_name}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+                    </div>
+                  </div>
                 </div>
-                <div className="">
-                  <label
-                    className="block tracking-wide text-base text-gray-700  mb-1"
-                    htmlFor="grid-first-name"
-                  >
-                    Phone
-                  </label>
-                  <input
-                    required
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
-                    id="grid-first-name"
-                    type="text"
-                    placeholder="Phone"
-                  />
+
+                <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
+                  <div className="w-full ">
+                    <label
+                      className="block  tracking-wide text-gray-700   "
+                      htmlFor="country"
+                    >
+                      State
+                    </label>
+                    <div>
+                      <select
+                        required
+                        disabled={isFetching}
+                        onChange={(e) =>
+                          setOrder({
+                            ...order,
+                            Shipping: {
+                              ...order.Shipping,
+                              state: e.target.value,
+                            },
+                          })
+                        }
+                        id="country"
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                      >
+                        <option selected>Select State</option>
+                        {states?.length > 0
+                          ? states?.map((state, state_id) => (
+                              <option key={state_id} value={state?.state_name}>
+                                {state?.state_name}
+                              </option>
+                            ))
+                          : ""}
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+                    </div>
+                  </div>
+
+                  <div className="w-full ">
+                    <label
+                      className="block  tracking-wide text-gray-700   "
+                      htmlFor="country"
+                    >
+                      City
+                    </label>
+                    <div>
+                      <select
+                        required
+                        disabled={isFetching}
+                        onChange={(e) =>
+                          setOrder({
+                            ...order,
+                            Shipping: {
+                              ...order.Shipping,
+                              city: e.target.value,
+                            },
+                          })
+                        }
+                        id="country"
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                      >
+                        <option selected>Select City</option>
+                        {cities?.length > 0
+                          ? cities?.map((city, city_id) => (
+                              <option key={city_id} value={city?.city_name}>
+                                {city?.city_name}
+                              </option>
+                            ))
+                          : ""}
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
+                  <div className="">
+                    <label
+                      className="block tracking-wide text-base text-gray-700  mb-1"
+                      htmlFor="grid-first-name"
+                    >
+                      Company Name
+                    </label>
+                    <input
+                      required
+                      disabled={isFetching}
+                      value={order.Shipping.companyName}
+                      onChange={(e) =>
+                        setOrder({
+                          ...order,
+                          Shipping: {
+                            ...order.Shipping,
+                            companyName: e.target.value,
+                          },
+                        })
+                      }
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                      id="grid-first-name"
+                      type="text"
+                      placeholder="Company Name"
+                    />
+                  </div>
+                  <div className="">
+                    <label
+                      className="block tracking-wide text-base text-gray-700  mb-1"
+                      htmlFor="grid-first-name"
+                    >
+                      Phone
+                    </label>
+                    <input
+                      required
+                      disabled={isFetching}
+                      value={order.Shipping.phone}
+                      onChange={(e) =>
+                        setOrder({
+                          ...order,
+                          Shipping: {
+                            ...order.Shipping,
+                            phone: e.target.value,
+                          },
+                        })
+                      }
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                      id="grid-first-name"
+                      type="number"
+                      placeholder="Phone"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -739,6 +664,17 @@ function CartElement() {
                   </label>
                   <textarea
                     required
+                    disabled={isFetching}
+                    value={order.Shipping.address}
+                    onChange={(e) =>
+                      setOrder({
+                        ...order,
+                        Shipping: {
+                          ...order.Shipping,
+                          address: e.target.value,
+                        },
+                      })
+                    }
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
                     id="grid-first-name"
                     type="text"
@@ -746,37 +682,343 @@ function CartElement() {
                   />
                 </div>
               </div>
-            </div>
-          ) : (
-            ""
-          )}
 
-          <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="text-lightGray font-bold text-sm mb-2 block"
-            >
-              Card info
-            </label>
-            <CardElement className=" border p-3  w-full  rounded-md" />
+              <div>
+                <h5 className="font-bold text-[1.2rem] ">
+                  Billing Information
+                </h5>
 
-            {cardError ? (
-              <p className="  mt-2 text-base text-red">{cardError.message}</p>
-            ) : (
-              ""
-            )}
+                <div className="-ml-3">
+                  <Checkbox
+                    label="Same as Shiping Address"
+                    defaultChecked
+                    onChange={(e) => setSame(e.target.checked)}
+                  />
+                </div>
+              </div>
+
+              {!same ? (
+                <div className="billing_info  mb-6 mt-2">
+                  <div className=" grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 mb-4 ">
+                    <div className="">
+                      <label
+                        className="block tracking-wide text-base text-gray-700  mb-1"
+                        htmlFor="grid-first-name"
+                      >
+                        First name
+                      </label>
+                      <input
+                        required
+                        disabled={isFetching}
+                        value={order.Billing.firstName}
+                        onChange={(e) =>
+                          setOrder({
+                            ...order,
+                            Billing: {
+                              ...order.Billing,
+                              firstName: e.target.value,
+                            },
+                          })
+                        }
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name"
+                        type="text"
+                        placeholder="First Name"
+                      />
+                    </div>
+                    <div className="">
+                      <label
+                        className="block tracking-wide text-base text-gray-700  mb-1"
+                        htmlFor="grid-first-name"
+                      >
+                        Last name
+                      </label>
+                      <input
+                        required
+                        disabled={isFetching}
+                        value={order.Billing.LastName}
+                        onChange={(e) =>
+                          setOrder({
+                            ...order,
+                            Billing: {
+                              ...order.Billing,
+                              LastName: e.target.value,
+                            },
+                          })
+                        }
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name"
+                        type="text"
+                        placeholder="Last Name"
+                      />
+                    </div>
+                  </div>
+
+                  <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
+                    <div>
+                      <label
+                        className="block tracking-wide text-base text-gray-700  mb-1"
+                        htmlFor="grid-first-name"
+                      >
+                        Zip Code
+                      </label>
+                      <input
+                        required
+                        disabled={isFetching}
+                        value={order.Billing.zipCode}
+                        onChange={(e) =>
+                          setOrder({
+                            ...order,
+                            Billing: {
+                              ...order.Billing,
+                              zipCode: e.target.value,
+                            },
+                          })
+                        }
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name"
+                        type="number"
+                        placeholder="Zip code"
+                      />
+                    </div>
+                    <div className="w-full ">
+                      <label
+                        className="block  tracking-wide text-gray-700   "
+                        htmlFor="country"
+                      >
+                        Country
+                      </label>
+                      <div>
+                        <select
+                          required
+                          disabled={isFetching}
+                          id="country"
+                          onChange={(e) =>
+                            setOrder({
+                              ...order,
+                              Billing: {
+                                ...order.Billing,
+                                country: e.target.value,
+                              },
+                            })
+                          }
+                          className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                        >
+                          <option selected>Select country</option>
+                          {countryNam?.map((country, country_id) => (
+                            <option
+                              key={country_id}
+                              value={country?.country_name}
+                            >
+                              {country?.country_name}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
+                    <div className="w-full ">
+                      <label
+                        className="block  tracking-wide text-gray-700   "
+                        htmlFor="country"
+                      >
+                        State
+                      </label>
+                      <div>
+                        <select
+                          required
+                          disabled={isFetching}
+                          onChange={(e) =>
+                            setOrder({
+                              ...order,
+                              Billing: {
+                                ...order.Billing,
+                                state: e.target.value,
+                              },
+                            })
+                          }
+                          id="country"
+                          className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                        >
+                          <option selected>Select State</option>
+                          {billingStates?.length > 0
+                            ? billingStates?.map((state, state_id) => (
+                                <option
+                                  key={state_id}
+                                  value={state?.state_name}
+                                >
+                                  {state?.state_name}
+                                </option>
+                              ))
+                            : ""}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+                      </div>
+                    </div>
+
+                    <div className="w-full ">
+                      <label
+                        className="block  tracking-wide text-gray-700   "
+                        htmlFor="country"
+                      >
+                        City
+                      </label>
+                      <div>
+                        <select
+                          required
+                          disabled={isFetching}
+                          id="city"
+                          onChange={(e) =>
+                            setOrder({
+                              ...order,
+                              Billing: {
+                                ...order.Billing,
+                                city: e.target.value,
+                              },
+                            })
+                          }
+                          className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                        >
+                          <option selected>Select City</option>
+                          {billingCities?.length > 0
+                            ? billingCities?.map((city, city_id) => (
+                                <option key={city_id} value={city?.city_name}>
+                                  {city?.city_name}
+                                </option>
+                              ))
+                            : ""}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
+                    <div className="">
+                      <label
+                        className="block tracking-wide text-base text-gray-700  mb-1"
+                        htmlFor="grid-first-name"
+                      >
+                        Company Name
+                      </label>
+                      <input
+                        value={order.Billing.companyName}
+                        onChange={(e) =>
+                          setOrder({
+                            ...order,
+                            Billing: {
+                              ...order.Billing,
+                              companyName: e.target.value,
+                            },
+                          })
+                        }
+                        required
+                        disabled={isFetching}
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name"
+                        type="text"
+                        placeholder="Company Name"
+                      />
+                    </div>
+                    <div className="">
+                      <label
+                        className="block tracking-wide text-base text-gray-700  mb-1"
+                        htmlFor="grid-first-name"
+                      >
+                        Phone
+                      </label>
+                      <input
+                        required
+                        disabled={isFetching}
+                        value={order.Billing.phone}
+                        onChange={(e) =>
+                          setOrder({
+                            ...order,
+                            Billing: {
+                              ...order.Billing,
+                              phone: e.target.value,
+                            },
+                          })
+                        }
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name"
+                        type="text"
+                        placeholder="Phone"
+                      />
+                    </div>
+                  </div>
+
+                  <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2  ">
+                    <div className="">
+                      <label
+                        className="block tracking-wide text-base text-gray-700  mb-1"
+                        htmlFor="grid-first-name"
+                      >
+                        Address
+                      </label>
+                      <textarea
+                        value={order.Billing.address}
+                        onChange={(e) =>
+                          setOrder({
+                            ...order,
+                            Billing: {
+                              ...order.Billing,
+                              address: e.target.value,
+                            },
+                          })
+                        }
+                        required
+                        disabled={isFetching}
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name"
+                        type="text"
+                        placeholder="Address"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+
+              <div className="mb-4">
+                <label
+                  htmlFor="email"
+                  className="text-lightGray font-bold text-sm mb-2 block"
+                >
+                  Card info
+                </label>
+                <CardElement className=" border p-3  w-full  rounded-md" />
+
+                {cardError ? (
+                  <p className="  mt-2 text-base text-red-600">
+                    {cardError.message}
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
+
+              <div>
+                <h1 className="mb-4 font-bold text-[1.2rem]">
+                  Total : <span className="font-normal">{totalPrice}$</span>{" "}
+                </h1>
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isFetching}
+                className="mb-6"
+                size="sm"
+              >
+                {isFetching ? "Loading..." : "Confirm Order"}
+              </Button>
+            </form>
           </div>
-
-          <div>
-            <h1 className="mb-4 font-bold text-[1.2rem]">
-              Total : <span className="font-normal">100$</span>{" "}
-            </h1>
-          </div>
-
-          <Button type="submit" className="mb-6" size="sm">
-            {isFetching ? "Loading..." : "Confirm Order"}
-          </Button>
-        </div>
+        )}
       </div>
     </div>
   );

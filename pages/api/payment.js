@@ -9,6 +9,7 @@ export default async function chargepayment(req, res) {
     const { amount } = req.body;
     // crate a customer
 
+      console.log(amount);
     const paymentIntent = await stripe.paymentIntents.create({
       currency: "USD",
       amount: amount * 100,
@@ -20,6 +21,7 @@ export default async function chargepayment(req, res) {
       message: "success",
       clientSecret: paymentIntent.client_secret,
     });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });

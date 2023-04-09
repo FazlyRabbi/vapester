@@ -14,8 +14,8 @@ function Uploads() {
 
   const handleSubmit = (e) => {
     setCart([...cart, currentProduct]);
+    localStorage.setItem("cart", JSON.stringify([...cart, currentProduct]));
     e.preventDefault();
-
     router.push("/shopping");
   };
 

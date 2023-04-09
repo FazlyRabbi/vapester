@@ -12,6 +12,7 @@ const stripePromise = loadStripe(
 );
 
 export default function shopping() {
+  
   useProtectedRoute();
 
   // const [subtotal, setSubtotal] = useState(0);
