@@ -183,7 +183,7 @@ export default function Home6() {
             </div>
             <div className="bg-[#f5f7fa] px-7 py-20 grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="relative">
-                    <p className="text-white font-semibold tracking-widest uppercase absolute top-16 left-10">Flat 25% off</p>
+                    <p className="text-primary font-semibold tracking-widest uppercase absolute top-16 left-10">Flat 25% off</p>
                     <p className="text-white font-bold text-xl md:text-[28px] absolute left-10 top-24">Standard Business <br /> Cards</p>
                     <button className="bg-white text-gray-800 px-5 py-2.5 text-[18px] font-semibold rounded-3xl absolute block top-52 left-10 ">Explore More</button>
                     <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_banner2.jpg" className="rounded-3xl" alt="img" />
