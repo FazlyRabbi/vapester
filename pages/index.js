@@ -22,6 +22,7 @@ import NewsLetter from "@/components/NewsLetter";
 import ProductSlider from "@/components/ProductSlider";
 import FooterNew from "@/components/FooterNew";
 import BannerSlider from "@/components/BannerSlider";
+import BannerSlideMobile from "@/components/BannerSlideMobile";
 
 export default function Home() {
   return (
@@ -139,7 +140,12 @@ export default function Home() {
         </div>
       </header>
       <section>
+        <div className="hidden lg:block">
         <BannerSlider />
+        </div>
+        <div className = "block lg:hidden">
+          <BannerSlideMobile />
+        </div>
         <div className="bg-[#f5f7fa] px-6 py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 text-[18px]">
             <div className="flex flex-col md:flex-row items-center px-2">
@@ -215,7 +221,7 @@ export default function Home() {
           <div className="my-20 mx-4">
             <div className="text-center my-10">
               <p className="text-[25px] md:text-[40px] font-semibold mb-4">
-                <span className="text-[#7000fe]">Top selling</span> items
+                <span className="text-primary">Top selling</span> items
               </p>
               <p className="text-titleSm font-light">
                 There are many variations of passages of Lorem Ipsum available,{" "}
@@ -226,12 +232,12 @@ export default function Home() {
           </div>
           <div className="my-20">
             <div className="text-center my-10">
-              <p className="text-[#7000fe] font-semibold text-base tracking-widest">
+              <p className="text-primary font-semibold text-base tracking-widest">
                 GET INSTANT SERVICE
               </p>
               <p className="text-[25px] md:text-[40px] font-semibold mb-4">
                 Custom printec boxes &{" "}
-                <span className="text-[#7000fe]">
+                <span className="text-primary">
                   custom <br />
                   cardboard
                 </span>{" "}
@@ -516,7 +522,7 @@ export default function Home() {
             <p className="text-[25px] md:text-[40px] font-semibold mb-4">
               {" "}
               Quality printing and{" "}
-              <span className="text-[#7000fe]">
+              <span className="text-primary">
                 outstanding <br /> customer{" "}
               </span>{" "}
               service
@@ -543,7 +549,7 @@ export default function Home() {
         {/* blog posts */}
         <div className="bg-[#f5f7fa] px-7 gap-6 py-20 grid grid-cols-1 md:grid-cols-3">
           <div className="pt-10 pr-8">
-            <p className="text-[#7000fe] text-base font-semibold tracking-widest uppercase ">
+            <p className="text-primary text-base font-semibold tracking-widest uppercase ">
               MOST RECENT NEWS
             </p>
             <p className="text-gray-900 font-bold text-[32px] mt-5">
@@ -554,7 +560,7 @@ export default function Home() {
               to receive fast, reliable printing services with high quality
               results.
             </p>
-            <button className="bg-[#7000fe] text-white hover:bg-black px-7 py-3 text-[16px] font-semibold rounded-3xl mt-4">
+            <button className="bg-primary text-white hover:bg-black px-7 py-3 text-[16px] font-semibold rounded-3xl mt-4">
               More Blog
             </button>
           </div>
@@ -571,13 +577,13 @@ export default function Home() {
               />
             </div>
             <div className="p-6">
-              <p className="text-[#7000fe] font-semibold text-sm hover:underline">
+              <p className="text-primary font-semibold text-sm hover:underline">
                 Printec
               </p>
-              <p className="text-gray-900 font-bold text-xl hover:text-[#7000fe] mt-3">
+              <p className="text-gray-900 font-bold text-xl hover:text-primary mt-3">
                 Tips to Find Best Print on Demand Business Name Ideas
               </p>
-              <button className=" text-gray-800 mt-5 text-titleSm font-semibold  hover:text-[#7000fe]">
+              <button className=" text-gray-800 mt-5 text-titleSm font-semibold  hover:text-primary">
                 Read More
               </button>
             </div>
@@ -595,13 +601,13 @@ export default function Home() {
               />
             </div>
             <div className="p-6">
-              <p className="text-[#7000fe] font-semibold text-sm hover:underline">
+              <p className="text-primary font-semibold text-sm hover:underline">
                 Printec
               </p>
-              <p className="text-gray-900 font-bold text-xl hover:text-[#7000fe] mt-3">
+              <p className="text-gray-900 font-bold text-xl hover:text-primary mt-3">
                 Tips to Find Best Print on Demand Business Name Ideas
               </p>
-              <button className=" text-gray-800 mt-5 text-titleSm font-semibold  hover:text-[#7000fe]">
+              <button className=" text-gray-800 mt-5 text-titleSm font-semibold  hover:text-primary">
                 Read More
               </button>
             </div>
@@ -612,7 +618,7 @@ export default function Home() {
           <div className="text-center">
             <p className="text-[25px] md:text-[40px] font-semibold mb-4">
               Sign up for{" "}
-              <span className="text-[#7000fe]">
+              <span className="text-primary">
                 exclusive <br /> offers
               </span>{" "}
               from us

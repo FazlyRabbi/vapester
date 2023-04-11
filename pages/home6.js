@@ -10,10 +10,11 @@ import NewsLetter from "@/components/NewsLetter";
 import ProductSlider from "@/components/ProductSlider";
 import FooterNew from "@/components/FooterNew";
 import BannerSlider from "@/components/BannerSlider";
+import BannerSlideMobile from "@/components/BannerSlideMobile";
 export default function Home6() {
     return (
         <section>
-            <BannerSlider />
+           <BannerSlideMobile />
             <div className="bg-[#f5f7fa] px-6 py-16">
                 <div className="grid grid-cols-2 md:grid-cols-4 text-[18px]">
                     <div className="flex flex-col md:flex-row items-center px-2">
