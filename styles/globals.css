@@ -65,6 +65,13 @@ input[type="file"] {
   object-fit: cover;
 }
 
+#swiper-slide-product img{
+  display: inline-block;
+  width: 75% !important;
+  height: 75% !important;
+  object-fit: contain;
+}
+
 /* swiper-custom.css */
 .swiper-button-prev,
 .swiper-button-next {

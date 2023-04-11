@@ -230,6 +230,7 @@ export default function Home() {
             </div>
             <TopSellingItems />
           </div>
+          {/* get instant service */}
           <div className="my-20">
             <div className="text-center my-10">
               <p className="text-primary font-semibold text-base tracking-widest">
@@ -245,7 +246,7 @@ export default function Home() {
               </p>
             </div>
             <div className="bg-[url('https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_bg1.png')] bg-no-repeat bg-center bg-contain mt-36">
-              <div className="flex flex-col md:flex-row mx-6 gap-10 md:gap-14 lg:gap-24 xl:gap-32">
+              <div className="flex flex-col md:flex-row mx-6 gap-10 md:gap-12 lg:gap-24 xl:gap-32">
                 <div>
                   <div className="bg-white p-5 lg:p-10 rounded-3xl text-center mt-0 md:-mt-10 shadow-lg">
                     <div className="w-fit mx-auto">
@@ -357,7 +358,7 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5">
-              <div className="col-span-1 xl:col-span-2 row-span-2 relative flex">
+              <div className="col-span-1 md:col-span-1 xl:col-span-2 row-span-2 relative flex">
                 <p className="text-white font-semibold tracking-widest uppercase absolute top-16 left-10">
                   Box by style
                 </p>
@@ -369,11 +370,11 @@ export default function Home() {
                 </button>
                 <img
                   src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_banner1.jpg"
-                  className="rounded-3xl h-fit"
+                  className="rounded-3xl h-fit w-full"
                   alt="img"
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 col-span-1 md:col-span-2 xl:col-span-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 col-span-1 md:col-span-2 xl:col-span-3">
                 <div className="">
                   <div className=" text-center">
                     <img
@@ -482,15 +483,15 @@ export default function Home() {
             <p className="text-gray-500">Senior Artist Developer</p>
           </div>
         </div>
-        <div className="bg-[#f5f7fa] px-7 py-20 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="relative">
-            <p className="text-white font-semibold tracking-widest uppercase absolute top-16 left-10">
+        <div className="bg-[#f5f7fa] px-7 py-20 grid grid-cols-1 lg:grid-cols-2 gap-6 ">
+          <div className="relative mx-auto">
+            <p className="text-white text-sm md:text-base font-semibold tracking-widest uppercase absolute top-6 md:top-9 lg:top-12 xl:top-16 left-10">
               Flat 25% off
             </p>
-            <p className="text-white font-bold text-xl md:text-[28px] absolute left-10 top-24">
+            <p className="text-white font-bold text-xl md:text-[28px] absolute left-10 top-10 sm:top-14 md:top-16 lg:top-20 xl:top-24">
               Standard Business <br /> Cards
             </p>
-            <button className="bg-white text-gray-800 px-5 py-2.5 text-[18px] font-semibold rounded-3xl absolute block top-52 left-10 ">
+            <button className="text-white border border-white sm:bg-white sm:text-gray-800 px-5 py-1.5 sm:px-5 sm:py-2.5 text-titleSm sm:text-[18px] font-semibold rounded-3xl absolute block  top-28 sm:top-36 md:top-40 lg:top-44 xl:top-52 left-10 ">
               Explore More
             </button>
             <img
@@ -499,14 +500,14 @@ export default function Home() {
               alt="img"
             />
           </div>
-          <div className="relative">
-            <p className="text-white font-semibold tracking-widest uppercase absolute top-16 left-10">
+          <div className="relative mx-auto">
+            <p className="text-white text-sm md:text-base font-semibold tracking-widest uppercase absolute top-6 md:top-9 lg:top-12 xl:top-16 left-10">
               Flat 25% off
             </p>
-            <p className="text-white font-bold text-xl md:text-[28px] absolute left-10 top-24">
+            <p className="text-white font-bold text-xl md:text-[28px] absolute left-10 top-10 sm:top-14 md:top-16 lg:top-20 xl:top-24">
               Booklet and <br /> log printing
             </p>
-            <button className="bg-white text-gray-800 px-5 py-2.5 text-[18px] font-semibold rounded-3xl absolute block top-52 left-10 ">
+            <button className="text-white border border-white sm:bg-white sm:text-gray-800 px-5 py-1.5 sm:px-5 sm:py-2.5 text-titleSm sm:text-[18px] font-semibold rounded-3xl absolute block  top-28 sm:top-36 md:top-40 lg:top-44 xl:top-52 left-10 ">
               Explore More
             </button>
             <img
@@ -535,7 +536,7 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div>
+            <div className="mx-auto">
               <img
                 src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h6_img1.png"
                 alt=""
@@ -693,7 +694,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="px-7 bg-[#f5f7fa] block lg:hidden py-16">
+        <div className=" bg-[#f5f7fa] block lg:hidden py-16">
           <ProductSlider />
         </div>
         <FooterNew />

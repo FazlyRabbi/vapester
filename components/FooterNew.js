@@ -9,7 +9,7 @@ export default function FooterNew() {
     return (
         <footer className="  shadow-md   py-[2.5rem] text-gray-700 bg-[#f5f7fa]">
             <div className="container mx-auto   ">
-                <div className="grid  justify-items-center md:justify-items-start text-center md:text-left  gap-y-10 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-5">
+                <div className="px-6 grid  justify-items-center md:justify-items-start text-center md:text-left  gap-y-10 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-5">
                     <div className="info">
                         <h3 className="info-title text-[25px] font-bold capitalize">
                             information

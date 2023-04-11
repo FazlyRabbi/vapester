@@ -19,7 +19,7 @@ export default function NewsLetter() {
       />
       <Button
         disabled={!email}
-        className="py-3.5 px-8 rounded-3xl bg-[#1e0ddf] text-white"
+        className="mt-4 md:mt-0 py-3.5 px-8 rounded-3xl bg-primary text-white"
       >
         Subscribe
       </Button>
