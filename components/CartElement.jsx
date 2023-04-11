@@ -1,21 +1,17 @@
-import { API_URL } from "@/config/index";
+import { API_URL, API_TOKEN } from "@/config/index";
 import { CardContext } from "@/context/CardContext";
 import { useRouter } from "next/router";
 import { AuthContext } from "@/context/AuthContext";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
-
 import { MdDeleteForever } from "react-icons/md";
-
 import {
   default as billingCityNam,
   default as cityNam,
 } from "../public/city.json";
-
 import countryNam from "../public/country";
 import billingCountryNam from "../public/country.json";
-
 import {
   default as billingStateNam,
   default as stateNam,
@@ -73,7 +69,7 @@ function CartElement() {
   const initial = {
     product: {
       orderId: "",
-      paymentInfo: "",
+      paymentInfo: null,
       products: null,
     },
     Billing: {
@@ -219,10 +215,53 @@ function CartElement() {
 
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    createOntimePayment();
+
+    const paymentInfo = await createOntimePayment();
+
+    if (paymentInfo) {
+      setOrder({
+        ...order,
+        product: {
+          ...order.product,
+          paymentInfo: paymentInfo,
+        },
+      });
+
+      setCart([]);
+      router.push(`/shop`);
+      localStorage.removeItem("cart");
+    }
   };
+
+  const postOrder = async () => {
+    const res = await fetch(`${API_URL}/api/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: API_TOKEN,
+      },
+
+      body: {
+        data: {
+          orders: {
+            ...order,
+          },
+        },
+      },
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+    // console.log(JSON.stringify({ ...order }));
+  };
+
+  useEffect(() => {
+    console.log(order);
+    // postOrder();
+  }, [order?.product.paymentInfo]);
 
   const delteProductFromCart = (data) => {
     const deletedProducts = cart.filter(
@@ -270,7 +309,9 @@ function CartElement() {
         setIsFetching(false);
         return;
       }
+
       setIsFetching(true);
+
       const { paymentIntent, error: confirmError } =
         await stripe.confirmCardPayment(data.clientSecret, {
           payment_method: {
@@ -283,17 +324,16 @@ function CartElement() {
         setIsFetching(false);
         return;
       }
+
       setIsFetching(false);
 
-      setOrder({
-        ...order,
-        product: { ...order.product, paymentInfo: paymentIntent },
-      });
+      if (!paymentIntent) return;
+
       elements.getElement(CardElement).clear();
+
       showAlerts(user.email, totalPrice);
-      setCart([]);
-      router.push(`/shop`);
-      localStorage.removeItem("cart");
+      return paymentIntent;
+
       // send mail
       // const sendmail = await fetch(`/api/emails/donationmail`, {
       //   method: "POST",
@@ -314,7 +354,6 @@ function CartElement() {
       //   paymentIntent.client_secret
       // );
     } catch (err) {
-      console.error(err);
       alert("Payment Faild!" + err.message);
     }
   };
