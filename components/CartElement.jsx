@@ -1,12 +1,11 @@
-import { API_TOKEN, API_URL } from "@/config/index";
-import { AuthContext } from "@/context/AuthContext";
+import { API_URL, API_TOKEN } from "@/config/index";
 import { CardContext } from "@/context/CardContext";
+import { useRouter } from "next/router";
+import { AuthContext } from "@/context/AuthContext";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
-import useSweetAlert from "../components/lib/sweetalert2";
 import {
   default as billingCityNam,
   default as cityNam,
@@ -17,6 +16,7 @@ import {
   default as billingStateNam,
   default as stateNam,
 } from "../public/state.json";
+import useSweetAlert from "../components/lib/sweetalert2";
 
 import { Button, Card, CardBody, Checkbox } from "@material-tailwind/react";
 
