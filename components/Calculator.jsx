@@ -19,15 +19,15 @@ export default function Calculator({ product }) {
 
   const inital = {
     width_length: "1' x 1'",
-    quantity: 1,
+    quantity: "1",
     material: "",
     reinforce: "1/binded",
     color: "1/black & white",
     lamination: "0/none",
     production_time: "5/2-3 Business Days ",
-    customWidth: 1,
-    customHeight: 1,
-    total: 0,
+    customWidth: "1",
+    customHeight: "1",
+    total: "0",
   };
 
   const [calData, setCalData] = useState(inital);
@@ -82,7 +82,7 @@ export default function Calculator({ product }) {
 
   useEffect(() => {
     const totalPrice = calculation();
-    setCalData({ ...calData, total: totalPrice });
+    setCalData({ ...calData, total: totalPrice.toString() });
   }, [
     calData.width_length,
     calData.quantity,

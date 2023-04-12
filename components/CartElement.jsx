@@ -1,11 +1,12 @@
-import { API_URL, API_TOKEN } from "@/config/index";
-import { CardContext } from "@/context/CardContext";
-import { useRouter } from "next/router";
+import { API_TOKEN, API_URL } from "@/config/index";
 import { AuthContext } from "@/context/AuthContext";
+import { CardContext } from "@/context/CardContext";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
+import useSweetAlert from "../components/lib/sweetalert2";
 import {
   default as billingCityNam,
   default as cityNam,
@@ -16,7 +17,6 @@ import {
   default as billingStateNam,
   default as stateNam,
 } from "../public/state.json";
-import useSweetAlert from "../components/lib/sweetalert2";
 
 import { Button, Card, CardBody, Checkbox } from "@material-tailwind/react";
 
@@ -67,11 +67,13 @@ function CartElement() {
   };
 
   const initial = {
-    product: {
+    orderInfo: {
       orderId: "",
       paymentInfo: null,
-      products: null,
     },
+
+    products: null,
+
     Billing: {
       firstName: "",
       LastName: "",
@@ -196,36 +198,23 @@ function CartElement() {
   // to access card element
   const elements = useElements();
 
-  useEffect(() => {
-    const orderID = generateOrderid();
-
-    setOrder({
-      ...order,
-      product: {
-        ...order.product,
-
-        orderId: orderID,
-
-        products: cart,
-      },
-    });
-  }, []);
-
   let totalPrice = 0;
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const orderID = generateOrderid();
     const paymentInfo = await createOntimePayment();
 
     if (paymentInfo) {
       setOrder({
         ...order,
-        product: {
-          ...order.product,
-          paymentInfo: paymentInfo,
+        products: cart,
+        orderInfo: {
+          ...order.orderInfo,
+          orderId: orderID,
+          paymentInfo: paymentInfo.client_secret,
         },
       });
 
@@ -236,6 +225,7 @@ function CartElement() {
   };
 
   const postOrder = async () => {
+    
     const res = await fetch(`${API_URL}/api/orders`, {
       method: "POST",
       headers: {
@@ -243,25 +233,23 @@ function CartElement() {
         Authorization: API_TOKEN,
       },
 
-      body: {
-        data: {
-          orders: {
-            ...order,
-          },
-        },
-      },
+      body: JSON.stringify({
+        data: { ...order },
+      }),
     });
 
     const data = await res.json();
 
     console.log(data);
+
     // console.log(JSON.stringify({ ...order }));
   };
 
   useEffect(() => {
-    console.log(order);
-    // postOrder();
-  }, [order?.product.paymentInfo]);
+    if (order.orderInfo.paymentInfo) {
+      postOrder();
+    }
+  }, [order.orderInfo.paymentInfo]);
 
   const delteProductFromCart = (data) => {
     const deletedProducts = cart.filter(
@@ -375,7 +363,9 @@ function CartElement() {
                   cursor-pointer text-[1.3rem]  absolute text-red-500"
                   />
                   <CardBody className="  flex    space-x-8 items-center  p-4 ">
-                    <div className=" hidden">{(totalPrice += data?.total)}</div>
+                    <div className=" hidden">
+                      {(totalPrice += parseInt(data?.total))}
+                    </div>
 
                     <div className="product-img ">
                       <Image
