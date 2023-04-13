@@ -33,10 +33,15 @@ export default function Home() {
       </Head>
 
       <header id="head" className="  sticky top-0  z-[9999]">
+
         <div className="header-top bg-[#1E1E1E] py-3">
+
           <div className="container mx-auto lg:px-10">
+
             <div className="header-top-content flex justify-between">
+
               <ul className="flex flex-wrap   items-center  text-white">
+                
                 <Link href={`tel:929 217-6589`}>
                   <li className="  border-r px-3 flex   items-center">
                     <MdPhoneCallback className="text-[1.2rem] text-second" />
