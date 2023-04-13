@@ -30,7 +30,6 @@ function generateOrderid() {
 }
 
 function CartElement() {
-  
   const [isFetching, setIsFetching] = useState(false);
   const [cardError, setCardError] = useState(null);
   const [states, setStates] = useState("");
@@ -209,7 +208,7 @@ function CartElement() {
 
   const router = useRouter();
 
-  const formData = new FormData();
+  const formData = typeof window !== "undefined" ? new FormData() : "";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
