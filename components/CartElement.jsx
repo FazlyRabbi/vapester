@@ -1,22 +1,25 @@
-import { API_URL, API_TOKEN } from "@/config/index";
-import { CardContext } from "@/context/CardContext";
-import { useRouter } from "next/router";
+import { API_TOKEN, API_URL } from "@/config/index";
 import { AuthContext } from "@/context/AuthContext";
+import { CardContext } from "@/context/CardContext";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Image from "next/image";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
+import useSweetAlert from "../components/lib/sweetalert2";
+
 import {
   default as billingCityNam,
   default as cityNam,
 } from "../public/city.json";
+
 import countryNam from "../public/country";
 import billingCountryNam from "../public/country.json";
+
 import {
   default as billingStateNam,
   default as stateNam,
 } from "../public/state.json";
-import useSweetAlert from "../components/lib/sweetalert2";
 
 import { Button, Card, CardBody, Checkbox } from "@material-tailwind/react";
 
@@ -70,6 +73,8 @@ function CartElement() {
     orderInfo: {
       orderId: "",
       paymentInfo: null,
+      status: "meaking",
+      price: null,
     },
 
     products: null,
@@ -85,6 +90,7 @@ function CartElement() {
       phone: "",
       companyName: "",
     },
+
     Shipping: {
       firstName: "",
       LastName: "",
@@ -202,10 +208,14 @@ function CartElement() {
 
   const router = useRouter();
 
+  const formData = new FormData();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const orderID = generateOrderid();
     const paymentInfo = await createOntimePayment();
+
+    const price = paymentInfo.amount / 100;
 
     if (paymentInfo) {
       setOrder({
@@ -214,6 +224,7 @@ function CartElement() {
         orderInfo: {
           ...order.orderInfo,
           orderId: orderID,
+          price: price.toString(),
           paymentInfo: paymentInfo.client_secret,
         },
       });
@@ -225,28 +236,29 @@ function CartElement() {
   };
 
   const postOrder = async () => {
-    
     const res = await fetch(`${API_URL}/api/orders`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: API_TOKEN,
       },
 
-      body: JSON.stringify({
-        data: { ...order },
-      }),
+      body: formData,
     });
-
     const data = await res.json();
-
-    console.log(data);
-
-    // console.log(JSON.stringify({ ...order }));
   };
 
   useEffect(() => {
+    formData.append(`data`, JSON.stringify(order));
+
     if (order.orderInfo.paymentInfo) {
+      order?.products.map((prod, index) =>
+        formData.append(
+          `files.products[${index}].file`,
+          prod.file,
+          prod.file.name
+        )
+      );
+
       postOrder();
     }
   }, [order.orderInfo.paymentInfo]);
@@ -369,7 +381,7 @@ function CartElement() {
 
                     <div className="product-img ">
                       <Image
-                        src={`${API_URL}${data.imgUrl}`}
+                        src={`${data.imgUrl}`}
                         height={150}
                         width={150}
                         alt="product-img"

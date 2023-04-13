@@ -94,9 +94,12 @@ export default function FooterNew() {
                     <div className="mt-2">
                         <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/payment.png" alt="" />
                     </div>
-                    <button className="text-[#7000fe] mt-3">
+
+                     <Link href={"#head"}>
+                    <button  className="text-[#7000fe] mt-3">
                         Back to top
                     </button>
+                     </Link>
                 </div>
             </div>
         </footer>

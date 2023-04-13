@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { API_URL } from "../config";
 import Link from "next/link";
+
 import {
   Button,
   Card,
@@ -24,7 +25,7 @@ export default function SingleProduct({ details }) {
             <Image
               src={`${
                 details.attributes.Thubmnails.data[0].attributes.url &&
-                `${API_URL}${details.attributes.Thubmnails.data[0].attributes.url}`
+                `${details.attributes.Thubmnails.data[0].attributes.url}`
               }`}
               width={400}
               height={400}

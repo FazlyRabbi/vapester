@@ -9,7 +9,7 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       <Link
-        href={"#"}
+        href={"/shop"}
         className="text-center text-base font-bold mb-3 bg-primary text-white p-2 rounded-md   w-[80%] block"
       >
         All Products

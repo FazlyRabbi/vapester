@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Head from "next/head";
+import DHeader from "@/components/Dashboard/DHeader";
+import slugify from "slugify";
+import useSweetAlert from "@/components/lib/sweetalert2";
 // import leftmenu
 import LeftMenu from "@/components/Dashboard/LeftMenu";
 import { API_URL, API_TOKEN } from "@/config/index";
 import DataTable from "react-data-table-component";
+
 import { CSVLink } from "react-csv";
 import { TiDeleteOutline } from "react-icons/ti";
-import DHeader from "@/components/Dashboard/DHeader";
 // import tailwind modal
 import {
   Dialog,
   DialogHeader,
   DialogBody,
   Input,
+  Button,
   Chip,
+  Card,
+  CardBody,
 } from "@material-tailwind/react";
 
 // imports react pdf
@@ -26,9 +32,7 @@ import {
   StyleSheet,
 } from "@react-pdf/renderer";
 
-// import useProtectedRoute from "@/components/Hooks/useProtectedRoute";
-
-// style sheet for
+// style sheet for pdf
 const styles = StyleSheet.create({
   doc: {
     color: "#404B50",
@@ -53,14 +57,12 @@ const styles = StyleSheet.create({
 });
 
 function index() {
-  // useProtectedRoute();
-
   // loead init members
-  const [members, setMembers] = useState([]);
+  const [orders, setOrders] = useState([]);
   // leoad search
   const [search, setSearch] = useState("");
   // set filtered members
-  const [filteredMembers, setFilteredMembers] = useState([]);
+  const [filteredOrder, setFilteredOrder] = useState([]);
   //  set single Data
   const [singleData, setSingleData] = useState("");
 
@@ -177,221 +179,293 @@ function index() {
 
   // to open tailwind modals
   const [open, setOpen] = useState(false);
-  // const handleOpen = (data) => {
-  //   setSingleData(data);
-  //   setOpen(!open);
+
+  const handleOpen = (data) => {
+    setSingleData(data);
+    setOpen(!open);
+  };
+
+  // csv headers
+  const headers = [
+    { label: "ID", key: "id" },
+    { label: "Title", key: "attributes.Title" },
+    { label: "Country", key: "attributes.Country" },
+    { label: "Slug", key: "attributes.Slug" },
+    { label: "ProjectDescription", key: "attributes.ProjectDescription" },
+    { label: "KushInvolment", key: "attributes.KushInvolment" },
+    { label: "RegistrationId", key: "attributes.RegistrationId" },
+    { label: "ProjectCategorie", key: "attributes.ProjectCategorie" },
+    { label: "Bradcamp", key: "attributes.Bradcamp" },
+    { label: "Name", key: "attributes.Replay.Name" },
+    { label: "Email", key: "attributes.Replay.Email" },
+    { label: "Phone", key: "attributes.Replay.Phone" },
+  ];
+
+  // Fetch data from an external API or database
+  useEffect(() => {
+    fetch(`${API_URL}/api/orders?populate=*`, {
+      method: "GET",
+      headers: {
+        Authorization: API_TOKEN,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setOrders(data?.data);
+        setFilteredOrder(data?.data);
+        console.log(data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    const result = orders?.filter((order) =>
+      order.attributes.Billing.firstName
+        .toLowerCase()
+        .match(search.toLowerCase())
+    );
+    setFilteredOrder(result);
+  }, [search]);
+
+  // table columns
+  const columns = [
+    {
+      name: "Id",
+      selector: (row) => row.id,
+      sortable: true,
+    },
+    {
+      name: "Order Id",
+      selector: (row) => row.attributes.orderInfo.orderId,
+      sortable: true,
+    },
+    {
+      name: "Customer",
+      selector: (row) => row.attributes.Billing.firstName,
+      sortable: true,
+    },
+    {
+      name: "Delevary Date",
+      selector: (row) =>
+        row.attributes.products.map((product) => product.production_time),
+      sortable: true,
+    },
+    {
+      name: "Delevary Price",
+      selector: (row) => row.attributes.orderInfo.price,
+      sortable: true,
+    },
+    {
+      name: "Client Secret",
+      selector: (row) => row.attributes.orderInfo.paymentInfo,
+      sortable: true,
+    },
+    {
+      name: "Delevary Status",
+      selector: (row) => row.attributes.orderInfo.status,
+      sortable: true,
+    },
+
+    // {
+    //   name: "Action",
+    //   cell: (row) => (
+    //     <div className=" grid my-2 justify-between items-center xl:grid-cols-3 grid-cols-1 gap-2">
+    //       <Chip
+    //         value="View"
+    //         className=" cursor-pointer  lowercase "
+    //         onClick={() => handleOpen(row.attributes)}
+    //       />
+    //       <Chip
+    //         color="green"
+    //         value="Active"
+    //         className=" cursor-pointer  lowercase "
+    //       />
+    //       <Chip
+    //         color="pink"
+    //         value="In-Active"
+    //         className=" cursor-pointer  lowercase "
+    //       />
+    //     </div>
+    //   ),
+    // },
+  ];
+
+  const customStyles = {
+    rows: {
+      style: {
+        backgroundColor: "#fff",
+        fontSize: "14px",
+        color: "#333",
+      },
+    },
+    headRow: {
+      style: {
+        backgroundColor: "#F9FAFB",
+        boxShadow: "none",
+        fontSize: "14px",
+        fontWeight: "bold",
+        color: "#374151",
+        textTransform: "uppercase",
+      },
+    },
+  };
+
+  // add products related task
+
+  const genrerateSlug = (string) => {
+    const slug = slugify(string, {
+      lower: true, // Convert to lowercase
+      remove: /[*+~.()'"!:@]/g, // Remove special characters
+    });
+    setProjectForm({ ...projectForm, Slug: slug });
+  };
+
+  // useEffect(() => {
+  //   genrerateSlug(projectForm.Title);
+  // }, [projectForm?.Title]);
+
+  const formData = typeof window !== "undefined" ? new FormData() : "";
+
+  // const { showAlert } = useSweetAlert();
+
+  // const showAlerts = () => {
+  //   showAlert({
+  //     title: `Project Added Successfully`,
+  //     icon: "success",
+  //     confirmButtonText: "Close",
+  //     confirmButtonColor: "green",
+  //   }).then((result) => {
+  //     console.log(result);
+  //   });
   // };
 
-  // // csv headers
-  // const headers = [
-  //   { label: "ID", key: "id" },
-  //   { label: "FirstName", key: "attributes.FirstName" },
-  //   { label: "LastName", key: "attributes.LastName" },
-  //   { label: "Email", key: "attributes.Email" },
-  //   { label: "DateofBirth", key: "attributes.DateofBirth" },
-  //   { label: "Phone", key: "attributes.Phone" },
-  //   { label: "AddressLine1", key: "attributes.AddressLine1" },
-  //   { label: "AddressLine2", key: "attributes.AddressLine2" },
-  //   { label: "City", key: "attributes.City" },
-  //   { label: "State", key: "attributes.State" },
-  //   { label: "PostalCode", key: "attributes.PostalCode" },
-  //   { label: "Country", key: "attributes.Country" },
-  //   { label: "Skills", key: "attributes.Skills" },
-  //   { label: "InterestAreas", key: "attributes.InterestAreas" },
-  //   { label: "CardInfo", key: "attributes.CardInfo" },
-  //   { label: "BillingFirstName", key: "attributes.BillingFirstName" },
-  //   { label: "BillingLastName", key: "attributes.BillingLastName" },
-  //   { label: "BillingAdressline1", key: "attributes.BillingAdressline1" },
-  //   { label: "BillingAdressline2", key: "attributes.BillingAdressline2" },
-  //   { label: "BillingCity", key: "attributes.BillingCity" },
-  //   { label: "BillingState", key: "attributes.BillingState" },
-  //   { label: "BillingPostal", key: "attributes.BillingPostal" },
-  //   { label: "BillingCountry", key: "attributes.BillingCountry" },
-  // ];
+  // const [isFatching, setIsFatching] = useState(false);
 
-  // // Fetch data from an external API or database
-  // useEffect(() => {
-  //   fetch(`${API_URL}/api/vendors?populate=*`, {
-  //     headers: {
-  //       Authorization: API_TOKEN,
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setMembers(data?.data);
-  //       setFilteredMembers(data?.data);
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, []);
+  // const addProjects = async () => {
+  //   try {
+  //     setIsFatching(true);
+  //     const res = await fetch(`${API_URL}/api/projects`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: API_TOKEN,
+  //       },
 
-  // useEffect(() => {
-  //   const result = members?.filter((member) =>
-  //     member.attributes.FirstName.toLowerCase().match(search.toLowerCase())
-  //   );
-  //   setFilteredMembers(result);
-  // }, [search]);
+  //       body: formData,
+  //     });
 
-  // // table columns
-  // const columns = [
-  //   {
-  //     name: "Id",
-  //     selector: (row) => row.id,
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "FirstName",
-  //     selector: (row) => row.attributes.FirstName,
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "LastName",
-  //     selector: (row) => row.attributes.LastName,
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "Email",
-  //     selector: (row) => row.attributes.Email,
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "DateofBirth",
-  //     selector: (row) => row.attributes.DateofBirth,
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "Phone",
-  //     selector: (row) => row.attributes.Phone,
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "AddressLine1",
-  //     selector: (row) => row.attributes.AddressLine1,
-  //     sortable: true,
-  //   },
-
-  //   {
-  //     name: "Action",
-  //     cell: (row) => (
-  //       <Chip
-  //         value="View"
-  //         className=" cursor-pointer  lowercase "
-  //         onClick={() => handleOpen(row.attributes)}
-  //       />
-  //     ),
-  //   },
-  // ];
-
-  // const customStyles = {
-  //   rows: {
-  //     style: {
-  //       backgroundColor: "#fff",
-  //       fontSize: "14px",
-  //       color: "#333",
-  //     },
-  //   },
-  //   headRow: {
-  //     style: {
-  //       backgroundColor: "#F9FAFB",
-  //       boxShadow: "none",
-  //       fontSize: "14px",
-  //       fontWeight: "bold",
-  //       color: "#374151",
-  //       textTransform: "uppercase",
-  //     },
-  //   },
+  //     const data = await res.json();
+  //     if (!res.ok) return;
+  //     showAlerts();
+  //     setIsFatching(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
   // };
+
+  const handleSubmit = (e) => {
+    // e.preventDefault();
+    // genrerateSlug(projectForm.Title);
+    // formData.append(`files.Thubmnail`, thubmnail, thubmnail.name);
+    // formData.append("data", JSON.stringify(projectForm));
+    // addProjects();
+    // setThubmnail(null);
+    // setProjectForm(projectIninitalForm);
+  };
 
   return (
     <>
       <Head>
-        <title>Vendors</title>
+        <title>Project</title>
       </Head>
-      <div className="grid  px-10 grid-cols-1 lg:grid-cols-5 gap-5 justify-items-left p-[3rem] ">
+      <div className="grid  px-10 grid-cols-1 lg:grid-cols-5 gap-6 justify-items-left p-[3rem] ">
         <LeftMenu />
         <DHeader />
-        {/* <div className=" lg:col-span-4  mr-10 mt-14">
-          <DataTable
-            columns={columns}
-            data={filteredMembers}
-            // selectableRowsHighlight
-            // highlightOnHover
-            // selectableRows
-            fixedHeader
-            title="Vendors"
-            subHeader
-            subHeaderComponent={
-              <div className="relative mb-6  shadow-sm">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <svg
-                    aria-hidden="true"
-                    className="w-5 h-5 text-[#6B7280] dark:text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+
+        <div className=" grid grid-cols-1 mt-[6rem] 2xl:grid-cols-3 gap-y-2 gap-2 lg:col-span-4 gap-x-5">
+          <div className=" mr-10  2xl:col-span-3  2xl:order-2">
+            <DataTable
+              columns={columns}
+              data={filteredOrder}
+              // selectableRowsHighlight
+              // highlightOnHover
+              // selectableRows
+              fixedHeader
+              title="Orders Table"
+              subHeader
+              subHeaderComponent={
+                <div className="relative mb-6 mt-4  shadow-sm">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg
+                      aria-hidden="true"
+                      className="w-5 h-5 text-[#6B7280] dark:text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    id="simple-search"
+                    className="   bg-[#F9FAFB] border  border-softGray text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Search"
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
                 </div>
-                <input
-                  type="text"
-                  id="simple-search"
-                  className="  bg-[#F9FAFB] border  border-softGray text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Search"
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-            }
-            customStyles={customStyles}
-            subHeaderAlign="center"
-            pagination
-            actions={
-              <div className="flex justify-between mb-4 items-center space-x-2">
-                <CSVLink
-                  data={members}
-                  headers={headers}
-                  filename={"vendors-data.csv"}
-                >
+              }
+              customStyles={customStyles}
+              subHeaderAlign="center"
+              pagination
+              actions={
+                <div className="flex justify-between mb-4 items-center space-x-2">
+                  <CSVLink
+                    data={orders}
+                    headers={headers}
+                    filename={"Invest-data.csv"}
+                  >
+                    <Chip
+                      value="Download"
+                      className=" cursor-pointer   capitalize shadow-md active:shadow-sm text-base  "
+                    />
+                  </CSVLink>
+
+                  <CSVLink
+                    data={orders}
+                    headers={headers}
+                    filename={"Volunteers-data.csv"}
+                  >
+                    <Chip
+                      color="amber"
+                      value=" Download CSV"
+                      className=" cursor-pointer   capitalize shadow-md active:shadow-sm text-base  "
+                    />
+                  </CSVLink>
+
                   <Chip
-                    value=" Download CSV"
+                    color="indigo"
+                    value="Pdf"
                     className=" cursor-pointer   capitalize shadow-md active:shadow-sm text-base  "
                   />
-                </CSVLink>
 
-                <CSVLink
-                  data={members}
-                  headers={headers}
-                  filename={"Members-data.csv"}
-                >
                   <Chip
-                    color="amber"
-                    value=" Download CSV"
+                    color="purple"
+                    value="Share"
                     className=" cursor-pointer   capitalize shadow-md active:shadow-sm text-base  "
                   />
-                </CSVLink>
-
-                <Chip
-                  color="indigo"
-                  value="Pdf"
-                  className=" cursor-pointer   capitalize shadow-md active:shadow-sm text-base  "
-                />
-
-                <Chip
-                  color="purple"
-                  value="Share"
-                  className=" cursor-pointer   capitalize shadow-md active:shadow-sm text-base  "
-                />
-              </div>
-            }
-          />
-        </div> */}
+                </div>
+              }
+            />
+          </div>
+        </div>
 
         {/* // tailwind modal  */}
 
-        {/* <Dialog open={open} handler={handleOpen}>
+        <Dialog open={open} handler={handleOpen}>
           <DialogHeader className="  flex justify-between">
             {" "}
             <p className="text-[1.3rem]">
@@ -417,6 +491,7 @@ function index() {
               onClick={handleOpen}
             />
           </DialogHeader>
+
           <DialogBody>
             <div
               className="grid grid-cols-1 max-h-[80vh]   
@@ -428,127 +503,16 @@ function index() {
             >
               <div className="mr-2 lg:mr-0">
                 <label htmlFor="FirstName" className="text-black">
-                  FirstName
+                  Title
                 </label>
                 <Input
                   name="FirstName"
                   className="pt-1"
-                  label={singleData.FirstName && singleData.FirstName}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  First Name
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.FirstName && singleData.FirstName}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  LastName
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.LastName && singleData.LastName}
+                  label={singleData.Title && singleData.Title}
                   disabled
                 />
               </div>
 
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  Email
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.Email && singleData.Email}
-                  disabled
-                />
-              </div>
-
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  DateofBirth
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.DateofBirth && singleData.DateofBirth}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  Phone
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.Phone && singleData.Phone}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  AddressLine1
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.AddressLine1 && singleData.AddressLine1}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  AddressLine2
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.AddressLine2 && singleData.AddressLine2}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  City
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.City && singleData.City}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  State
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.State && singleData.State}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  PostalCode
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.PostalCode && singleData.PostalCode}
-                  disabled
-                />
-              </div>
               <div className="mr-2 lg:mr-0">
                 <label htmlFor="FirstName" className="text-black">
                   Country
@@ -560,65 +524,62 @@ function index() {
                   disabled
                 />
               </div>
+
               <div className="mr-2 lg:mr-0">
                 <label htmlFor="FirstName" className="text-black">
-                  Skills
+                  Country
                 </label>
                 <Input
                   name="FirstName"
                   className="pt-1"
-                  label={singleData.Skills && singleData.Skills}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  InterestAreas
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.InterestAreas && singleData.InterestAreas}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  BillingPostal
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.BillingPostal && singleData.BillingPostal}
-                  disabled
-                />
-              </div>
-              <div className="mr-2 lg:mr-0">
-                <label htmlFor="FirstName" className="text-black">
-                  BillingCountry
-                </label>
-                <Input
-                  name="FirstName"
-                  className="pt-1"
-                  label={singleData.BillingCountry && singleData.BillingCountry}
+                  label={singleData.KushInvolment && singleData.KushInvolment}
                   disabled
                 />
               </div>
 
               <div className="mr-2 lg:mr-0">
                 <label htmlFor="FirstName" className="text-black">
-                  RegistrationId
+                  KushInvolment
                 </label>
                 <Input
                   name="FirstName"
                   className="pt-1"
-                  label={singleData.RegistrationId && singleData.RegistrationId}
+                  label={singleData.KushInvolment && singleData.KushInvolment}
+                  disabled
+                />
+              </div>
+
+              <div className="mr-2 lg:mr-0">
+                <label htmlFor="FirstName" className="text-black">
+                  ProjectCategorie
+                </label>
+                <Input
+                  name="FirstName"
+                  className="pt-1"
+                  label={
+                    singleData.ProjectCategorie && singleData.ProjectCategorie
+                  }
+                  disabled
+                />
+              </div>
+
+              <div className="mr-2 lg:mr-0">
+                <label htmlFor="FirstName" className="text-black">
+                  ProjectDescription
+                </label>
+                <Input
+                  name="FirstName"
+                  className="pt-1"
+                  label={
+                    singleData.ProjectDescription &&
+                    singleData.ProjectDescription
+                  }
                   disabled
                 />
               </div>
             </div>
           </DialogBody>
-        </Dialog> */}
+        </Dialog>
       </div>
     </>
   );

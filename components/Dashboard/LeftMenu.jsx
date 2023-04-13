@@ -50,11 +50,11 @@ function LeftMenu() {
         {/* left menu content */}
         <div className="leftMenu__content  transition-all duration-500 my-4 flex items-center justify-center flex-col">
           <Link
-            href={`/dashboard/Orders`}
+            href={`/dashboard/orders`}
             className={`
           
            ${
-             router.pathname === "/dashboard/Orders"
+             router.pathname === "/dashboard/orders"
                ? ` 
            
             rounded-lg
@@ -72,7 +72,7 @@ function LeftMenu() {
               className={`
           
             ${
-              router.pathname === "/dashboard/Orders"
+              router.pathname === "/dashboard/orders"
                 ? `
             
                 bg-gradient-to-r from-cyan-500 to-blue-500 text-white

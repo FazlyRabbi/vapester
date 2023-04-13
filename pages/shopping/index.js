@@ -15,21 +15,7 @@ export default function shopping() {
   
   useProtectedRoute();
 
-  // const [subtotal, setSubtotal] = useState(0);
 
-  // const [cartData, setCartData] = useState([]);
-
-  // useEffect(() => {
-  //   if (cart !== []) {
-  //     cart.map((data) => setSubtotal(data));
-  //   }
-  // }, []);
-
-  // const chechnum = () => {
-  //   console.log(subtotal);
-  // };
-
-  // <CardElement className=" border p-3  rounded-md" />
 
   return (
     <>

@@ -4,6 +4,7 @@ import ThumbsGallery from "./Slider/ThumbGellery";
 
 // import required modules
 function ProductDetails({ details }) {
+  
   const imgUrl = {};
 
   return (

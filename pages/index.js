@@ -6,6 +6,7 @@ import { MdAccountCircle, MdPhoneCallback, MdEmail } from "react-icons/md";
 import { HiHome } from "react-icons/hi";
 import { AiFillClockCircle } from "react-icons/ai";
 import { Navbar } from "flowbite-react";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -30,7 +31,8 @@ export default function Home() {
       <Head>
         <title>Print and Graph</title>
       </Head>
-      <header className="  sticky top-0  z-[9999]">
+
+      <header id="head" className="  sticky top-0  z-[9999]">
         <div className="header-top bg-[#1E1E1E] py-3">
           <div className="container mx-auto lg:px-10">
             <div className="header-top-content flex justify-between">
@@ -139,11 +141,12 @@ export default function Home() {
           </div>
         </div>
       </header>
+
       <section>
         <div className="hidden lg:block">
-        <BannerSlider />
+          <BannerSlider />
         </div>
-        <div className = "block lg:hidden">
+        <div className="block lg:hidden">
           <BannerSlideMobile />
         </div>
         <div className="bg-[#f5f7fa] px-6 py-16">
