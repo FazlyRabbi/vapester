@@ -89,7 +89,7 @@ export default function FooterNew() {
                 </div>
                 <div className="copy  mt-10 pt-8 border-t border-t-blue-gray-100 flex flex-col lg:flex-row justify-between items-center">
                     <p className="text-gray-800 mt-3">
-                        ©2022 Print & Graph. All rights reserved
+                        ©2023 Print & Graph. All rights reserved
                     </p>
                     <div className="mt-2">
                         <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/payment.png" alt="" />
