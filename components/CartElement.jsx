@@ -245,6 +245,10 @@ function CartElement() {
       body: formData,
     });
     const data = await res.json();
+
+    if (!res.ok) return;
+
+    showAlerts(user.email, totalPrice);
   };
 
   useEffect(() => {
@@ -331,7 +335,6 @@ function CartElement() {
 
       elements.getElement(CardElement).clear();
 
-      showAlerts(user.email, totalPrice);
       return paymentIntent;
 
       // send mail

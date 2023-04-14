@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { AuthContext } from "@/context/AuthContext";
 import { IoIosPeople } from "react-icons/io";
 import { GrUserWorker } from "react-icons/gr";
 import { CiMoneyBill } from "react-icons/ci";
@@ -11,28 +12,22 @@ import { AiOutlineContacts } from "react-icons/ai";
 import { BsMicrosoftTeams, BsMotherboard } from "react-icons/bs";
 import { MdOutlineStore, MdOutlineNoteAlt } from "react-icons/md";
 import { useRouter } from "next/router";
-import { useState } from "react";
 // import logo from "../../img/logo.png";
 
 function LeftMenu() {
   const router = useRouter();
 
-  const [open, setOpne] = useState(true);
-
-  // const { open } = useContext(AuthContext);
+  const { open } = useContext(AuthContext);
 
   return (
     <>
       <section
-        className={`leftMenu shadow-xl rounded-lg 
-    
+        className={`leftMenu 
+    shadow-xl rounded-lg  
     max-w-[15rem]
-           transition-all duration-300
+    transition-all duration-300
     absolute lg:static lg:z-0 z-30  mt-[1.8rem] left-0 
-    
-     
     w-full   md:overflow-y-auto  overflow-y-scroll  mb-2 h-[100vh] lg:h-[90vh]  bg-[#F8F9FA]
- 
     ${open ? "translate-x-0" : " -translate-x-[100rem] lg:translate-x-0"}
     
     `}

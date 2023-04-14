@@ -1,36 +1,35 @@
-import React, { useEffect, useState, useContext } from "react";
-import Head from "next/head";
 import DHeader from "@/components/Dashboard/DHeader";
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import slugify from "slugify";
-import useSweetAlert from "@/components/lib/sweetalert2";
 // import leftmenu
 import LeftMenu from "@/components/Dashboard/LeftMenu";
-import { API_URL, API_TOKEN } from "@/config/index";
+import { API_TOKEN, API_URL } from "@/config/index";
 import DataTable from "react-data-table-component";
 
 import { CSVLink } from "react-csv";
 import { TiDeleteOutline } from "react-icons/ti";
 // import tailwind modal
 import {
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  Input,
-  Button,
   Chip,
-  Card,
-  CardBody,
+  Dialog,
+  DialogBody,
+  DialogHeader,
+  Input,
 } from "@material-tailwind/react";
 
 // imports react pdf
 import {
-  PDFDownloadLink,
   Document,
+  PDFDownloadLink,
   Page,
+  StyleSheet,
   Text,
   View,
-  StyleSheet,
 } from "@react-pdf/renderer";
+
+import img from "../../../img/banner1.jpg";
 
 // style sheet for pdf
 const styles = StyleSheet.create({
@@ -203,17 +202,20 @@ function index() {
 
   // Fetch data from an external API or database
   useEffect(() => {
-    fetch(`${API_URL}/api/orders?populate=*`, {
-      method: "GET",
-      headers: {
-        Authorization: API_TOKEN,
-      },
-    })
+    fetch(
+      `${API_URL}/api/orders?populate[products][populate]=*&populate[Shipping][populate]=*&populate[Billing][populate]=*&populate[orderInfo][populate]=*`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: API_TOKEN,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setOrders(data?.data);
         setFilteredOrder(data?.data);
-        console.log(data);
+    
       })
       .catch((err) => console.error(err));
   }, []);
@@ -227,13 +229,28 @@ function index() {
     setFilteredOrder(result);
   }, [search]);
 
+  // all functionalitys
+
+  const [downloadDialog, setDownloadDialog] = useState(false);
+
+  const [downloads, setDownload] = useState([]);
+
+  const dwonloadFile = (e) => {
+    setDownloadDialog(!downloadDialog);
+    setDownload(e);
+  };
+
+  const finalDownload = (data) => {
+    const downloadLink = document.createElement("a");
+    downloadLink.target = "_blank";
+    // Set the href and download attributes on the download link
+    downloadLink.href = data.url;
+    downloadLink.download = data.name;
+    downloadLink.click();
+  };
+
   // table columns
   const columns = [
-    {
-      name: "Id",
-      selector: (row) => row.id,
-      sortable: true,
-    },
     {
       name: "Order Id",
       selector: (row) => row.attributes.orderInfo.orderId,
@@ -245,49 +262,84 @@ function index() {
       sortable: true,
     },
     {
-      name: "Delevary Date",
-      selector: (row) =>
-        row.attributes.products.map((product) => product.production_time),
-      sortable: true,
+      name: "Product Details",
+      cell: (row) => (
+        <div className=" grid my-2 justify-between items-center xl:grid-cols-3 grid-cols-1 gap-2">
+          <Chip
+            value="Show"
+            color="green"
+            className=" cursor-pointer  lowercase "
+            onClick={() => handleOpen(row.attributes)}
+          />
+        </div>
+      ),
     },
     {
       name: "Delevary Price",
-      selector: (row) => row.attributes.orderInfo.price,
+      selector: (row) => `${row.attributes.orderInfo.price}$`,
       sortable: true,
     },
     {
-      name: "Client Secret",
-      selector: (row) => row.attributes.orderInfo.paymentInfo,
-      sortable: true,
+      name: "Files",
+      cell: (row) => (
+        <Chip
+          className=" cursor-pointer"
+          value="Show"
+          onClick={() => {
+            dwonloadFile(row);
+          }}
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
+            </svg>
+          }
+        ></Chip>
+      ),
     },
+    // {
+    //   name: "Client Secret",
+    //   selector: (row) => row.attributes.orderInfo.paymentInfo,
+
+    // },
     {
-      name: "Delevary Status",
-      selector: (row) => row.attributes.orderInfo.status,
-      sortable: true,
+      name: "Actions",
+      cell: (row) => (
+        <select
+          required
+          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-state"
+        >
+          <option defaultChecked>Meaking</option>
+          <option>On Way</option>
+          <option>Shipped</option>
+        </select>
+      ),
+      selector: "selected",
+      sortable: false,
     },
 
-    // {
-    //   name: "Action",
-    //   cell: (row) => (
-    //     <div className=" grid my-2 justify-between items-center xl:grid-cols-3 grid-cols-1 gap-2">
-    //       <Chip
-    //         value="View"
-    //         className=" cursor-pointer  lowercase "
-    //         onClick={() => handleOpen(row.attributes)}
-    //       />
-    //       <Chip
-    //         color="green"
-    //         value="Active"
-    //         className=" cursor-pointer  lowercase "
-    //       />
-    //       <Chip
-    //         color="pink"
-    //         value="In-Active"
-    //         className=" cursor-pointer  lowercase "
-    //       />
-    //     </div>
-    //   ),
-    // },
+    {
+      name: "Actions",
+      cell: (row) => (
+        <div className=" grid my-2 justify-between items-center xl:grid-cols-3 grid-cols-1 gap-2">
+          <Chip
+            value="View"
+            className=" cursor-pointer  lowercase "
+            onClick={() => handleOpen(row.attributes)}
+          />
+          <Chip
+            color="red"
+            value="Delete"
+            className=" cursor-pointer  lowercase "
+            onClick={() => handleOpen(row.attributes)}
+          />
+        </div>
+      ),
+    },
   ];
 
   const customStyles = {
@@ -465,7 +517,54 @@ function index() {
 
         {/* // tailwind modal  */}
 
-        <Dialog open={open} handler={handleOpen}>
+        {/* Dialog for dowload files */}
+        <Dialog open={downloadDialog}>
+          <DialogHeader className="  flex justify-end">
+            <TiDeleteOutline
+              className=" text-[1.5rem]   cursor-pointer"
+              onClick={() => setDownloadDialog(false)}
+            />
+          </DialogHeader>
+
+          <DialogBody>
+            <div
+              className="grid grid-cols-1 max-h-[80vh]   
+            overflow-y-auto 
+           
+            
+            2xl:overflow-visible  gap-5 
+          "
+            >
+              {downloads?.attributes?.products.map((product, index) => (
+                <div
+                  key={index}
+                  className="mr-2 lg:mr-0   justify-items-center 
+               items-center
+             grid grid-cols-1 xl:grid-cols-2 gap-2 gap-y-5"
+                >
+                  <div>
+                    <p className="font-bold">{product.title}</p>
+                    <Image
+                      src={product.imgUrl}
+                      width="200"
+                      height="200"
+                      alt="product_image"
+                      className=" max-w-[10rem] max-h-[10rem] rounded-md place-content-center"
+                    />
+                  </div>
+
+                  <Chip
+                    onClick={() => finalDownload(product.file?.data.attributes)}
+                    value="Dwonlod"
+                    className=" cursor-pointer  block  capitalize shadow-md active:shadow-sm  text-sm  max-w-[5rem] "
+                  />
+                </div>
+              ))}
+            </div>
+          </DialogBody>
+        </Dialog>
+        {/* Dialog for dowload files */}
+        {/* <Dialog open={open} handler={handleOpen}>
           <DialogHeader className="  flex justify-between">
             {" "}
             <p className="text-[1.3rem]">
@@ -579,7 +678,7 @@ function index() {
               </div>
             </div>
           </DialogBody>
-        </Dialog>
+        </Dialog> */}
       </div>
     </>
   );

@@ -17,8 +17,6 @@ function Uploads() {
     localStorage.setItem("cart", JSON.stringify([...cart, currentProduct]));
     e.preventDefault();
     router.push("/shopping");
-
-    console.log(currentProduct);
   };
 
   return (

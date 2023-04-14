@@ -18,7 +18,7 @@ function BannerSlider() {
                 disableOnInteraction: false,
             }}
             modules={[Autoplay, Pagination]}
-            className=" max-h-[45rem] w-full"
+            className=" max-h-[40rem] w-full"
         >
             <SwiperSlide className="w-full">
                 <div className="flex w-full h-screen mx-0" style={{
