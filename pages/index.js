@@ -26,6 +26,7 @@ import styles from "../styles/Home.module.css";
 import Partners from "@/components/Partners";
 import Testimonials from "@/components/Testimonoals";
 import NewsLetter from "@/components/NewsLetter";
+import Footer from "@/components/Footer";
 
 
 export default function Home() {
@@ -81,8 +82,6 @@ export default function Home() {
         <div className="header-main  bg-white py-4  w-[100%] shadow">
           <div className="w-3/4  ml-auto ">
             <Navbar fluid={true} rounded={true}>
-
-
               <Navbar.Toggle />
 
               <Navbar.Collapse>
@@ -469,7 +468,7 @@ export default function Home() {
       </div>
 
       {/* social */}
-      <div className="w-11/12 mx-auto">
+      <div className="w-11/12 mx-auto my-20">
         <p className="text-[25px]">Find and Share on Instagram	</p>
         <div className="relative"  >
           <div className="text-center absolute top-1/2 left-0  text-black mx-0 bg-[#F2D71F]">
@@ -478,6 +477,9 @@ export default function Home() {
         </div>
       </div>
 
+      <div>
+        <Footer />
+      </div>
     </section>
 
   );
