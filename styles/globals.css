@@ -105,3 +105,16 @@ input[type="file"] {
   height: 100%;
 }
 
+.hero-image {
+  height: 80vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  position: absolute;
+  top: 35%;
+  left: 10%;
+}
