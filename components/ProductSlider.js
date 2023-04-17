@@ -1,4 +1,13 @@
-import  '../styles/ProductSlider.module.css';
+import '../styles/ProductSlider.module.css';
+import Image from 'next/image';
+import product1 from '../img/prod01-1-min-copyright-500x598.jpg'
+import product2 from '../img/prod02-1-min-copyright-500x598.jpg'
+import product3 from '../img/prod03-1-min-copyright-500x598.jpg'
+import product4 from '../img/prod04-1-min-copyright-500x598.jpg'
+import product5 from '../img/prod05-1-min-copyright-500x598.jpg'
+import product6 from '../img/prod06-1-min-copyright-500x598.jpg'
+
+import { FaStar } from "react-icons/fa";
 
 import SwiperCore, { Navigation, Autoplay } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -28,51 +37,181 @@ function ProductSlider() {
                 }
             }}
             slidesPerView={4}
-            spaceBetween={0}
+            spaceBetween={25}
             freeMode={true}
             // modules={[ Pagination]}
             className=""
         >
-            <SwiperSlide className="rounded-3xl" id ="swiper-slide-product">
-                <div className="relative">
-                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h5_gallery2.jpg" alt="Avatar" className=" opacity-100  block h-auto ease-in rounded-3xl" />
-                    <div className="ease-in opacity-0 hover:opacity-90 absolute top-0 left-0 bottom-0 right-0 bg-black h-full w-full rounded-3xl">
-                        <button className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-gray-100 px-5 py-3 rounded-full text-xl" >+</button>
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem]  border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product1}
+                    />
+                    <div className='my-4'>
+                        <p>VAPORESSO NEBULA VAPE KIT</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>26.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </SwiperSlide>
-            <SwiperSlide className="rounded-3xl"  id ="swiper-slide-product">
-                <div className="relative">
-                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h5_gallery4.jpg" alt="Avatar" className=" opacity-100  block  h-auto ease-in rounded-3xl" />
-                    <div className="ease-in opacity-0 hover:opacity-90 absolute top-0 left-0 bottom-0 right-0 bg-black h-full w-full rounded-3xl">
-                        <button className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-gray-100 px-5 py-3 rounded-full text-xl" >+</button>
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product2}
+                    />
+                    <div className='my-4'>
+                        <p>VAPORESSO NEBULA VAPE KIT</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>26.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </SwiperSlide>
-            <SwiperSlide className="rounded-3xl"  id ="swiper-slide-product">
-                <div className="relative">
-                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h5_gallery1.jpg" alt="Avatar" className="opacity-100   h-auto ease-in rounded-3xl" />
-                    <div className="ease-in opacity-0 hover:opacity-90 absolute top-0 left-0 bottom-0 right-0 bg-black h-full w-full rounded-3xl">
-                        <button className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-gray-100 px-5 py-3 rounded-full text-xl" >+</button>
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product3}
+                    />
+                    <div className='my-4'>
+                        <p>VAPORESSO NEBULA VAPE KIT</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>26.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </SwiperSlide>
-            <SwiperSlide className="rounded-3xl"  id ="swiper-slide-product">
-                <div className="relative">
-                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h5_gallery3.jpg" alt="Avatar" className="opacity-100   h-auto ease-in rounded-3xl" />
-                    <div className="ease-in opacity-0 hover:opacity-90 absolute top-0 left-0 bottom-0 right-0 bg-black h-full w-full rounded-3xl">
-                        <button className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-gray-100 px-5 py-3 rounded-full text-xl" >+</button>
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product4}
+                    />
+                    <div className='my-4'>
+                        <p>SMOANT BATTLESTAR TC MOD</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>42.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </SwiperSlide>
-            <SwiperSlide className="rounded-3xl"  id ="swiper-slide-product">
-                <div className="relative">
-                    <img src="https://demo2.pavothemes.com/printec/wp-content/uploads/2023/02/h5_gallery5.jpg" alt="Avatar" className="opacity-100  h-auto ease-in rounded-3xl" />
-                    <div className="ease-in opacity-0 hover:opacity-90 absolute top-0 left-0 bottom-0 right-0 bg-black h-full w-full rounded-3xl">
-                        <button className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-gray-100 px-5 py-3 rounded-full text-xl" >+</button>
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product5}
+                    />
+                    <div className='my-4'>
+                        <p>DINNER LADY BLACKBERRY</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>09.90</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </SwiperSlide>
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product6}
+                    />
+                    <div className='my-4'>
+                        <p>VAPORESSO NEBULA VAPE KIT</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>26.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product6}
+                    />
+                    <div className='my-4'>
+                        <p>VAPORESSO NEBULA VAPE KIT</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>26.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </SwiperSlide>
+            
+
         </Swiper>
     )
 }
