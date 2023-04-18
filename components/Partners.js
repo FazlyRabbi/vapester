@@ -34,7 +34,7 @@ function Partners() {
                 },
             }}
             slidesPerView={4}
-            spaceBetween={20}
+            spaceBetween={15}
             freeMode={true}
             // modules={[ Pagination]}
             className=""
@@ -43,20 +43,20 @@ function Partners() {
             <SwiperSlide className="">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner1}
                     />
                 </div>
             </SwiperSlide>
-            <SwiperSlide className="">
+            <SwiperSlide className="mr-0">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner2}
                     />
@@ -65,9 +65,9 @@ function Partners() {
             <SwiperSlide className="">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner3}
                     />
@@ -76,9 +76,9 @@ function Partners() {
             <SwiperSlide className="">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner4}
                     />
@@ -87,9 +87,9 @@ function Partners() {
             <SwiperSlide className="">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner5}
                     />
@@ -98,9 +98,9 @@ function Partners() {
             <SwiperSlide className="">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner1}
                     />
@@ -109,9 +109,9 @@ function Partners() {
             <SwiperSlide className="">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner2}
                     />
@@ -120,9 +120,9 @@ function Partners() {
             <SwiperSlide className="">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner3}
                     />
@@ -131,9 +131,9 @@ function Partners() {
             <SwiperSlide className="">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner4}
                     />
@@ -142,9 +142,9 @@ function Partners() {
             <SwiperSlide className="">
                 <div className="">
                     <Image
-                        height={180}
-                        width={180}
-                        className={`max-h-[20rem] border-4 border-gray-400 p-4`}
+                        height={160}
+                        width={160}
+                        className={`max-h-[20rem] border-4 border-gray-300 p-3`}
                         alt="product__imgae"
                         src={partner5}
                     />

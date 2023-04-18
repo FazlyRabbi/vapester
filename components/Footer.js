@@ -15,7 +15,7 @@ import { AiFillInstagram, AiOutlineTwitter } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
 import { FaLinkedin, FaPinterestP } from "react-icons/fa";
 
-export default function FooterNew() {
+export default function Footer() {
   return (
     <footer className="  shadow-md   py-[2.5rem] text-white bg-[#1E1E1E]">
       <div className="container mx-auto   ">
@@ -24,7 +24,7 @@ export default function FooterNew() {
             <h3 className="info-title text-[25px] font-bold capitalize">
               information & Services
             </h3>
-            <ul className=" capitalize mt-5">
+            <ul className=" capitalize mt-5 list-disc">
               <li className="mb-1">Shipping & Returns</li>
               <li className="mb-1">Privacy Policy</li>
               <li className="mb-1">Nicotine Disclaimer</li>
@@ -36,7 +36,7 @@ export default function FooterNew() {
             <h3 className="info-title text-[25px] font-bold capitalize invisible">
               jijii
             </h3>
-            <ul className=" capitalize mt-5">
+            <ul className=" capitalize mt-5 list-disc">
               <li className="mb-1">Privacy Notice</li>
               <li className="mb-1">Terms & Conditions</li>
               <li className="mb-1">Shortcodes</li>

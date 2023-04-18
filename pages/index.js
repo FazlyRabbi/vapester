@@ -27,6 +27,7 @@ import Partners from "@/components/Partners";
 import Testimonials from "@/components/Testimonoals";
 import NewsLetter from "@/components/NewsLetter";
 import Footer from "@/components/Footer";
+import BannerSlideMobile from "@/components/BannerSlideMobile";
 
 
 export default function Home() {
@@ -116,36 +117,39 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <section>
+      <div className="hidden lg:block">
         <BannerSlider />
-      </section>
+      </div>
+      <div className="block lg:hidden">
+        <BannerSlideMobile />
+      </div>
       {/* features */}
-      <div className="flex justify-around my-12">
-        <div>
+      <div className="flex flex-wrap justify-around my-12">
+        <div className="p-2">
           < FaShoppingBasket className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             Free Shipping</p>
           <p className="text-gray-500">No minimum order</p>
         </div>
-        <div>
+        <div className="p-2">
           < FaShoppingBasket className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             60 Day Warranty</p>
           <p className="text-gray-500">Free roundtrip shipping</p>
         </div>
-        <div>
+        <div className="p-2">
           < FaShoppingBasket className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             Easy Returns</p>
           <p className="text-gray-500">With no restocking fee</p>
         </div>
-        <div>
+        <div className="p-2">
           < FaShoppingBasket className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             Expert Advice</p>
           <p className="text-gray-500">In-store, call, email, chat</p>
         </div>
-        <div>
+        <div className="p-2">
           < FaShoppingBasket className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             Low Prices
@@ -153,15 +157,15 @@ export default function Home() {
           <p className="text-gray-500">Shop with confidence</p>
         </div>
       </div>
-      
+
       {/* categories */}
-      <div className="w-11/12 mx-auto grid grid-cols-3 gap-8">
-        <div className={`${styles.bgImage1} col-span-2 bg-center bg-no-repeat bg-cover relative min-w-[10rem] min-h-[10rem]`}>
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className={`${styles.bgImage1} col-span-1 md:col-span-2 bg-center bg-no-repeat bg-cover relative min-w-[10rem] min-h-[10rem]`}>
           <div className="text-center absolute top-1/2 left-0 -translate-y-1/2 text-white mx-0 bg-black">
             <p className='font-semibold tracking-widest uppercase text-[25px] -mt-1.5'>Starter kit bundles</p>
           </div>
         </div>
-        <div className={` bg-center bg-no-repeat bg-cover relative ${styles.bgImage2}`}>
+        <div className={` bg-center bg-no-repeat bg-cover relative min-w-[7rem] min-h-[10rem] ${styles.bgImage2}`}>
           <div className="text-center absolute top-1/2 left-0 -translate-y-1/2 text-white mx-0 bg-black">
             <p className='font-semibold tracking-widest uppercase text-[25px] -mt-1.5'>E-liquids</p>
           </div>
@@ -171,12 +175,12 @@ export default function Home() {
             <p className='font-semibold tracking-widest uppercase text-[25px] -mt-1.5'>vape mods</p>
           </div>
         </div>
-        <div className={` bg-center bg-no-repeat bg-cover relative ${styles.bgImage4}`}>
+        <div className={` bg-center bg-no-repeat bg-cover relative min-w-[7rem] min-h-[10rem] ${styles.bgImage4}`}>
           <div className="text-center absolute top-1/2 left-0 -translate-y-1/2 text-white mx-0 bg-black">
             <p className='font-semibold tracking-widest uppercase text-[25px] -mt-1.5'>tanks and rda</p>
           </div>
         </div>
-        <div className={` bg-center bg-no-repeat bg-cover relative ${styles.bgImage5}`}>
+        <div className={` bg-center bg-no-repeat bg-cover relative min-w-[7rem] min-h-[10rem] ${styles.bgImage5}`}>
           <div className="text-center absolute top-1/2 left-0 -translate-y-1/2 text-white mx-0 bg-black">
             <p className='font-semibold tracking-widest uppercase text-[25px] -mt-1.5'>accessories</p>
           </div>
@@ -185,14 +189,12 @@ export default function Home() {
 
       {/* featured products */}
       <div className="w-11/12 mx-auto my-16">
-
         <p className="text-[25px] ">Meet our Feature Products</p>
         <div className="relative"  >
           <div className="text-center absolute top-1/2 left-0  text-black mx-0 bg-[#F2D71F]">
             <p className='font-black uppercase text-[40px] -mt-3.5'>vape mods</p>
           </div>
         </div>
-
         <div className="my-20 pt-16">
           <ProductSlider />
         </div>
@@ -207,7 +209,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="my-20 pt-16 grid grid-cols-5 gap-10">
+        <div className="my-20 pt-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 mx-auto">
           <div className="text-left">
             <Image
               height={300}
@@ -446,8 +448,8 @@ export default function Home() {
 
       {/* testimonial */}
 
-      <div className="w-11/12 mx-auto grid grid-cols-3 gap-8 my-20">
-        <div className={`${styles.testimonial} col-span-2 bg-center bg-no-repeat bg-cover relative min-w-[10rem] min-h-[20rem]`}>
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-20">
+        <div className={`${styles.testimonial} col-span-1 lg:col-span-2 bg-center bg-no-repeat bg-cover relative min-w-[10rem] min-h-[20rem]`}>
           <div className="text-center absolute top-1/3 left-0 -translate-y-1/2 text-white mx-0 bg-pink-600">
             <p className='font-black uppercase text-[30px] -mt-2'>Coutomers love us</p>
           </div>
@@ -460,7 +462,7 @@ export default function Home() {
         </div>
         <div className={` bg-center bg-no-repeat bg-cover relative ${styles.newsletter} min-w-[10rem] min-h-[20rem]`}>
           <div className="text-center absolute top-1/3 left-0 -translate-y-1/2 text-white mx-0 bg-pink-600">
-            <p className='font-black  uppercase text-[30px] -mt-2'>newsletter</p>
+            <p className='font-black tracking-wide uppercase text-[30px] -mt-2'>newsletter</p>
           </div>
           <div className="absolute top-[40%] mx-auto">
             <NewsLetter />

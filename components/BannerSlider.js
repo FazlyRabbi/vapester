@@ -25,8 +25,8 @@ function BannerSlider() {
           backgroundRepeat: "repeat",
           backgroundPosition: "center-left"
         }}>
-          <div className="grid grid-cols-2">
-            <div>
+          <div className="grid grid-cols-2 grid-flow-col lg:grid-flow-row">
+            <div className="">
               <p className="invisible">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo, pariatur alias reiciendis blanditiis ipsum veniam inventore adipisci nisi veritatis nobis!</p>
             </div>
             <div className="relative"  >
