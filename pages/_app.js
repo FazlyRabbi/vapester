@@ -7,6 +7,7 @@ import { ThemeProvider } from "@material-tailwind/react";
 import { CardProvider } from "@/context/CardContext";
 import "swiper/swiper-bundle.css";
 
+
 export default function MyApp({ Component, pageProps }) {
   // if (pageProps.protected && !user) {
   //   return (

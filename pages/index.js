@@ -153,6 +153,7 @@ export default function Home() {
           <p className="text-gray-500">Shop with confidence</p>
         </div>
       </div>
+      
       {/* categories */}
       <div className="w-11/12 mx-auto grid grid-cols-3 gap-8">
         <div className={`${styles.bgImage1} col-span-2 bg-center bg-no-repeat bg-cover relative min-w-[10rem] min-h-[10rem]`}>
