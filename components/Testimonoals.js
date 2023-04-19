@@ -31,8 +31,10 @@ function Testimonials() {
             slidesPerView={1}
             spaceBetween={25}
             freeMode={true}
-            // modules={[ Pagination]}
-            className=""
+            autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
         >
             <SwiperSlide >
                 <div className="text-left">

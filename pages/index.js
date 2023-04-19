@@ -4,10 +4,16 @@ import Image from "next/image";
 import logo from "../img/logo.png";
 import product5 from '../img/prod05-1-min-copyright-500x598.jpg'
 import { MdAccountCircle, MdPhoneCallback, MdEmail } from "react-icons/md";
+import { useState } from "react";
 import { BiLogIn } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
 import { FaShoppingBasket } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
+import { FaShippingFast } from "react-icons/fa";
+import { FaThumbsUp } from "react-icons/fa";
+import { FaMoneyBillAlt } from "react-icons/fa";
+import { RiCustomerService2Fill } from "react-icons/ri";
+import { MdAttachMoney } from "react-icons/md";
 import { Navbar } from "flowbite-react";
 
 // Import Swiper styles
@@ -24,9 +30,18 @@ import NewsLetter from "@/components/NewsLetter";
 import Footer from "@/components/Footer";
 import BannerSlideMobile from "@/components/BannerSlideMobile";
 import Megamenu from "@/components/Megamenu";
+import { useTransition, animated } from "react";
 
+const styleToggleButton = {
+  fontSize: "3rem",
+  color: "rgb(36,36,36)",
+  padding: 0,
+  border: "none",
+  background: "none"
+};
 
 export default function Home() {
+
   return (
     <section>
       <Head>
@@ -50,7 +65,7 @@ export default function Home() {
                 />
               </div>
               <div className="flex items-center text-white">
-                <div className=" cursor-pointer  px-3  space-x-1 ">
+                <div className=" cursor-pointer  px-3  space-x-1 hidden md:block">
                   <p className="text-base">Call Us: +1 800 820 20 20</p>
                 </div>
                 <div className=" cursor-pointer hidden lg:flex px-3 ">
@@ -59,7 +74,7 @@ export default function Home() {
                     Log In
                   </p>
                 </div>
-                <div className=" cursor-pointer  px-3">
+                <div className=" cursor-pointer hidden md:block px-3">
                   <Search />
                 </div>
                 <div className=" cursor-pointer  px-3">
@@ -69,7 +84,7 @@ export default function Home() {
 
                 </div>
                 <div className=" cursor-pointer  px-3 flex items-center">
-                  < FaBars className="text-white text-[30px]" />
+                  < FaBars className="text-white text-[30px]" onclick="openNav()" />
                 </div>
               </div>
             </div>
@@ -77,7 +92,7 @@ export default function Home() {
         </div>
         {/* <Megamenu /> */}
         <div className="header-main  bg-white py-4  w-[100%] shadow">
-          <div className="w-3/4 lg:ml-auto ">
+          <div className="w-3/4  lg:ml-auto ">
             <Navbar fluid={true} rounded={true}>
               <Navbar.Toggle />
 
@@ -122,31 +137,31 @@ export default function Home() {
       {/* features */}
       <div className="flex flex-wrap justify-around my-12">
         <div className="p-2">
-          < FaShoppingBasket className="text-[40px]" />
+          < FaShippingFast className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             Free Shipping</p>
           <p className="text-gray-500">No minimum order</p>
         </div>
         <div className="p-2">
-          < FaShoppingBasket className="text-[40px]" />
+          < FaThumbsUp className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             60 Day Warranty</p>
           <p className="text-gray-500">Free roundtrip shipping</p>
         </div>
         <div className="p-2">
-          < FaShoppingBasket className="text-[40px]" />
+          < FaMoneyBillAlt className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             Easy Returns</p>
           <p className="text-gray-500">With no restocking fee</p>
         </div>
         <div className="p-2">
-          < FaShoppingBasket className="text-[40px]" />
+          < RiCustomerService2Fill className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             Expert Advice</p>
           <p className="text-gray-500">In-store, call, email, chat</p>
         </div>
         <div className="p-2">
-          < FaShoppingBasket className="text-[40px]" />
+          < MdAttachMoney className="text-[40px]" />
           <p className="text-[25px] text-gray-800">
             Low Prices
           </p>
@@ -196,6 +211,31 @@ export default function Home() {
         </div>
       </div>
 
+      {/* discounts */}
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-20">
+        <div className={`${styles.discount1} col-span-1 lg:col-span-2 bg-center bg-no-repeat bg-cover relative min-w-[10rem] min-h-[20rem]`}>
+          <div className="text-start absolute top-1/3 left-0 -translate-y-1/2 text-white mx-0 bg-[#af7ffc] h-14">
+            <p className='font-black uppercase text-[30px] -mt-3'>SAVE 30% ON<br /> POPULAR E-LIQUIDS</p>
+          </div>
+          <div className="absolute top-2/4">
+            <div className="p-10">
+              <button className="bg-[#292929] text-white px-5 py-2.5 uppercase">Save on e-liquids</button>
+            </div>
+          </div>
+
+        </div>
+        <div className={` bg-center bg-no-repeat bg-cover relative ${styles.discount2} min-w-[10rem] min-h-[20rem]`}>
+          <div className="text-start absolute top-1/3 left-0 -translate-y-1/2 text-white mx-0 bg-[#c1c800] h-14">
+            <p className='font-black tracking-wide uppercase text-[30px] -mt-3'>vaporesso <br /> vaco one kids</p>
+          </div>
+          <div className="absolute top-1/2 mx-auto">
+            <div className="p-10">
+              <button className="bg-[#292929] text-white px-5 py-2.5 uppercase">Shop now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* last update */}
       <div className="w-11/12 mx-auto my-16">
         <p className="text-[25px]">Don't Miss Our Last Updates</p>
@@ -228,14 +268,16 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
+          <div className="text-left ">
+            <div className="border-4 border-gray-400 hover:border-gray-700 z-10">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] scale-95 hover:scale-110 overflow-hidden`}
+                alt="product__imgae"
+                src={product5}
+              />
+            </div>
             <div className='my-4'>
               <p>DINNER LADY BLACKBERRY</p>
               <div className='flex items-center'>
@@ -445,16 +487,15 @@ export default function Home() {
       {/* testimonial */}
 
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-20">
-        <div className={`${styles.testimonial} col-span-1 lg:col-span-2 bg-center bg-no-repeat bg-cover relative min-w-[10rem] min-h-[20rem]`}>
-          <div className="text-center absolute top-1/3 left-0 -translate-y-1/2 text-white mx-0 bg-pink-600">
-            <p className='font-black uppercase text-[30px] -mt-2'>Coutomers love us</p>
-          </div>
-          <div className="absolute top-3/2">
-            <div className="p-10">
-              {/* <Testimonials /> */}
+        <div className={`${styles.testimonial} col-span-1 lg:col-span-2 bg-center bg-no-repeat bg-cover min-w-[10rem] min-h-[20rem]`}>
+          <div className="pt-20">
+            <div className="text-start w-fit h-8 text-white m-0 bg-pink-600 ">
+              <p className='font-black uppercase text-[30px]'>Coutomers love us</p>
             </div>
           </div>
-
+          <div className="p-10">
+            <Testimonials />
+          </div>
         </div>
         <div className={` bg-center bg-no-repeat bg-cover relative ${styles.newsletter} min-w-[10rem] min-h-[20rem]`}>
           <div className="text-center absolute top-1/3 left-0 -translate-y-1/2 text-white mx-0 bg-pink-600">
