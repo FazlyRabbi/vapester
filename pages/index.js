@@ -2,11 +2,6 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import logo from "../img/logo.png";
-import testimonial from "../img/home3-bg4-copyright.jpg"
-import news from "../img/home1-bg9-copyright.jpg"
-import category3 from "../img/home1-bg3-min-copyright.jpg"
-import category4 from "../img/home1-bg5-min-copyright.jpg"
-import category5 from "../img/home1-bg6-min-copyright.jpg"
 import product5 from '../img/prod05-1-min-copyright-500x598.jpg'
 import { MdAccountCircle, MdPhoneCallback, MdEmail } from "react-icons/md";
 import { BiLogIn } from "react-icons/bi";
@@ -28,6 +23,7 @@ import Testimonials from "@/components/Testimonoals";
 import NewsLetter from "@/components/NewsLetter";
 import Footer from "@/components/Footer";
 import BannerSlideMobile from "@/components/BannerSlideMobile";
+import Megamenu from "@/components/Megamenu";
 
 
 export default function Home() {
@@ -44,13 +40,13 @@ export default function Home() {
           <div className="container mx-auto lg:px-10">
 
             <div className="header-top-content flex justify-between items-center h-36">
-              <div className="h-[240px] w-[220px] bg-[#393939]">
+              <div className=" lg:h-[240px] lg:w-[220px] bg-[#393939]">
                 <Image
                   src={logo}
                   alt="logo"
-                  height={150}
-                  width={150}
-                  className="text-center mx-auto pt-20"
+                  height={140}
+                  width={140}
+                  className="text-center mx-auto pt-6 lg:pt-20"
                 />
               </div>
               <div className="flex items-center text-white">
@@ -79,9 +75,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+        {/* <Megamenu /> */}
         <div className="header-main  bg-white py-4  w-[100%] shadow">
-          <div className="w-3/4  ml-auto ">
+          <div className="w-3/4 lg:ml-auto ">
             <Navbar fluid={true} rounded={true}>
               <Navbar.Toggle />
 
