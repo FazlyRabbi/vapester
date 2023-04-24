@@ -7,11 +7,14 @@ module.exports = withMT({
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./public/**/*.html",
-    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
     "path-to-your-node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
-  plugins: [require("flowbite/plugin"), require("flowbite-typography")],
+  plugins: [
+    "tailwindcss",
+    "postcss-flexbugs-fixes",
+    "postcss-preset-env",
+  ],
 
   theme: {
     fontSize: {
@@ -19,6 +22,11 @@ module.exports = withMT({
       base: "14px",
       titleSm: "15px",
       xl: "1.25rem",
+    },
+
+    fontFamily: {
+      bun: ["Bungee", "cursive"],
+      eco: ["Economica", "sans-serif"],
     },
 
     colors: {
