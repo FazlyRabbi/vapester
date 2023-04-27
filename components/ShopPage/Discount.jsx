@@ -10,7 +10,7 @@ export default function DiscountBanner() {
           <p className="font-black uppercase lg:text-[80px] text-[25px] tracking-widest  lg:-mt-7 -mt-2 text-center font-bun">
             {" "}
             SAVES 30% ON <br />
-            <span className="mt-0 uppercase tracking-widest font-black text-[25px]"> popular e liquids</span>
+            <span className="mt-0 uppercase tracking-widest font-black text-[25px] lg:text-[80px]"> popular e liquids</span>
           </p>
         </div>
       </div>
