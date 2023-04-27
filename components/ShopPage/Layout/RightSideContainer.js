@@ -5,13 +5,13 @@ import product1 from "/img/prod01-1-min-copyright-500x598.jpg";
 
 function RightSideContainer() {
   return (
-    <section className="lg:col-span-9">
+    <section className="lg:col-span-9 lg:order-2 md:order-1 order-1">
       {/* top section  */}
       <div
-        className="flex lg:flex-row flex-col-reverse
-      justify-between  lg:items-center items-start w-[65%] lg:w-full mx-auto gap-4"
+        className="flex lg:flex-row flex-col-reverse md:flex-row
+      justify-between  lg:items-center items-start w-[65%] md:w-[90%] lg:w-full mx-auto gap-4"
       >
-        <div className="lg:flex  justify-between items-center gap-12">
+        <div className="lg:flex md:flex justify-between items-center gap-12">
           <select
             className="px-12 py-4 text-white bg-[#393939] lg:mb-0 mb-4"
             name="cars"
@@ -37,7 +37,7 @@ function RightSideContainer() {
 
       {/*products in grid  */}
       <div className="lg:my-20 lg:pt-16 pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto">
-        <div className="lg:text-left text-center w-[65%] lg:w-full mx-auto">
+        <div className="lg:text-left text-center w-[65%] md:w-[85%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image
               height={300}
@@ -62,7 +62,7 @@ function RightSideContainer() {
             </div>
           </div>
         </div>
-        <div className="text-left w-[65%] lg:w-full mx-auto">
+        <div className="text-left w-[65%] md:w-[85%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image
               height={300}
@@ -87,7 +87,7 @@ function RightSideContainer() {
             </div>
           </div>
         </div>
-        <div className="text-left w-[65%] lg:w-full mx-auto">
+        <div className="text-left w-[65%] md:w-[85%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image
               height={300}
@@ -112,7 +112,7 @@ function RightSideContainer() {
             </div>
           </div>
         </div>
-        <div className="text-left w-[65%] lg:w-full mx-auto">
+        <div className="text-left w-[65%] md:w-[85%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image
               height={300}
@@ -137,7 +137,7 @@ function RightSideContainer() {
             </div>
           </div>
         </div>
-        <div className="text-left w-[65%] lg:w-full mx-auto">
+        <div className="text-left w-[65%] md:w-[85%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image
               height={300}
@@ -162,7 +162,7 @@ function RightSideContainer() {
             </div>
           </div>
         </div>
-        <div className="text-left w-[65%] lg:w-full mx-auto">
+        <div className="text-left w-[65%] md:w-[85%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image
               height={300}
@@ -187,7 +187,7 @@ function RightSideContainer() {
             </div>
           </div>
         </div>
-        <div className="text-left w-[65%] lg:w-full mx-auto">
+        <div className="text-left w-[65%] md:w-[85%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image
               height={300}
@@ -212,7 +212,7 @@ function RightSideContainer() {
             </div>
           </div>
         </div>
-        <div className="text-left w-[65%] lg:w-full mx-auto">
+        <div className="text-left w-[65%] md:w-[85%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image
               height={300}
@@ -237,7 +237,7 @@ function RightSideContainer() {
             </div>
           </div>
         </div>
-        <div className="text-left w-[65%] lg:w-full mx-auto">
+        <div className="text-left w-[65%] md:w-[85%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image
               height={300}
