@@ -61,5 +61,13 @@ module.exports = withMT({
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
     },
+
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square',
+      roman: 'upper-roman',
+    }
   },
 });
