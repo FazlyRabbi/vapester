@@ -6,7 +6,9 @@ function LeftSideContainer() {
         <p className="absolute left-0 bg-[#D22756] text-white font-eco lg:text-[40px] text-[30px]  px-8 text-center top-12">
           Cart
         </p>
-        <p className="absolute left-16 text-white bottom-16">No product in the cart</p>
+        <p className="absolute left-16 text-white bottom-16">
+          No product in the cart
+        </p>
       </div>
 
       {/* filter  */}
@@ -14,6 +16,10 @@ function LeftSideContainer() {
         <p className="absolute left-0 bg-[#D22756] text-white font-eco lg:text-[40px] text-[30px]  px-8  text-center top-12">
           Filter by Price
         </p>
+
+        <div className="absolute left-28 top-40">
+          <input type="range" id="volume" name="volume" min="0" max="50" />
+        </div>
       </div>
 
       {/* input a product name */}
@@ -44,7 +50,6 @@ function LeftSideContainer() {
           </div>
         </div>
       </div>
-
 
       {/* product tags  */}
       <div className=" bg-[#ef3737] relative mt-12 w-[65%] lg:w-full mx-auto">
