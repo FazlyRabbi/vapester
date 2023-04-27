@@ -6,15 +6,14 @@ import product1 from "/img/prod01-1-min-copyright-500x598.jpg";
 function RightSideContainer() {
   return (
     <section className="lg:col-span-9">
-
       {/* top section  */}
       <div
-        className="lg:flex lg:flex-row flex-row-reverse
-       lg:justify-between justify-center items-center"
+        className="flex lg:flex-row flex-col-reverse
+      justify-between  lg:items-center items-start w-[65%] lg:w-full mx-auto gap-4"
       >
         <div className="lg:flex  justify-between items-center gap-12">
           <select
-            className="px-12 py-4 text-white bg-[#393939]"
+            className="px-12 py-4 text-white bg-[#393939] lg:mb-0 mb-4"
             name="cars"
             id="cars"
           >
@@ -37,7 +36,7 @@ function RightSideContainer() {
       </div>
 
       {/*products in grid  */}
-      <div className="my-20 pt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto">
+      <div className="lg:my-20 lg:pt-16 pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto">
         <div className="lg:text-left text-center w-[65%] lg:w-full mx-auto">
           <div className="border-4 border-[#EEEEEE] hover:border-[#393939] ">
             <Image

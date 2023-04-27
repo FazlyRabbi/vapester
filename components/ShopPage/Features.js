@@ -8,7 +8,7 @@ const { RiCustomerService2Fill } = require("react-icons/ri");
 
 function Features() {
   return (
-    <div className="lg:flex flex-wrap justify-around my-12 container mx-auto p-4 lg:ml-0">
+    <div className="lg:flex flex-wrap justify-around my-12 container mx-auto p-4 lg:ml-0 w-[65%] lg:w-full mx-auto">
       <div className="lg:flex justify-center items-center ">
         <FaShippingFast className="text-[50px] mr-4" />
         <div>

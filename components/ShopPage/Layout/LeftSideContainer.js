@@ -2,7 +2,7 @@ function LeftSideContainer() {
   return (
     <section className="lg:col-span-3">
       {/* cart  */}
-      <div className="h-64 lg:w-full bg-[#292929] relative">
+      <div className="h-64 w-[65%] lg:w-full mx-auto bg-[#292929] relative">
         <p className="absolute left-0 bg-[#D22756] text-white font-eco text-[40px]  px-8 text-center top-12">
           Cart
         </p>
@@ -10,14 +10,14 @@ function LeftSideContainer() {
       </div>
 
       {/* filter  */}
-      <div className="h-64 lg:w-full bg-[#292929] relative mt-12">
+      <div className="h-64 w-[65%] lg:w-full mx-auto bg-[#292929] relative mt-12">
         <p className="absolute left-0 bg-[#D22756] text-white font-eco text-[40px]  px-8  text-center top-12">
           Filter by Price
         </p>
       </div>
 
       {/* input a product name */}
-      <div className="h-48 w-full bg-[#292929] relative mt-12 flex justify-center items-center">
+      <div className="h-48 w-[65%] lg:w-full mx-auto bg-[#292929] relative mt-12 flex justify-center items-center">
         <input
           className="bg-[#393939] p-6 border border-white text-white placeholder-white"
           type="text"
@@ -26,7 +26,7 @@ function LeftSideContainer() {
       </div>
 
       {/* product categories  */}
-      <div className="w-full bg-[#ef3737] relative mt-12">
+      <div className="w-[65%] lg:w-full mx-auto bg-[#ef3737] relative mt-12">
         <p className="absolute left-0 bg-[#D22756] text-white font-eco text-[40px]  px-8  text-center top-12 z-999">
           Product categories
         </p>
@@ -47,7 +47,7 @@ function LeftSideContainer() {
 
 
       {/* product tags  */}
-      <div className="w-full bg-[#ef3737] relative mt-12">
+      <div className=" bg-[#ef3737] relative mt-12 w-[65%] lg:w-full mx-auto">
         <p className="absolute left-0 bg-[#D22756] text-white font-eco text-[40px]  px-8  text-center top-12">
           Product tags
         </p>
