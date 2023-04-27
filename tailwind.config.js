@@ -28,7 +28,7 @@ module.exports = withMT({
       bun: ["Bungee", "cursive"],
       eco: ["Economica", "sans-serif"],
     },
-
+  
     colors: {
       transparent: "transparent",
       primary: "#F45DA0",
