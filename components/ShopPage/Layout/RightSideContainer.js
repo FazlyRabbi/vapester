@@ -5,11 +5,12 @@ import product1 from "/img/prod01-1-min-copyright-500x598.jpg";
 
 function RightSideContainer() {
   return (
-    <section className="col-span-9">
+    <section className="lg:col-span-9">
 
       {/* top section  */}
-      <div className='flex justify-between items-center'>
-        <div className='flex justify-between items-center gap-12'>
+      <div className='lg:flex lg:flex-row flex-row-reverse
+       justify-between items-center'>
+        <div className='lg:flex flex-row-reverse justify-between items-center gap-12'>
           <select className="px-12 py-4 text-white bg-[#393939]" name="cars" id="cars">
             <option value="volvo">sort by average rate</option>
             <option value="volvo">sort by popularity</option>

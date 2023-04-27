@@ -1,18 +1,15 @@
 import styles from "../styles/Shop.module.css";
 
-function DynamicBanner({children}) {
+function DynamicBanner({ children }) {
   return (
     <section
-    // 
-      className={`${styles.shop1} min-h-[20rem] bg-no-repeat bg-cover my-20`}
+      className={`${styles.shop1} lg:min-h-[20rem] min-h-[10rem] bg-no-repeat bg-cover lg:my-20 my-6`}
     >
-           <div className="relative container mx-auto pt-60">
-          <div className="text-center absolute top-1/2 left-0  text-white mx-0 bg-[#D22756] pr-8">
-            <p className="font-black uppercase text-[80px] -mt-6">
-             {children}
-            </p>
-          </div>
+      <div className="relative container mx-auto lg:pt-60 pt-12">
+        <div className="text-center absolute lg:top-1/2 lg:left-0 left-4  text-white mx-0 bg-[#D22756] pr-8">
+          <p className="font-black uppercase lg:text-[80px] text-[40px] lg:-mt-6 -mt-4">{children}</p>
         </div>
+      </div>
     </section>
   );
 }

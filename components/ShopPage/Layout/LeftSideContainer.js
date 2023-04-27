@@ -1,8 +1,8 @@
 function LeftSideContainer() {
   return (
-    <section className="col-span-3">
+    <section className="lg:col-span-3">
       {/* cart  */}
-      <div className="h-64 w-full bg-[#292929] relative">
+      <div className="h-64 lg:w-full bg-[#292929] relative">
         <p className="absolute left-0 bg-[#D22756] text-white font-eco text-[40px]  px-8 text-center top-12">
           Cart
         </p>
@@ -10,7 +10,7 @@ function LeftSideContainer() {
       </div>
 
       {/* filter  */}
-      <div className="h-64 w-full bg-[#292929] relative mt-12">
+      <div className="h-64 lg:w-full bg-[#292929] relative mt-12">
         <p className="absolute left-0 bg-[#D22756] text-white font-eco text-[40px]  px-8  text-center top-12">
           Filter by Price
         </p>
