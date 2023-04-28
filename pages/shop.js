@@ -1,11 +1,20 @@
+import AgeGateModal from "@/components/AgeGateModal";
 import DynamicBanner from "@/components/DynamicBanner";
 import Header from "@/components/HomePage/Header";
 import DiscountBanner from "@/components/ShopPage/Discount";
 import Features from "@/components/ShopPage/Features";
 import ShopLayout from "@/components/ShopPage/Layout/Layout";
+import { AgeGateContext } from "@/context/ageGateContext";
+import { useContext } from "react";
 import { BsFillChatLeftFill } from "react-icons/bs";
 
 export default function Shop() {
+  const { isOver18 } = useContext(AgeGateContext);
+
+  if (!isOver18) {
+    return <AgeGateModal />;
+  }
+
   return (
     <section>
       {/*header */}
@@ -17,8 +26,8 @@ export default function Shop() {
           <BsFillChatLeftFill className="text-white" />
         </div>
         <div className="bg-[#fafafa] p-3 rounded-3xl">
-            <p>Presale Chat</p>
-          </div>
+          <p>Presale Chat</p>
+        </div>
       </div>
 
       {/* header */}

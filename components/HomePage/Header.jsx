@@ -1,14 +1,18 @@
 // import { Navbar } from "flowbite-react";
 import Image from "next/image";
-import { BiLogIn } from "react-icons/bi";
+import Link from "next/link";
 import { AiOutlineMenu } from "react-icons/ai";
-import {  FaShoppingBasket } from "react-icons/fa";
+import { BiLogIn } from "react-icons/bi";
+import { FaShoppingBasket } from "react-icons/fa";
 import Search from "../Search";
 
 function Header() {
   return (
-    <header id="head" className="z-[9999]
-      transition-all duration-500">
+    <header
+      id="head"
+      className="z-[9999]
+      transition-all duration-500"
+    >
       <div className="header-top bg-[#292929] ">
         <div className="container mx-auto lg:px-10">
           <div
@@ -52,12 +56,28 @@ function Header() {
                 className=" cursor-pointer  px-3 
               space-x-1 hidden lg:block"
               >
-                <p className="
+                <p
+                  className="
 
                  transition-all duration-200
                 
-                hover:text-[#F2D71F]  font-bold  text-[18px]">
+                hover:text-[#F2D71F]  font-bold  text-[18px]"
+                >
                   Call Us: +1 800 820 20 20
+                </p>
+              </div>
+              <div
+                className=" cursor-pointer  px-3 
+              space-x-1 hidden lg:block"
+              >
+                <p
+                  className="
+
+                 transition-all duration-200
+                
+                hover:text-[#F2D71F]  font-bold  text-[18px]"
+                >
+                  <Link href={`/shop`}>Shop</Link>
                 </p>
               </div>
 
@@ -95,10 +115,12 @@ function Header() {
                  space-x-4
                   justify-center items-center "
                 >
-                  <FaShoppingBasket className=" 
+                  <FaShoppingBasket
+                    className=" 
                   
                   
-                  text-[1.4rem]" />
+                  text-[1.4rem]"
+                  />
                   <span
                     className="
                   

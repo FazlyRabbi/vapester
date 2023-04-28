@@ -1,11 +1,8 @@
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
-
 // imports swiper sliders
-import { AuthProvider } from "@/context/AuthContext";
-import { CardProvider } from "@/context/CardContext";
-import { SidebarProvider } from "@/context/SidebarContext";
+import { AgeGateProvider } from "@/context/ageGateContext";
 import { ThemeProvider } from "@material-tailwind/react";
 import "swiper/swiper-bundle.css";
 
@@ -27,7 +24,9 @@ export default function MyApp({ Component, pageProps }) {
         />
       </Head>
       <ThemeProvider>
-        <Component {...pageProps} />
+        <AgeGateProvider>
+          <Component {...pageProps} />
+        </AgeGateProvider>
       </ThemeProvider>
     </>
   );
