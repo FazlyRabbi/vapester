@@ -50,7 +50,7 @@ function Header() {
             >
               <div
                 className=" cursor-pointer  px-3 
-              space-x-1 hidden md:block"
+              space-x-1 hidden lg:block"
               >
                 <p className="
 
@@ -79,7 +79,7 @@ function Header() {
                 </div>
               </div>
 
-              <div className="    cursor-pointer hidden md:block px-3">
+              <div className="    cursor-pointer hidden lg:block px-3">
                 <Search />
               </div>
 
