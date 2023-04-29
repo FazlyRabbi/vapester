@@ -1,6 +1,5 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AgeGateContext } from "@/context/ageGateContext";
-import { useRouter } from "next/router";
 import {
   Button,
   Dialog,
@@ -12,22 +11,22 @@ import {
 const AgeGateModal = () => {
   const { setIsOver18, isOver18 } = useContext(AgeGateContext);
 
-  const router = useRouter();
+  const [no, setNo] = useState(false);
 
   const handleYesClick = () => {
     setIsOver18(true);
+    setNo(false);
   };
 
   const handleNoClick = () => {
-    router.push("/");
+    setNo(true);
   };
 
   return (
     <div>
-
-   <h1 className="  capitalize  text-[2rem]  text-red flex justify-center mt-[10rem]">
-      You Can't Access is  the website if your are not 18+
-   </h1>
+      <h1 className="  capitalize  text-[2rem]  text-red flex justify-center mt-[10rem]">
+        You Can't Access is the website if your are not 18+
+      </h1>
 
       <Dialog
         open={!isOver18}
@@ -50,6 +49,22 @@ const AgeGateModal = () => {
         >
           Are You 18+ ?
         </DialogHeader>
+
+        {no ? (
+          <p
+            className=" font-eco text-cen
+    flex justify-center 
+my-4
+       text-[1.2rem]
+    text-white
+   
+   "
+          >
+            The products on this website are intended for adults only!
+          </p>
+        ) : (
+          ""
+        )}
 
         <DialogFooter
           className="flex justify-center

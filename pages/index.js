@@ -1,5 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useContext } from "react";
+import { AgeGateContext } from "@/context/ageGateContext";
+import AgeGateModal from "@/components/AgeGateModal";
 import {
   FaMoneyBillAlt,
   FaShippingFast,
@@ -34,6 +37,12 @@ const styleToggleButton = {
 };
 
 export default function Home() {
+  const { isOver18 } = useContext(AgeGateContext);
+
+  if (!isOver18) {
+    return <AgeGateModal />;
+  }
+
   return (
     <section>
       <Head>
