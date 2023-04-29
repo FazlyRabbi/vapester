@@ -1,4 +1,3 @@
-import DynamicBanner from "@/components/DynamicBanner";
 import Header from "@/components/HomePage/Header";
 import MegaMenu from "@/components/ShopMegaMenu";
 import ProductPrimaryDetails from "@/components/SingleProduct/ProductPrimaryDetails";
