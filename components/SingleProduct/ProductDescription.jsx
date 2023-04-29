@@ -1,15 +1,15 @@
 export default function ProductDescription() {
   return (
     <section className="container mx-auto">
-      <div className="lg:flex flex-col gap-6  w-[80%] mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 items-center">
-          <button className="bg-[#F2D71F] lg:w-48  lg:h-14 lg:text-[20px] text-[15px] text-black  py-2 px-2">
+      <div className="lg:flex flex-col gap-6  w-[80%] lg:w-full mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:flex items-center gap-4 justify-start">
+          <button className="bg-[#F2D71F] lg:w-48  lg:h-14 lg:text-[20px] text-[15px] text-black  py-2 px-2 flex justify-center items-center">
             Description
           </button>
-          <button className="bg-[#393939] lg:text-[20px] text-white lg:w-80  lg:h-14 py-2 px-4 text-[13px]">
+          <button className="bg-[#393939] lg:text-[20px] text-white lg:w-80  lg:h-14 py-2 px-4 md:text-[14px] text-[13px] flex justify-center items-center">
             Additional information
           </button>
-          <button className="bg-[#393939] lg:text-[20px] text-[15px] text-white lg:w-60 lg:h-14 py-2 px-4">
+          <button className="bg-[#393939] lg:text-[20px] text-[15px] text-white lg:w-60 lg:h-14 py-2 px-4 flex justify-center items-center">
             Reviews
           </button>
         </div>
