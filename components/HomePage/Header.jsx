@@ -6,10 +6,12 @@ import {  FaShoppingBasket } from "react-icons/fa";
 import Search from "../Search";
 
 function Header() {
+
+
   return (
     <header id="head" className="z-[9999]
       transition-all duration-500">
-      <div className="header-top bg-[#292929] ">
+      <div className="header-top bg-[#292929] relative">
         <div className="container mx-auto lg:px-10">
           <div
             className="header-top-content flex font-eco 
@@ -61,6 +63,7 @@ function Header() {
                 </p>
               </div>
 
+              {/* login button  */}
               <div className=" hidden xl:block">
                 <div
                   className="cursor-pointer 
@@ -124,6 +127,8 @@ function Header() {
             </div>
           </div>
         </div>
+
+     
       </div>
       {/* <Megamenu /> */}
       {/* <div className="header-main  bg-white py-4  w-[100%] shadow">
