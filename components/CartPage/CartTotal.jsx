@@ -2,7 +2,7 @@ import { MdLocalShipping } from "react-icons/md";
 
 export default function CartTotal() {
   return (
-    <section className=" pt-12 pb-20 flex justify-end lg:w-[70%] md:w-[90%] mx-auto">
+    <section className=" pt-12 pb-20 flex justify-end lg:w-[70%] md:w-[90%] w-[80%] mx-auto">
       <div className="flex flex-col  items-start lg:gw-1/2 space-y-4">
         <p className="text-[25px] font-bun">CART TOTALS</p>
         <div className="flex justify-between items-center gap-44">
