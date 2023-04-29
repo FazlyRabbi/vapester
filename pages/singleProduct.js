@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/HomePage/Header";
 import MegaMenu from "@/components/ShopMegaMenu";
 import ProductDescription from "@/components/SingleProduct/ProductDescription";
@@ -14,6 +15,7 @@ export default function SingleProduct(){
           <ProductPrimaryDetails/>
           <ProductDescription/>
           <RelatedProducts/>
+          <Footer/>
     </section>
   )
 }

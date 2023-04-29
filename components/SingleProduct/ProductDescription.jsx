@@ -1,19 +1,19 @@
 export default function ProductDescription() {
   return (
     <section className="container mx-auto">
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center gap-4">
-          <button className="bg-[#F2D71F] text-[20px] text-black py-4 px-8">
+      <div className="lg:flex flex-col gap-6  w-[80%] mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 items-center">
+          <button className="bg-[#F2D71F] lg:w-48  lg:h-14 lg:text-[20px] text-[15px] text-black  py-2 px-2">
             Description
           </button>
-          <button className="bg-[#393939] text-[20px] text-white py-4 px-8">
+          <button className="bg-[#393939] lg:text-[20px] text-white lg:w-80  lg:h-14 py-2 px-4 text-[13px]">
             Additional information
           </button>
-          <button className="bg-[#393939] text-[20px] text-white py-4 px-8">
+          <button className="bg-[#393939] lg:text-[20px] text-[15px] text-white lg:w-60 lg:h-14 py-2 px-4">
             Reviews
           </button>
         </div>
-        <p className="border-4 border-[#E6E6E6] p-12 text-[#A8A8A8]">
+        <p className="border-4 border-[#E6E6E6] lg:p-12 text-[#A8A8A8] lg:w-full p-6 lg:mr-0 mt-4">
           Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
           accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae
           ab illo inventore veritatis et quasi architecto beatae vitae dicta

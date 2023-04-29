@@ -16,14 +16,14 @@ export default function ProductPrimaryDetails() {
 
 
   return (
-    <div className="py-20">
-      <div className="container mx-auto flex justify-between items-start">
-        <div className="text-center  w-[40%] mx-auto flex flex-col mt-6">
+    <div className="lg:py-20 py-4">
+      <div className="container lg:flex md:flex justify-between items-start md:w-[95%] mx-auto lg:gap-0 md:gap-4">
+        <div className="text-center  lg:w-[40%] w-[90%] mx-auto flex flex-col mt-6">
           {/* left sede main image for magnify  */}
           <div className="border-4 border-[#EEEEEE]">
             <Image
               height={700}
-              className={`max-h-[40rem] scale-100 overflow-hidden transition ease-in duration-300 p-1 w-full`}
+              className={`max-h-[40rem] scale-100 overflow-hidden transition ease-in duration-300 p-1 w-full md:w-[95%] mx-auto`}
               alt="product__imgae"
               src={product1}
             />
@@ -51,13 +51,13 @@ export default function ProductPrimaryDetails() {
           </div>
         </div>
 
-        <div className="container mx-auto w-[55%]">
-          <h1 className="text-[#D22756] font-eco font-bold text-[45px]">
-            <span className="text-[55px]">$</span>70.00 –{" "}
-            <span className="text-[55px]">$</span>85.00
+        <div className="container mx-auto lg:w-[55%] w-[80%]">
+          <h1 className="text-[#D22756] font-eco font-bold lg:text-[45px] text-[35px]">
+            <span className="lg:text-[55px]">$</span>70.00 –{" "}
+            <span className="lg:text-[55px]">$</span>85.00
           </h1>
 
-          <div className="flex items-center gap-4 mt-3 mb-2">
+          <div className="lg:flex items-center gap-4 mt-3 mb-2">
             <div className="gap-1 flex text-yellow-500 ">
               <FaStar className="text-[30px]" />
               <FaStar className="text-[30px]" />
