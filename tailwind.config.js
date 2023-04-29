@@ -68,6 +68,6 @@ module.exports = withMT({
       decimal: 'decimal',
       square: 'square',
       roman: 'upper-roman',
-    }
+    },
   },
 });

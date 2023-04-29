@@ -72,6 +72,7 @@ function Header() {
                 </p>
               </div>
 
+              {/* login button  */}
               <div className=" hidden xl:block">
                 <div
                   className="cursor-pointer 
@@ -202,6 +203,7 @@ function Header() {
                 <Link href={`/`}>
                   {" "}
                   <li
+                    onClick={() => setOpen(false)}
                     className="flex 
                 
                  hover:text-[#2DBBD8]
@@ -219,15 +221,21 @@ function Header() {
                 </Link>
 
                 <Link href={`/aboutus`}>
-                  <li className="  hover:text-[#2DBBD8]">About Us</li>
+                  <li 
+                  onClick={() => setOpen(false)}
+                  className="  hover:text-[#2DBBD8]">About Us</li>
                 </Link>
 
                 <Link href={`/testimonials`}>
-                  <li className="  hover:text-[#2DBBD8]">Testimonials</li>
+                  <li
+                  onClick={() => setOpen(false)}
+                  className="  hover:text-[#2DBBD8]">Testimonials</li>
                 </Link>
 
                 <Link href={`/shop`}>
                   <li
+
+onClick={() => setOpen(false)}
                     className="flex 
                 
                  hover:text-[#2DBBD8]

@@ -23,6 +23,7 @@
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
     "react-id-swiper": "^4.0.0",
+    "react-image-magnify": "^2.7.4",
     "react-loading-skeleton": "^3.1.0",
     "react-pdf": "^6.2.2",
     "react-quill": "^2.0.0",
