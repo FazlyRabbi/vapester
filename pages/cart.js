@@ -11,7 +11,6 @@ export default function Cart() {
       <Header />
       <MegaMenu />
       <CartBanner>Cart</CartBanner>
-      {/* <CartBody /> */}
       <CartContainer/>
     </section>
   );
