@@ -1,5 +1,6 @@
 import Header from "@/components/HomePage/Header";
 import MegaMenu from "@/components/ShopMegaMenu";
+import ProductDescription from "@/components/SingleProduct/ProductDescription";
 import ProductPrimaryDetails from "@/components/SingleProduct/ProductPrimaryDetails";
 import SingleProductBanner from "@/components/SingleProductBanner";
 
@@ -10,6 +11,7 @@ export default function SingleProduct(){
           <MegaMenu/>
           <SingleProductBanner>VAPORESSO NEBULA VAPE KIT</SingleProductBanner>
           <ProductPrimaryDetails/>
+          <ProductDescription/>
     </section>
   )
 }

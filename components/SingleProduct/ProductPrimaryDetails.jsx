@@ -18,7 +18,7 @@ export default function ProductPrimaryDetails() {
   return (
     <div className="py-20">
       <div className="container mx-auto flex justify-between items-start">
-        <div className="text-center  w-1/3 mx-auto flex flex-col mt-6">
+        <div className="text-center  w-[40%] mx-auto flex flex-col mt-6">
           {/* left sede main image for magnify  */}
           <div className="border-4 border-[#EEEEEE]">
             <Image
@@ -51,7 +51,7 @@ export default function ProductPrimaryDetails() {
           </div>
         </div>
 
-        <div className="container mx-auto w-3/5">
+        <div className="container mx-auto w-[55%]">
           <h1 className="text-[#D22756] font-eco font-bold text-[45px]">
             <span className="text-[55px]">$</span>70.00 –{" "}
             <span className="text-[55px]">$</span>85.00
