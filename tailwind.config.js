@@ -70,11 +70,4 @@ module.exports = withMT({
       roman: 'upper-roman',
     },
   },
-
-  // bayajid added
-  variants: {
-    extend: {
-      display: ['group-focus']
-    }
-  }
 });
