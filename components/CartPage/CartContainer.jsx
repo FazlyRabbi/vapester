@@ -8,19 +8,19 @@ export default function CartContainer() {
 
   return (
     <section>
-      <div className="w-[70%] mx-auto">
+      <div className="lg:w-[70%] md:w-[90%] mx-auto">
         <div className="bg-[#D22756] text-white flex w-full items-center font-bun">
-          <p className="w-[43%] py-6 text-[20px] px-2 ml-20">Product</p>
-          <p className="w-[19%] py-6 text-[20px] px-2 text-center">Price</p>
-          <p className="w-[19%] py-6 text-[20px] px-2 text-center">Quantity</p>
-          <p className="w-[19%] py-6 text-[20px] px-2 text-center">Subtotal</p>
+          <p className="lg:w-[43%] md:w-[40%] py-6 text-[20px] px-2 ml-20">Product</p>
+          <p className="lg:w-[19%] md:w-[20%]  py-6 text-[20px] px-2 text-center">Price</p>
+          <p className="lg:w-[19%] md:w-[20%] py-6 text-[20px] px-2 text-center">Quantity</p>
+          <p className="lg:w-[19%] md:w-[20%] py-6 text-[20px] px-2 text-center">Subtotal</p>
         </div>
       </div>
 
-      <div className="w-[70%] mx-auto bg-[#292929] p-4">
+      <div className="lg:w-[70%] md:w-[90%] mx-auto bg-[#292929] p-4">
         <div className=" text-white flex w-full items-center font-bun">
-          <div className="w-[43%] py-6 text-[15px] px-2 ml-20">
-            <div className="flex justify-evenly items-center">
+          <div className="lg:w-[43%] md:w-[40%] py-6 lg:text-[15px] text-[10px] px-2 ml-20">
+            <div className="flex justify-evenly items-center gap-2">
               <RxCross1 />
               <Image src={product1} className="h-12 w-12"></Image>
               <p>Vaporesso Nebula Vape Kit - Yellow, Small</p>
@@ -60,13 +60,13 @@ export default function CartContainer() {
         <div className="flex items-center justify-between">
           <div>
             <input
-              className="bg-[#393939] h-12 p-5 text-white"
+              className="bg-[#393939] h-12 lg:p-5 md:p-3 text-white"
               type="text"
               placeholder="Coupon Code"
             />
-            <button className="bg-[#D22756] h-12 px-6 text-white font-eco ml-1 font-bold translate-y-[1px]">Apply Coupon</button>
+            <button className="bg-[#D22756] h-12 lg:px-6 md:px-4 text-white font-eco ml-1 font-bold translate-y-[1px]">Apply Coupon</button>
           </div>
-          <button className="bg-[#D22756] h-12 px-12 font-bold text-white font-eco">Update Cart</button>
+          <button className="bg-[#D22756] h-12 lg:px-12 md:px-8 font-bold text-white font-eco">Update Cart</button>
         </div>
       </div>
     </section>
