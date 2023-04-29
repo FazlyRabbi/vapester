@@ -18,7 +18,7 @@ function ShopLayout() {
         className={`${styles.banner1} lg:container w-[60%] md:w-[90%] mx-auto h-[460px] bg-no-repeat relative min-h-[10rem] bg-center bg-cover grid place-items-center lg:mt-48 lg:mb-20 mb-6`}
       >
         <div className="relative w-full h-full">
-          <div className="lg:text-center absolute lg:left-[4%] left-[9%] lg:top-[15%] top-[10%]  text-white mx-0 bg-[#D22756] lg:h-36 md:h-24 h-14 lg:pr-4 pr-0 text-[30px] w-[85%] lg:w-[55%]">
+          <div className="lg:text-center absolute lg:left-[4%] left-[9%] lg:top-[15%] top-[10%]  text-white mx-0 bg-primary lg:h-36 md:h-24 h-14 lg:pr-4 pr-0 text-[30px] w-[85%] lg:w-[55%]">
             <p className="font-black uppercase lg:text-[80px] md:text-[50px] tracking-widest lg:-mt-7 md:-mt-5 -mt-3 text-start font-bun">
               {" "}
               Visit our <br />

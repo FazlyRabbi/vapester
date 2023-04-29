@@ -3,7 +3,7 @@ function LeftSideContainer() {
     <section className="lg:col-span-3 lg:order-1 md:order-2 order-2">
       {/* cart  */}
       <div className="h-64 w-[65%] lg:w-full mx-auto bg-[#292929] relative">
-        <p className="absolute left-0 bg-[#D22756] text-white font-eco lg:text-[40px] text-[30px]  px-8 text-center top-12">
+        <p className="absolute left-0  bg-primary text-white font-eco lg:text-[40px] text-[30px]  px-8 text-center top-12">
           Cart
         </p>
         <p className="absolute left-16 text-white bottom-16">
@@ -13,7 +13,7 @@ function LeftSideContainer() {
 
       {/* filter  */}
       <div className="h-64 w-[65%] lg:w-full mx-auto bg-[#292929] relative mt-12">
-        <p className="absolute left-0 bg-[#D22756] text-white font-eco lg:text-[40px] text-[30px]  px-8  text-center top-12">
+        <p className="absolute left-0  bg-primary text-white font-eco lg:text-[40px] text-[30px]  px-8  text-center top-12">
           Filter by Price
         </p>
 
@@ -32,8 +32,8 @@ function LeftSideContainer() {
       </div>
 
       {/* product categories  */}
-      <div className="w-[65%] lg:w-full  mx-auto bg-[#ef3737] relative mt-12">
-        <p className="absolute left-0 bg-[#D22756] text-white font-eco lg:text-[40px] text-[30px]  px-8  text-center top-12">
+      <div className="w-[65%] lg:w-full  mx-auto  bg-primary relative mt-12">
+        <p className="absolute left-0  bg-primary text-white font-eco lg:text-[40px] text-[30px]  px-8  text-center top-12">
           Product categories
         </p>
         <div className="bg-[#292929] pt-36  pb-32 w-full">
@@ -52,8 +52,8 @@ function LeftSideContainer() {
       </div>
 
       {/* product tags  */}
-      <div className=" bg-[#ef3737] relative mt-12 w-[65%] lg:w-full mx-auto">
-        <p className="absolute left-0 bg-[#D22756] text-white font-eco lg:text-[40px] text-[30px]  px-8  text-center top-12">
+      <div className="  bg-primary relative mt-12 w-[65%] lg:w-full mx-auto">
+        <p className="absolute left-0  bg-primary text-white font-eco lg:text-[40px] text-[30px]  px-8  text-center top-12">
           Product tags
         </p>
         <div className="bg-[#292929] pt-36  pb-32 w-full">
@@ -75,7 +75,7 @@ function LeftSideContainer() {
           </div>
         </div>
 
-        <p className="absolute left-12 bg-[#D22756] text-white font-eco lg:text-[40px] text-[30px] px-12 text-center bottom-6">
+        <p className="absolute left-12  bg-primary text-white font-eco lg:text-[40px] text-[30px] px-12 text-center bottom-6">
           Reset
         </p>
       </div>

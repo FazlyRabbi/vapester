@@ -26,7 +26,7 @@ function RightSideContainer() {
           <p>show all 9 results</p>
         </div>
         <div className="flex lg:justify-between items-center gap-2">
-          <p className="bg-[#D22756] text-white w-12 h-12 flex justify-center items-center">
+          <p className=" bg-primary text-white w-12 h-12 flex justify-center items-center">
             <TbLayoutGrid className="text-2xl" />
           </p>
           <p className="bg-[#393939] text-white w-12 h-12 flex justify-center items-center">

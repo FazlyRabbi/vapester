@@ -1,12 +1,11 @@
-import { useContext, useState } from "react";
 import { AgeGateContext } from "@/context/ageGateContext";
 import {
   Button,
   Dialog,
-  DialogHeader,
-  DialogBody,
   DialogFooter,
+  DialogHeader,
 } from "@material-tailwind/react";
+import { useContext, useState } from "react";
 
 const AgeGateModal = () => {
   const { setIsOver18, isOver18 } = useContext(AgeGateContext);
@@ -24,13 +23,9 @@ const AgeGateModal = () => {
 
   return (
     <div>
-      <h1 className="  capitalize  text-[2rem]  text-red flex justify-center mt-[10rem]">
-        You Can't Access is the website if your are not 18+
-      </h1>
-
       <Dialog
         open={!isOver18}
-        className="bg-[#292929] 
+        className="bg-[#121212] 
      
       "
       >
@@ -52,10 +47,12 @@ const AgeGateModal = () => {
 
         {no ? (
           <p
-            className=" font-eco text-cen
-    flex justify-center 
-my-4
-       text-[1.2rem]
+            className=" font-eco 
+    px-2
+      my-4
+  text-center
+       text-[.9rem]
+       md:text-[1.3rem]
     text-white
    
    "

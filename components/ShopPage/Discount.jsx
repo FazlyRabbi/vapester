@@ -3,7 +3,7 @@ import styles from "../../styles/Shop.module.css";
 export default function DiscountBanner() {
   return (
     <section
-      className={`${styles.discount1} container mx-auto h-96 bg-no-repeat relative min-h-[10rem] bg-center p-0  bg-cover grid place-items-center md:w-[96%]`}
+      className={`${styles.discount1}  mb-[5rem] container mx-auto h-96 bg-no-repeat relative min-h-[10rem] bg-center p-0  bg-cover grid place-items-center md:w-[96%]`}
     >
       <div className="relative w-full h-full">
         <div className="lg:text-center absolute lg:right-[18%] right-6 lg:top-[30%] top-[40%]  text-white lg:mx-0 bg-[#AF7FFC] lg:h-36 md:h-24 h-12 sm:w-[90%] lg:w-[66%] mx-auto">

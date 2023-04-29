@@ -13,22 +13,8 @@ export default function Shop() {
       {/*header */}
       <Header />
       {/* header */}
-      <MegaMenu/>
-      {/* chat option start  */}
-      {/* <div className="fixed left-4 bottom-20 flex justify-center items-center gap-1 z-40">
-        <div className="bg-[#49B93B] p-6 rounded-full">
-          <BsFillChatLeftFill className="text-white" />
-        </div>
-        <div className="bg-[#fafafa] p-3 rounded-3xl">
-            <p>Presale Chat</p>
-          </div>
-      </div> */}
-      {/* chat option end  */}
-      
-     
       <DynamicBanner>shop</DynamicBanner>
       <DiscountBanner />
-      <Features />
       <ShopLayout />
     </section>
   );
