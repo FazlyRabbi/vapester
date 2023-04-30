@@ -72,19 +72,19 @@ export default function () {
 
           <div className="mt-8 ml-8">
             <ul className=" text-capilalize flex space-x-4">
-              <li className="p-3  border cursor-pointer bg-[#16ABBD]">
+              <li className="p-3  border cursor-pointer bg-[#16ABBD] border-none">
                 <AiOutlineTwitter className="text-[1.2rem] cursor-pointer text-white" />
               </li>
-              <li className="p-3 border cursor-pointer bg-[#415EAA]">
+              <li className="p-3 border cursor-pointer bg-[#415EAA] border-none">
                 <BsFacebook className="text-[1.2rem] text-white" />
               </li>
-              <li className="p-3  border bg-[#E69731]">
+              <li className="p-3  border bg-[#E69731] border-none">
                 <AiFillInstagram className="text-[1.2rem] cursor-pointer text-white" />
               </li>
-              <li className="p-3  border cursor-pointer bg-[#0A66C2]">
+              <li className="p-3  border cursor-pointer bg-[#0A66C2] border-none">
                 <FaLinkedin className="text-[1.2rem] text-white" />
               </li>
-              <li className="p-3  border cursor-pointer bg-[#B7081B]">
+              <li className="p-3  border cursor-pointer bg-[#B7081B] border-none">
                 <FaPinterestP className="text-[1.2rem] text-white" />
               </li>
             </ul>
