@@ -25,7 +25,6 @@ export default function Shop() {
       </div> */}
       {/* chat option end  */}
       
-
       <DynamicBanner>shop</DynamicBanner>
       <DiscountBanner />
       <Features />
