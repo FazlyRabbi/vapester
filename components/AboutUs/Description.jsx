@@ -21,7 +21,7 @@ export default function () {
         </div>
 
         {/* description section  */}
-        <div className="lg:w-1/2 lg:py-40 md:py-40 py-12">
+        <div className="lg:w-1/2 lg:py-20 md:py-20 py-12">
           <div className="w-[92%] mx-auto flex flex-col items-start justify-center">
             <h1 className="text-[30px] font-eco font-bold mb-8">
               Your One-Stop Vape Shop
