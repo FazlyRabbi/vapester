@@ -5,3 +5,10 @@
 .bg1{
   background-image: url("../img/home1-bg1-min-copyright.jpg");
 }
+
+.team{
+  background-image: url("../img/home2-bg7-min-copyright.jpg");
+  height: 550px;
+  opacity: 1;
+}
+
