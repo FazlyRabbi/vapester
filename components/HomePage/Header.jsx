@@ -143,7 +143,7 @@ function Header() {
         className={`bg-[#1d1b23f6]
      ${
        open ? "top-0" : " -top-[1000%]"
-     }  transition-all duration-200  h-[100%] w-[100%]  z-20   fixed`}
+     }  transition-all duration-200  bottom-0 h-[100%] w-[100%]  z-20   fixed`}
       >
         <div
           className="menu__container
