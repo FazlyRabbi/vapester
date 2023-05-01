@@ -10,9 +10,10 @@ import { MdClose } from "react-icons/md";
 import { TiSocialFacebookCircular } from "react-icons/ti";
 import logo from "../../img/logo.png";
 import Search from "../Search";
-import MegaMenu from "../ShopMegaMenu";
+
 
 function Header() {
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -44,7 +45,6 @@ function Header() {
                 "
               />
             </Link>
-
             <div
               className=" 
            
@@ -189,7 +189,7 @@ function Header() {
                   </li>
                 </Link>
 
-                <Link href={`/testimonials`}>
+                <Link href={`/testimonial`}>
                   <li
                     onClick={() => setOpen(false)}
                     className="  hover:text-[#2DBBD8]"
@@ -232,7 +232,7 @@ function Header() {
                   >
                     <span className="block  mr-1">Login</span>
 
-                    <BsArrowRightShort  />
+                    <BsArrowRightShort />
                   </li>
                 </Link>
               </ul>

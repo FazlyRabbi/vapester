@@ -7,8 +7,6 @@ export default function Search() {
         className="  text-white   
       w-[20rem]  relative font-eco text-[20px] font-bold"
       >
-
-
         <input
           type="search"
           id="default-search"
