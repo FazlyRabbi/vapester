@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useContext } from "react";
 import { AgeGateContext } from "@/context/ageGateContext";
 import AgeGateModal from "@/components/AgeGateModal";
+import Link from "next/link";
 import {
   FaMoneyBillAlt,
   FaShippingFast,
@@ -57,6 +58,7 @@ export default function Home() {
       <div className="block lg:hidden">
         <BannerSlideMobile />
       </div>
+
       {/* features */}
       <div className="flex flex-wrap justify-around my-12">
         <div className="p-2">
@@ -140,7 +142,7 @@ export default function Home() {
         <p className="text-[25px] ">Meet our Feature Products</p>
         <div className="relative">
           <div className="text-center absolute top-1/2 left-0  text-black mx-0 bg-[#F2D71F]">
-            <p className="font-black uppercase text-[40px] -mt-3.5">
+            <p className="font-black font-bun uppercase text-[40px] -mt-3.5">
               vape mods
             </p>
           </div>
@@ -156,14 +158,14 @@ export default function Home() {
           className={`${styles.discount1} col-span-1 lg:col-span-2 bg-center bg-no-repeat bg-cover relative min-w-[10rem] min-h-[20rem]`}
         >
           <div className="text-start absolute top-1/3 left-0 -translate-y-1/2 text-white mx-0 bg-[#af7ffc] h-14">
-            <p className="font-black uppercase text-[30px] -mt-3">
+            <p className="font-black font-bun uppercase text-[30px] -mt-3">
               SAVE 30% ON
               <br /> POPULAR E-LIQUIDS
             </p>
           </div>
           <div className="absolute top-2/4">
             <div className="p-10">
-              <button className="bg-[#292929] text-white px-5 py-2.5 uppercase">
+              <button className="bg-[#292929]  text-white px-5 py-2.5 uppercase">
                 Save on e-liquids
               </button>
             </div>
@@ -173,13 +175,14 @@ export default function Home() {
           className={` bg-center bg-no-repeat bg-cover relative ${styles.discount2} min-w-[10rem] min-h-[20rem]`}
         >
           <div className="text-start absolute top-1/3 left-0 -translate-y-1/2 text-white mx-0 bg-[#c1c800] h-14">
-            <p className="font-black tracking-wide uppercase text-[30px] -mt-3">
+            <p className=" font-bun tracking-wide uppercase text-[30px] -mt-3">
               vaporesso <br /> vaco one kids
             </p>
           </div>
           <div className="absolute top-1/2 mx-auto">
             <div className="p-10">
               <button className="bg-[#292929] text-white px-5 py-2.5 uppercase">
+               
                 Shop now
               </button>
             </div>
@@ -192,255 +195,290 @@ export default function Home() {
         <p className="text-[25px]">Don't Miss Our Last Updates</p>
         <div className="relative">
           <div className="text-center absolute top-1/2 left-0  text-black mx-0 bg-[#F2D71F]">
-            <p className="font-black uppercase text-[40px] -mt-3.5">
+            <p className="font-black uppercase text-[40px] font-bun -mt-3.5">
               new arrivals
             </p>
           </div>
         </div>
 
         <div className="my-20 pt-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 mx-auto">
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="text-left ">
-            <div className="border-4 border-gray-400 hover:border-gray-700 z-10">
+         
+         
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
               <Image
                 height={300}
                 width={300}
-                className={`max-h-[28rem] scale-95 hover:scale-110 overflow-hidden`}
+                className={`max-h-[28rem] border-4 border-gray-400`}
                 alt="product__imgae"
                 src={product5}
               />
-            </div>
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+          </Link>
+
+             
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] border-4 border-gray-400`}
+                alt="product__imgae"
+                src={product5}
+              />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+          </Link>
+             
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] border-4 border-gray-400`}
+                alt="product__imgae"
+                src={product5}
+              />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+          </Link>
+             
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] border-4 border-gray-400`}
+                alt="product__imgae"
+                src={product5}
+              />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+          </Link>
+             
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] border-4 border-gray-400`}
+                alt="product__imgae"
+                src={product5}
+              />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+          </Link>
+             
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] border-4 border-gray-400`}
+                alt="product__imgae"
+                src={product5}
+              />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+          </Link>
+             
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] border-4 border-gray-400`}
+                alt="product__imgae"
+                src={product5}
+              />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+          </Link>
+
+
+   
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] border-4 border-gray-400`}
+                alt="product__imgae"
+                src={product5}
+              />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-left">
-            <Image
-              height={300}
-              width={300}
-              className={`max-h-[28rem] border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product5}
-            />
-            <div className="my-4">
-              <p>DINNER LADY BLACKBERRY</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">09.90</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+          </Link>
+             
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] border-4 border-gray-400`}
+                alt="product__imgae"
+                src={product5}
+              />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
+             
+          <Link href={`/shop`}>
+            <div className="text-left cursor-pointer">
+              <Image
+                height={300}
+                width={300}
+                className={`max-h-[28rem] border-4 border-gray-400`}
+                alt="product__imgae"
+                src={product5}
+              />
+              <div className="my-4">
+                <p>DINNER LADY BLACKBERRY</p>
+                <div className="flex items-center">
+                  <p className="text-pink-600">
+                    $<span className="text-[25px]">09.90</span>
+                  </p>
+                  <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
+
+
+
         </div>
       </div>
 

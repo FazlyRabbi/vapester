@@ -1,7 +1,6 @@
 import { FaStar } from "react-icons/fa";
 import product1 from "/img/prod01-1-min-copyright-500x598.jpg";
 import Image from "next/image";
-import styles from "../../styles/singleProduct.module.css";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useState } from "react";
 

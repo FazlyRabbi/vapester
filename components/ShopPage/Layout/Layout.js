@@ -7,11 +7,12 @@ import Footer from "@/components/Footer";
 function ShopLayout() {
   return (
     <>
-      <section className="grid gap-8 lg:grid-cols-12 container mx-auto flex-row-reverse">
-        <LeftSideContainer />
-        <RightSideContainer />
-      </section>
 
+
+      <section className="grid gap-8 lg:grid-cols-12 container mx-auto ">
+        <LeftSideContainer  />
+        <RightSideContainer  />
+      </section>
 
       {/* workshop banner  */}
       <div

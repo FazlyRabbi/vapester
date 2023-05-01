@@ -7,6 +7,8 @@ import product4 from '../img/prod04-1-min-copyright-500x598.jpg'
 import product5 from '../img/prod05-1-min-copyright-500x598.jpg'
 import product6 from '../img/prod06-1-min-copyright-500x598.jpg'
 
+import Link from 'next/link';
+
 import { FaStar } from "react-icons/fa";
 
 import SwiperCore, { Navigation, Autoplay } from 'swiper/core';
@@ -43,6 +45,9 @@ function ProductSlider() {
             className=""
         >
             <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                
+                <Link  href={`/shop`}>
+
                 <div className="text-left">
                     <Image
                         height={450}
@@ -65,15 +70,23 @@ function ProductSlider() {
                         </div>
                     </div>
                 </div>
+                </Link>
+
+
             </SwiperSlide>
+          
+          
             <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                
+                <Link  href={`/shop`}>
+
                 <div className="text-left">
                     <Image
                         height={450}
                         width={450}
-                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        className={`max-h-[35rem]  border-4 border-gray-400`}
                         alt="product__imgae"
-                        src={product2}
+                        src={product1}
                     />
                     <div className='my-4'>
                         <p>VAPORESSO NEBULA VAPE KIT</p>
@@ -89,15 +102,22 @@ function ProductSlider() {
                         </div>
                     </div>
                 </div>
+                </Link>
+
+
             </SwiperSlide>
+            
             <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                
+                <Link  href={`/shop`}>
+
                 <div className="text-left">
                     <Image
                         height={450}
                         width={450}
-                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        className={`max-h-[35rem]  border-4 border-gray-400`}
                         alt="product__imgae"
-                        src={product3}
+                        src={product1}
                     />
                     <div className='my-4'>
                         <p>VAPORESSO NEBULA VAPE KIT</p>
@@ -113,63 +133,22 @@ function ProductSlider() {
                         </div>
                     </div>
                 </div>
+                </Link>
+
+
             </SwiperSlide>
+            
             <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                
+                <Link  href={`/shop`}>
+
                 <div className="text-left">
                     <Image
                         height={450}
                         width={450}
-                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        className={`max-h-[35rem]  border-4 border-gray-400`}
                         alt="product__imgae"
-                        src={product4}
-                    />
-                    <div className='my-4'>
-                        <p>SMOANT BATTLESTAR TC MOD</p>
-                        <div className='flex items-center'>
-                            <p className='text-pink-600'>$<span className='text-[25px]'>42.99</span></p>
-                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
-                <div className="text-left">
-                    <Image
-                        height={450}
-                        width={450}
-                        className={`max-h-[35rem] border-4 border-gray-400`}
-                        alt="product__imgae"
-                        src={product5}
-                    />
-                    <div className='my-4'>
-                        <p>DINNER LADY BLACKBERRY</p>
-                        <div className='flex items-center'>
-                            <p className='text-pink-600'>$<span className='text-[25px]'>09.90</span></p>
-                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                                <FaStar />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
-                <div className="text-left">
-                    <Image
-                        height={450}
-                        width={450}
-                        className={`max-h-[35rem] border-4 border-gray-400`}
-                        alt="product__imgae"
-                        src={product6}
+                        src={product1}
                     />
                     <div className='my-4'>
                         <p>VAPORESSO NEBULA VAPE KIT</p>
@@ -185,15 +164,22 @@ function ProductSlider() {
                         </div>
                     </div>
                 </div>
+                </Link>
+
+
             </SwiperSlide>
+            
             <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                
+                <Link  href={`/shop`}>
+
                 <div className="text-left">
                     <Image
                         height={450}
                         width={450}
-                        className={`max-h-[35rem] border-4 border-gray-400`}
+                        className={`max-h-[35rem]  border-4 border-gray-400`}
                         alt="product__imgae"
-                        src={product6}
+                        src={product1}
                     />
                     <div className='my-4'>
                         <p>VAPORESSO NEBULA VAPE KIT</p>
@@ -209,6 +195,133 @@ function ProductSlider() {
                         </div>
                     </div>
                 </div>
+                </Link>
+
+
+            </SwiperSlide>
+            
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                
+                <Link  href={`/shop`}>
+
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem]  border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product1}
+                    />
+                    <div className='my-4'>
+                        <p>VAPORESSO NEBULA VAPE KIT</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>26.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </Link>
+
+
+            </SwiperSlide>
+            
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                
+                <Link  href={`/shop`}>
+
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem]  border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product1}
+                    />
+                    <div className='my-4'>
+                        <p>VAPORESSO NEBULA VAPE KIT</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>26.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </Link>
+
+
+            </SwiperSlide>
+            
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                
+                <Link  href={`/shop`}>
+
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem]  border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product1}
+                    />
+                    <div className='my-4'>
+                        <p>VAPORESSO NEBULA VAPE KIT</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>26.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </Link>
+
+
+            </SwiperSlide>
+            
+            <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+                
+                <Link  href={`/shop`}>
+
+                <div className="text-left">
+                    <Image
+                        height={450}
+                        width={450}
+                        className={`max-h-[35rem]  border-4 border-gray-400`}
+                        alt="product__imgae"
+                        src={product1}
+                    />
+                    <div className='my-4'>
+                        <p>VAPORESSO NEBULA VAPE KIT</p>
+                        <div className='flex items-center'>
+                            <p className='text-pink-600'>$<span className='text-[25px]'>26.99</span></p>
+                            <div className="text-center gap-1 flex justify-center text-yellow-300 ">
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </Link>
+
+
             </SwiperSlide>
             
 
