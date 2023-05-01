@@ -20,7 +20,7 @@ export default function MeetTheTeam() {
 
 
       {/* grid layout  */}
-      <div className="grid grid-cols-3 gap-12 mb-16">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-12 mb-16">
         <div id="team" className={`${styles.team} hover:backdrop-opacity-50 relative bg-cover bg-center`}>
           <div className="absolute -bottom-28 left-0 w-full name">
             <div className="relative container mx-auto lg:pt-60 pt-12">

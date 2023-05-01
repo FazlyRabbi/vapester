@@ -7,9 +7,9 @@ import { BsFacebook } from "react-icons/bs";
 export default function () {
   return (
     <section>
-      <div className="container mx-auto flex  items-center">
+      <div className="lg:container md:5/6 w-3/4  mx-auto lg:flex  items-center">
         {/* photo gallery section   */}
-        <div className="flex gap-4 w-1/2">
+        <div className="flex gap-4 lg:w-1/2">
           <div className="w-full flex flex-col items-center justify-center gap-4">
             <Image className="h-96 " src={product1}></Image>
             <Image className="h-60 " src={product1}></Image>
@@ -21,7 +21,7 @@ export default function () {
         </div>
 
         {/* description section  */}
-        <div className="w-1/2 py-40">
+        <div className="lg:w-1/2 lg:py-40 md:py-40 py-12">
           <div className="w-[92%] mx-auto flex flex-col items-start justify-center">
             <h1 className="text-[30px] font-eco font-bold mb-8">
               Your One-Stop Vape Shop
@@ -70,7 +70,7 @@ export default function () {
             </div>
           </div>
 
-          <div className="mt-8 ml-8">
+          <div className="mt-8 lg:ml-8 md:ml-6 ml-2">
             <ul className=" text-capilalize flex space-x-4">
               <li className="p-3  border cursor-pointer bg-[#16ABBD] border-none">
                 <AiOutlineTwitter className="text-[1.2rem] cursor-pointer text-white" />

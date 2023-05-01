@@ -12,7 +12,7 @@ export default function ShareOnInstagram() {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-6 gap-4 mb-16">
+      <div className="grid md:grid-cols-6 grid-cols-2 gap-4 mb-16">
         <Image src={product01}></Image>
         <Image src={product01}></Image>
         <Image src={product01}></Image>
