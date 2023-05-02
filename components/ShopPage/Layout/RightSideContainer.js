@@ -9,6 +9,7 @@ import product1 from "/img/prod01-1-min-copyright-500x598.jpg";
 function RightSideContainer() {
   return (
     <section className="lg:col-span-9 order-2  ">
+      
       {/* top section  */}
       {/* <div
         className="flex lg:flex-row flex-col-reverse md:flex-row
