@@ -31,6 +31,7 @@ const styleToggleButton = {
 };
 
 export default function Home() {
+  
   const { isOver18 } = useContext(AgeGateContext);
 
   if (!isOver18) {
