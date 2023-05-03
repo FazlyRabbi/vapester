@@ -21,10 +21,10 @@ export default function Footer() {
       <div className="container mx-auto   ">
         <div className="grid  justify-items-center md:justify-items-start text-center md:text-left  gap-y-10 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 px-5">
           <div className="info">
-            <h3 className="info-title text-[25px] font-bold capitalize">
+            <h3 className="info-title font-eco text-[25px] font-bold capitalize">
               information & Services
             </h3>
-            <ul className=" capitalize mt-5 list-disc">
+            <ul className=" capitalize mt-5 list-disc font-eco">
               <li className="mb-1">Shipping & Returns</li>
               <li className="mb-1">Privacy Policy</li>
               <li className="mb-1">Nicotine Disclaimer</li>
@@ -36,7 +36,7 @@ export default function Footer() {
             <h3 className="info-title text-[25px] font-bold capitalize invisible">
               jijii
             </h3>
-            <ul className=" capitalize mt-5 list-disc">
+            <ul className=" capitalize mt-5 list-disc font-eco">
               <li className="mb-1">Privacy Notice</li>
               <li className="mb-1">Terms & Conditions</li>
               <li className="mb-1">Shortcodes</li>
@@ -45,7 +45,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="info">
-            <h3 className="info-title text-[25px] font-bold  capitalize">
+            <h3 className="info-title text-[25px] font-eco font-bold  capitalize">
               Connect With Us
             </h3>
             <div className="mt-4">
@@ -71,17 +71,17 @@ export default function Footer() {
               <li className="mb-1">
                 <input
                   type="search"
-                  className=" py-3 w-72"
+                  className=" font-eco p-3 w-72"
                   placeholder="Your email address"
                 />
               </li>
               <li className=" mt-3">
-                <button className="bg-[#F2D71F] text-black px-5 py-3">Subscribe</button>
+                <button className="bg-[#F2D71F] text-black px-5 py-3 font-eco">Subscribe</button>
               </li>
             </ul>
           </div>
           <div className="info">
-            <h3 className="info-title text-[25px] font-bold capitalize">
+            <h3 className="info-title text-[25px]  font-eco font-bold capitalize">
             Payments & Delivery
             </h3>
             <div className="grid grid-cols-5 gap-2 mt-5">
@@ -99,7 +99,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="copy  mt-10 ">
-          <p className="text-white text-center lg:text-left">
+          <p className="text-white text-center  font-eco lg:text-left">
             ©2022 Vapester.  All rights reserved.
           </p>
         </div>

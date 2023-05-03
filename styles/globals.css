@@ -76,22 +76,13 @@ input[type="file"] {
 .swiper-button-prev,
 .swiper-button-next {
   color: #000 !important; /* change color of the icons */
-  font-size: 24px;
+  font-size: 10px !important;
   /* change size of the icons */
 }
 
 .swiper-button-prev::before,
 .swiper-button-next::before {
   content: "" !important; /* remove the default arrow content */
-}
-
-.swiper-button-prev::after {
-  content: "\2190" !important; /* add a left arrow icon */
-}
-
-.swiper-button-next::after {
-  content: "\2192" !important;
-  /* add a right arrow icon */
 }
 
 .wrapperClass {
@@ -111,10 +102,20 @@ input[type="file"] {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  
 }
 
 .hero-text {
   position: absolute;
   top: 35%;
   left: 10%;
+}
+
+
+.cartHover{
+   background-color: red;
+   padding: 20rem;
+   box-shadow: 8px -4px 80px 19px rgba(84,84,84,0.58);
+  -webkit-box-shadow: 8px -4px 80px 19px rgba(84,84,84,0.58);
+  -moz-box-shadow: 8px -4px 80px 19px rgba(84,84,84,0.58);
 }

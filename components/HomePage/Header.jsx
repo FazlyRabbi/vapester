@@ -22,7 +22,7 @@ function Header() {
       className="z-10
       transition-all duration-500"
     >
-      <div className="header-top bg-[#292929] ">
+      <div className="header-top bg-[#292929]   pl-5 md:pl-0">
         <div className="container mx-auto ">
           <div
             className="header-top-content flex font-eco 
@@ -93,15 +93,15 @@ function Header() {
                 <Search />
               </div>
 
-              <div className=" cursor-pointer  px-3">
+              <div className=" cursor-pointer  ">
                 <div
                   className="
                   
                   hover:bg-[#F2D71F]
                    transition-all duration-500
                    hover:text-[#000]
-                  bg-primary p-5 flex
-                px-7
+                  bg-primary p-3 md:p-5 flex
+                px-5 md:px-7
                  space-x-4
                   justify-center items-center "
                 >
@@ -123,6 +123,8 @@ function Header() {
                   </span>
                 </div>
               </div>
+
+
 
               <div className=" cursor-pointer  px-3 flex items-center">
                 <AiOutlineMenu

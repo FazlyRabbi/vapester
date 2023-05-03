@@ -11,10 +11,10 @@ export default function FooterNew() {
             <div className="container mx-auto   ">
                 <div className="px-6 grid  justify-items-center md:justify-items-start text-center md:text-left  gap-y-10 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-5">
                     <div className="info">
-                        <h3 className="info-title text-[25px] font-bold capitalize">
+                        <h3 className="info-title  text-[25px]  font-bold capitalize">
                             information
                         </h3>
-                        <ul className=" capitalize mt-2">
+                        <ul className=" capitalize mt-2 ">
                             <li className="mb-2">2972 Westheimer Rd. Santa Ana,</li>
                             <li className="mb-2">Illinois 85486</li>
                             <li className="mb-2">support@example.com</li>

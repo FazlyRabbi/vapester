@@ -1,11 +1,15 @@
 import "../styles/ProductSlider.module.css";
 import Image from "next/image";
-import product1 from "../img/prod01-1-min-copyright-500x598.jpg";
-import product2 from "../img/prod02-1-min-copyright-500x598.jpg";
-import product3 from "../img/prod03-1-min-copyright-500x598.jpg";
-import product4 from "../img/prod04-1-min-copyright-500x598.jpg";
-import product5 from "../img/prod05-1-min-copyright-500x598.jpg";
-import product6 from "../img/prod06-1-min-copyright-500x598.jpg";
+import { Chip } from "@material-tailwind/react";
+
+
+import p1 from "../img/products/p1.jpg"
+import p2 from "../img/products/p2.jpg"
+import p3 from "../img/products/p3.jpg"
+import p4 from "../img/products/p4.jpg"
+import p5 from "../img/products/p5.jpg"
+import p6 from "../img/products/p6.jpg"
+
 
 import Link from "next/link";
 
@@ -37,320 +41,189 @@ function ProductSlider() {
           slidesPerView: 4,
         },
       }}
+      navigation={true}
       slidesPerView={4}
-      spaceBetween={25}
+      spaceBetween={20}
       freeMode={true}
-      // modules={[ Pagination]}
-      className=""
+      className="  snap-center"
     >
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+      <SwiperSlide className="rounded-3x " id="swiper-slide-product">
         <Link href={`/shop`}>
-          <div className="text-left">
+          <div
+            className="  border  rounded-sm  hover:shadow-2xl  transition-all duration-200 border-black 
+          overflow-hidden   "
+          >
+            <div className="  -z-40">
+              <Image
+                height={450}
+                width={450}
+                className={`max-h-[35rem] `}
+                alt="product__imgae"
+                src={p1}
+              />
+            </div>
+
+            <div className=" z-10  font-eco py-4 bg-[#111111] text-white">
+              <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
+
+              <div className="flex items-center  justify-center ">
+                <p className="text-yeollow  font-bold">
+                  $<span className="text-[1.3rem]">26.99</span>
+                </p>
+              </div>
+            </div>
+
+            {/* sale bage */}
+            <Chip
+              className=" absolute  px-[4px] rounded-sm  hover:shadow-2xl  transition-all duration-200 top-1 left-1 bg-yeollow py-[2px] font-eco  text-black  capitalize"
+              value="sale!"
+            />
+          </div>
+        </Link>
+      </SwiperSlide>{" "}
+      <SwiperSlide className="rounded-3x " id="swiper-slide-product">
+        <Link href={`/shop`}>
+          <div className="  border  rounded-sm  hover:shadow-2xl  transition-all duration-200 border-black   ">
             <Image
               height={450}
               width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
+              className={`max-h-[35rem] `}
               alt="product__imgae"
-              src={product1}
+              src={p2}
             />
-            <div className="  font-eco my-4">
+            <div className="  font-eco py-4 bg-[#111111] text-white">
               <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
+
+              <div className="flex items-center  justify-center ">
+                <p className="text-yeollow  font-bold">
+                  $<span className="text-[1.3rem]">26.99</span>
                 </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
               </div>
             </div>
+
+            {/* sale bage */}
+            <Chip
+              className=" absolute  px-[4px] rounded-sm  hover:shadow-2xl  transition-all duration-200 top-1 left-1 bg-yeollow py-[2px] font-eco  text-black  capitalize"
+              value="sale!"
+            />
           </div>
         </Link>
-      </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+      </SwiperSlide>{" "}
+
+      <SwiperSlide className="rounded-3x " id="swiper-slide-product">
         <Link href={`/shop`}>
-          <div className="text-left">
+          <div className="  border  rounded-sm  hover:shadow-2xl  transition-all duration-200 border-black   ">
             <Image
               height={450}
               width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
+              className={`max-h-[35rem] `}
               alt="product__imgae"
-              src={product1}
+              src={p4}
             />
-            <div className="  font-eco my-4">
+            <div className="  font-eco py-4 bg-[#111111] text-white">
               <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
+
+              <div className="flex items-center  justify-center ">
+                <p className="text-yeollow  font-bold">
+                  $<span className="text-[1.3rem]">26.99</span>
                 </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
               </div>
             </div>
+
+            {/* sale bage */}
+            <Chip
+              className=" absolute  px-[4px] rounded-sm  hover:shadow-2xl  transition-all duration-200 top-1 left-1 bg-yeollow py-[2px] font-eco  text-black  capitalize"
+              value="sale!"
+            />
           </div>
         </Link>
-      </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+      </SwiperSlide>{" "}
+      <SwiperSlide className="rounded-3x " id="swiper-slide-product">
         <Link href={`/shop`}>
-          <div className="text-left">
+          <div className="  border  rounded-sm  hover:shadow-2xl  transition-all duration-200 border-black   ">
             <Image
               height={450}
               width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
+              className={`max-h-[35rem] `}
               alt="product__imgae"
-              src={product1}
+              src={p5}
             />
-            <div className="  font-eco my-4">
+            <div className="  font-eco py-4 bg-[#111111] text-white">
               <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
+
+              <div className="flex items-center  justify-center ">
+                <p className="text-yeollow  font-bold">
+                  $<span className="text-[1.3rem]">26.99</span>
                 </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
               </div>
             </div>
+
+            {/* sale bage */}
+            <Chip
+              className=" absolute  px-[4px] rounded-sm  hover:shadow-2xl  transition-all duration-200 top-1 left-1 bg-yeollow py-[2px] font-eco  text-black  capitalize"
+              value="sale!"
+            />
           </div>
         </Link>
-      </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+      </SwiperSlide>{" "}
+      <SwiperSlide className="rounded-3x " id="swiper-slide-product">
         <Link href={`/shop`}>
-          <div className="text-left">
+          <div className="  border  rounded-sm  hover:shadow-2xl  transition-all duration-200 border-black   ">
             <Image
               height={450}
               width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
+              className={`max-h-[35rem] `}
               alt="product__imgae"
-              src={product1}
+              src={p6}
             />
-            <div className="  font-eco my-4">
+            <div className="  font-eco py-4 bg-[#111111] text-white">
               <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
+
+              <div className="flex items-center  justify-center ">
+                <p className="text-yeollow  font-bold">
+                  $<span className="text-[1.3rem]">26.99</span>
                 </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
               </div>
             </div>
+
+            {/* sale bage */}
+            <Chip
+              className=" absolute  px-[4px] rounded-sm  hover:shadow-2xl  transition-all duration-200 top-1 left-1 bg-yeollow py-[2px] font-eco  text-black  capitalize"
+              value="sale!"
+            />
           </div>
         </Link>
       </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
+
+      
+      <SwiperSlide className="rounded-3x " id="swiper-slide-product">
         <Link href={`/shop`}>
-          <div className="text-left">
+          <div className="  border  rounded-sm  hover:shadow-2xl  transition-all duration-200 border-black   ">
             <Image
               height={450}
               width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
+              className={`max-h-[35rem] `}
               alt="product__imgae"
-              src={product1}
+              src={p4}
             />
-            <div className="  font-eco my-4">
+            <div className="  font-eco py-4 bg-[#111111] text-white">
               <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
+
+              <div className="flex items-center  justify-center ">
+                <p className="text-yeollow  font-bold">
+                  $<span className="text-[1.3rem]">26.99</span>
                 </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
               </div>
             </div>
-          </div>
-        </Link>
-      </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
-        <Link href={`/shop`}>
-          <div className="text-left">
-            <Image
-              height={450}
-              width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product1}
+
+            {/* sale bage */}
+            <Chip
+              className=" absolute  px-[4px] rounded-sm  hover:shadow-2xl  transition-all duration-200 top-1 left-1 bg-yeollow py-[2px] font-eco  text-black  capitalize"
+              value="sale!"
             />
-            <div className="  font-eco my-4">
-              <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-              </div>
-            </div>
           </div>
         </Link>
-      </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
-        <Link href={`/shop`}>
-          <div className="text-left">
-            <Image
-              height={450}
-              width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product1}
-            />
-            <div className="  font-eco my-4">
-              <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-              </div>
-            </div>
-          </div>
-        </Link>
-      </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
-        <Link href={`/shop`}>
-          <div className="text-left">
-            <Image
-              height={450}
-              width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product1}
-            />
-            <div className="  font-eco my-4">
-              <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-              </div>
-            </div>
-          </div>
-        </Link>
-      </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
-        <Link href={`/shop`}>
-          <div className="text-left">
-            <Image
-              height={450}
-              width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product1}
-            />
-            <div className="  font-eco my-4">
-              <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-              </div>
-            </div>
-          </div>
-        </Link>
-      </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
-        <Link href={`/shop`}>
-          <div className="text-left">
-            <Image
-              height={450}
-              width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product1}
-            />
-            <div className="  font-eco my-4">
-              <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-              </div>
-            </div>
-          </div>
-        </Link>
-      </SwiperSlide>
-      <SwiperSlide className="rounded-3xl" id="swiper-slide-product">
-        <Link href={`/shop`}>
-          <div className="text-left">
-            <Image
-              height={450}
-              width={450}
-              className={`max-h-[35rem]  border-4 border-gray-400`}
-              alt="product__imgae"
-              src={product1}
-            />
-            <div className="  font-eco my-4">
-              <p className=" font-bold">VAPORESSO NEBULA VAPE KIT</p>
-              <div className="flex items-center">
-                <p className="text-pink-600">
-                  $<span className="text-[25px]">26.99</span>
-                </p>
-                <div className="text-center gap-1 flex justify-center text-yellow-300 ">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-              </div>
-            </div>
-          </div>
-        </Link>
-      </SwiperSlide>
+      </SwiperSlide>{" "}
     </Swiper>
   );
 }
