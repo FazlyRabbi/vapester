@@ -10,6 +10,7 @@ function ShopLayout({ children, title }) {
       <section className="container mx-auto px-4 mt-10">
         <div className="grid gap-8 lg:grid-cols-12  ">
           <LeftSideContainer />
+         
           {/* Place Your Right Content */}
           <div className="lg:col-span-9 order-2 ">
             <h1
