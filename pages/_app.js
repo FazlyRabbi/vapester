@@ -9,7 +9,6 @@ import "swiper/swiper-bundle.css";
 export default function MyApp({ Component, pageProps }) {
   // if (pageProps.protected && !user) {
   //   return (
-  //     <Layout>Loading...</Layout>
   //   )
   // }
 

@@ -5,7 +5,6 @@ import partner3 from "../img/3-copyright.png";
 import partner4 from "../img/4-copyright.png";
 import partner5 from "../img/5-copyright.png";
 
-
 import SwiperCore, { Navigation, Autoplay } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 

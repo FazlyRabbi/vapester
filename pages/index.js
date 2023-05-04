@@ -10,29 +10,23 @@ import product5 from "../img/prod05-1-min-copyright-500x598.jpg";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 import { Chip } from "@material-tailwind/react";
-
-// imports products image 
-import p1 from "../img/products/p1.jpg"
-import p2 from "../img/products/p2.jpg"
-import p3 from "../img/products/p3.jpg"
-import p4 from "../img/products/p4.jpg"
-import p5 from "../img/products/p5.jpg"
-import p6 from "../img/products/p6.jpg"
-import p7 from "../img/products/p7.jpg"
-import p8 from "../img/products/p8.jpg"
-import p9 from "../img/products/p9.jpg"
-import p10 from "../img/products/p10.jpg"
-
-
+// imports products image
+import p1 from "../img/products/p1.jpg";
+import p2 from "../img/products/p2.jpg";
+import p3 from "../img/products/p3.jpg";
+import p4 from "../img/products/p4.jpg";
+import p5 from "../img/products/p5.jpg";
+import p6 from "../img/products/p6.jpg";
+import p7 from "../img/products/p7.jpg";
+import p8 from "../img/products/p8.jpg";
+import p9 from "../img/products/p9.jpg";
 // import components
 import DealOfTheDay from "@/components/HomePage/DealOfTheDay";
 import BannerSlider from "@/components/BannerSlider";
 import Footer from "@/components/Footer";
 import Partners from "@/components/Partners";
 import styles from "../styles/Home.module.css";
-
 // imports compoents
 import Header from "@/components/HomePage/Header";
 const styleToggleButton = {
@@ -191,11 +185,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="my-20 pt-8 grid grid-cols-1 
+        <div
+          className="my-20 pt-8 grid grid-cols-1 
         
       
-        md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 mx-auto  justify-items-center  ">
-          
+        md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 mx-auto  justify-items-center  "
+        >
           <Link href={`/singleproduct`}>
             <div
               className={`relative 
@@ -203,8 +198,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
@@ -242,8 +235,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
@@ -274,7 +265,7 @@ export default function Home() {
               />
             </div>
           </Link>
-      
+
           <Link href={`/singleproduct`}>
             <div
               className={`relative 
@@ -282,8 +273,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
@@ -321,8 +310,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
@@ -361,8 +348,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
@@ -400,8 +385,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
@@ -439,8 +422,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
@@ -478,8 +459,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
@@ -517,8 +496,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
@@ -556,8 +533,6 @@ export default function Home() {
         
               max-h-[20rem] border  rounded-sm border-black 
           overflow-hidden  hover:shadow-2xl  hover:scale-105  transition-all duration-200`}
-
-           
             >
               <div>
                 <Image
