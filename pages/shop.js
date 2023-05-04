@@ -7,7 +7,7 @@ export default function Shop() {
   return (
     <section>
       <Header />
-      {/* <DiscountBanner /> */}
+      <DiscountBanner />
       <ShopLayout title={`shop`}>
         <Products />
       </ShopLayout>
