@@ -16,18 +16,36 @@ function BannerSlider() {
         delay: 5000,
         disableOnInteraction: false,
       }}
-       navigation={true}
-      modules={[Autoplay,  Navigation]}
-      className=" max-h-[25rem]  w-[100%] "
+      navigation={true}
+      modules={[Autoplay, Navigation]}
+      className=" max-h-[10rem] md:max-h-[25rem]  w-[100%] "
     >
       <SwiperSlide className="w-full ">
-        <Image  className=" max-h-[25rem]    object-cover"  src={b1} height={300} width={300} alt="product banner image" />
+        <Image
+          className=" max-h-[10rem] md:max-h-[25rem] "
+          src={b1}
+          height={400}
+          width={400}
+          alt="product banner image"
+        />
       </SwiperSlide>
       <SwiperSlide className="w-full ">
-        <Image  className=" max-h-[25rem]    object-cover" src={b2} height={300} width={300} alt="product banner image" />
+        <Image
+          className=" max-h-[10rem] md:max-h-[25rem] "
+          src={b2}
+          height={400}
+          width={400}
+          alt="product banner image"
+        />
       </SwiperSlide>
       <SwiperSlide className="w-full ">
-        <Image  className=" max-h-[25rem]    object-cover"  src={b3} height={300} width={300} alt="product banner image" />
+        <Image
+          className=" max-h-[10rem] md:max-h-[25rem] "
+          src={b3}
+          height={400}
+          width={400}
+          alt="product banner image"
+        />
       </SwiperSlide>
     </Swiper>
   );

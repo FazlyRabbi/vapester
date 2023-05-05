@@ -33,7 +33,8 @@ module.exports = withMT({
       transparent: "transparent",
       primary: "#2dbad6",
       white: "#ffffff",
-      gray: "#191919",
+      matBlack: "#191919",
+
       second: "#41cde9",
       yeollow:"#F2D71F",
       link: "#416DEC",

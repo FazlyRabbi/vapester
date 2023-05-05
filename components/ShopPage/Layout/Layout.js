@@ -7,10 +7,10 @@ import Image from "next/image";
 function ShopLayout({ children, title }) {
   return (
     <>
-      <section className="container mx-auto px-4 mt-10">
+      <section className="container mx-auto px-4 my-10">
         <div className="grid gap-8 lg:grid-cols-12  ">
           <LeftSideContainer />
-         
+
           {/* Place Your Right Content */}
           <div className="lg:col-span-9 order-2 ">
             <h1
@@ -22,7 +22,7 @@ function ShopLayout({ children, title }) {
             </h1>
             {children}
             {/* workshop banner  */}
-            <div
+            {/* <div
               className={`${styles.banner1}  w-full h-[10rem] md:h-[20rem] rounded-sm bg-no-repeat relative min-h-[10rem] bg-center bg-cover 
          my-[3rem]
      `}
@@ -56,7 +56,7 @@ function ShopLayout({ children, title }) {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

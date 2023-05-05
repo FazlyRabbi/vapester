@@ -567,7 +567,7 @@ export default function Home() {
       </div>
 
       {/* partners */}
-      <div className="container mx-auto my-16">
+      <div className="container mx-auto my-10">
         <p
           className="
       
@@ -607,7 +607,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="my-20 pt-10">
+        <div className="mt-16">
           <Partners />
         </div>
       </div>
