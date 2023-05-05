@@ -11,9 +11,7 @@ import { TiSocialFacebookCircular } from "react-icons/ti";
 import logo from "../../img/logo.png";
 import Search from "../Search";
 
-
 function Header() {
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -45,6 +43,7 @@ function Header() {
                 "
               />
             </Link>
+
             <div
               className=" 
            
@@ -71,9 +70,11 @@ function Header() {
               </div>
 
               {/* login button  */}
-              <div className=" hidden xl:block">
-                <div
-                  className="cursor-pointer 
+
+              <Link href={`/my-account`}>
+                <div className=" hidden xl:block">
+                  <div
+                    className="cursor-pointer 
                 
                 lg:flex 
                 text-white 
@@ -83,11 +84,12 @@ function Header() {
                  transition-all duration-200
                 
                  font-bold"
-                >
-                  <BiLogIn />
-                  <p className=" ">Log In</p>
+                  >
+                    <BiLogIn />
+                    <p className=" ">Log In/Signup</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
 
               <div className="    cursor-pointer hidden lg:block px-3">
                 <Search />
@@ -123,8 +125,6 @@ function Header() {
                   </span>
                 </div>
               </div>
-
-
 
               <div className=" cursor-pointer  px-3 flex items-center">
                 <AiOutlineMenu
